@@ -1,0 +1,882 @@
+<main>
+    <!-- ====================================== -->
+    <!-- BREADCRUMB -->
+    <!-- ====================================== -->
+
+    <div class="container-fluid">
+
+        <ol class="breadcrumb shadow-sm">
+
+            <li class="breadcrumb-item">
+
+                <a href="/inicio">
+
+                    <i class="fa fa-fw fa-home"></i>
+                    Inicio
+
+                </a>
+
+            </li>
+
+            <li class="breadcrumb-item">
+
+                <a href="/administrar">
+
+                    <i class="fa fa-fw fa-cogs"></i>
+                    Administrar
+
+                </a>
+
+            </li>
+
+            <li class="breadcrumb-item active">
+
+                <i class="fa fa-fw fa-cubes"></i>
+                Elecciones
+
+            </li>
+
+        </ol>
+
+    </div>
+
+    <!-- ====================================== -->
+    <!-- HERO -->
+    <!-- ====================================== -->
+
+    <section class="hero-election-admin py-5 mb-4">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-8 text-white">
+
+                    <h1 class="display-4 font-weight-bold">
+
+                        <i class="fa fa-cubes"></i>
+                        Administración de Elecciones
+
+                    </h1>
+
+                    <p class="lead mt-3">
+
+                        Gestión completa de procesos electorales
+                        virtuales de la Universidad Mayor de San Andrés.
+
+                    </p>
+
+                    <p>
+
+                        Cree, programe, supervise y administre elecciones
+                        universitarias para autoridades académicas,
+                        centros estudiantiles y representación universitaria.
+
+                    </p>
+
+                </div>
+
+                <div class="col-lg-4 text-center">
+
+                    <div class="hero-icon">
+
+                        <i class="fa fa-university"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ====================================== -->
+    <!-- NUEVO PROCESO -->
+    <!-- ====================================== -->
+
+    <div class="container mb-5">
+
+        <div class="card border-0 shadow-lg create-card">
+
+            <div class="card-body p-5">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg-8">
+
+                        <h2 class="font-weight-bold text-primary">
+
+                            Crear Nuevo Proceso Electoral
+
+                        </h2>
+
+                        <p class="lead text-secondary mt-3">
+
+                            Configure un nuevo proceso electoral
+                            institucional para elecciones universitarias.
+
+                        </p>
+
+                        <p>
+
+                            El sistema permitirá administrar cronogramas,
+                            candidatos, mesas virtuales, votaciones
+                            y resultados oficiales de manera segura.
+
+                        </p>
+
+                    </div>
+
+                    <div class="col-lg-4 text-center">
+
+                        <a class="btn btn-create btn-lg px-5 py-3"
+                            href="/administrar/elecciones/nuevo">
+
+                            <i class="fa fa-fw fa-plus-circle"></i>
+                            Nuevo Proceso
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ====================================== -->
+    <!-- PLANIFICADAS -->
+    <!-- ====================================== -->
+
+    <div class="container mb-5">
+
+        <div class="card section-card border-0 shadow-lg">
+
+            <div class="card-header section-header">
+
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+                    <h3 class="mb-0">
+
+                        <i class="fa fa-calendar"></i>
+                        Elecciones Planificadas
+
+                    </h3>
+
+                    <span class="badge badge-light p-2">
+
+                        Total: {{count planificadas}}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="card-body">
+
+                <div id="toolbarPlanned"
+                    class="mb-3">
+
+                    <div class="alert alert-light border mb-0">
+
+                        <i class="fa fa-info-circle text-primary"></i>
+
+                        Procesos electorales en etapa de planificación.
+
+                    </div>
+
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover table-bordered"
+                        id="tablePlanned"
+                        data-toggle="tablePlanned"
+                        data-toolbar="#toolbarPlanned"
+                        data-locale="es-ES"
+                        data-search="true"
+                        data-pagination="true"
+                        data-mobile-responsive="true"
+                        data-detail-view="true"
+                        data-detail-formatter="detailFormatterPlanned">
+
+                        <thead class="thead-primary">
+
+                            <tr>
+
+                                <th data-field="titulo">
+                                    Título
+                                </th>
+
+                                <th data-field="descripcion">
+                                    Descripción
+                                </th>
+
+                                <th data-field="fecha_inicio">
+                                    Fecha Inicio
+                                </th>
+
+                                <th data-field="fecha_final">
+                                    Fecha Final
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {{#each planificadas}}
+
+                            <tr id="{{id}}">
+
+                                <td>{{titulo}}</td>
+
+                                <td>{{descripcion}}</td>
+
+                                <td>{{fecha_inicio}}</td>
+
+                                <td>{{fecha_final}}</td>
+
+                            </tr>
+
+                            {{/each}}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ====================================== -->
+    <!-- PROGRAMADAS -->
+    <!-- ====================================== -->
+
+    <div class="container mb-5">
+
+        <div class="card section-card border-0 shadow-lg">
+
+            <div class="card-header section-header-success">
+
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+                    <h3 class="mb-0">
+
+                        <i class="fa fa-clock-o"></i>
+                        Elecciones Programadas
+
+                    </h3>
+
+                    <span class="badge badge-light p-2">
+
+                        Total: {{count programadas}}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="card-body">
+
+                <div id="toolbarScheduled"
+                    class="mb-3">
+
+                    <div class="alert alert-light border mb-0">
+
+                        <i class="fa fa-info-circle text-success"></i>
+
+                        Procesos listos para ejecución.
+
+                    </div>
+
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover table-bordered"
+                        id="tableScheduled"
+                        data-toggle="tableScheduled"
+                        data-toolbar="#toolbarScheduled"
+                        data-locale="es-ES"
+                        data-search="true"
+                        data-pagination="true"
+                        data-mobile-responsive="true"
+                        data-detail-view="true"
+                        data-detail-formatter="detailFormatterScheduled">
+
+                        <thead class="thead-success">
+
+                            <tr>
+
+                                <th data-field="titulo">
+                                    Título
+                                </th>
+
+                                <th data-field="descripcion">
+                                    Descripción
+                                </th>
+
+                                <th data-field="fecha_inicio">
+                                    Fecha Inicio
+                                </th>
+
+                                <th data-field="fecha_final">
+                                    Fecha Final
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {{#each programadas}}
+
+                            <tr id="{{id}}">
+
+                                <td>{{titulo}}</td>
+
+                                <td>{{descripcion}}</td>
+
+                                <td>{{fecha_inicio}}</td>
+
+                                <td>{{fecha_final}}</td>
+
+                            </tr>
+
+                            {{/each}}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ====================================== -->
+    <!-- EJECUCION -->
+    <!-- ====================================== -->
+
+    <div class="container mb-5">
+
+        <div class="card section-card border-0 shadow-lg">
+
+            <div class="card-header section-header-warning">
+
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+                    <h3 class="mb-0">
+
+                        <i class="fa fa-play-circle"></i>
+                        Elecciones en Ejecución
+
+                    </h3>
+
+                    <span class="badge badge-light p-2">
+
+                        Total: {{count ejecutadas}}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="card-body">
+
+                <div id="toolbarExecuted"
+                    class="mb-3">
+
+                    <div class="alert alert-light border mb-0">
+
+                        <i class="fa fa-info-circle text-warning"></i>
+
+                        Procesos electorales activos actualmente.
+
+                    </div>
+
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover table-bordered"
+                        id="tableExecuted"
+                        data-toggle="tableExecuted"
+                        data-toolbar="#toolbarExecuted"
+                        data-locale="es-ES"
+                        data-search="true"
+                        data-pagination="true"
+                        data-mobile-responsive="true"
+                        data-detail-view="true"
+                        data-detail-formatter="detailFormatterExecuted">
+
+                        <thead class="thead-warning">
+
+                            <tr>
+
+                                <th data-field="titulo">
+                                    Título
+                                </th>
+
+                                <th data-field="descripcion">
+                                    Descripción
+                                </th>
+
+                                <th data-field="fecha_inicio">
+                                    Fecha Inicio
+                                </th>
+
+                                <th data-field="fecha_final">
+                                    Fecha Final
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {{#each ejecutadas}}
+
+                            <tr id="{{id}}">
+
+                                <td>{{titulo}}</td>
+
+                                <td>{{descripcion}}</td>
+
+                                <td>{{fecha_inicio}}</td>
+
+                                <td>{{fecha_final}}</td>
+
+                            </tr>
+
+                            {{/each}}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<!-- ====================================== -->
+<!-- ESTILOS -->
+<!-- ====================================== -->
+
+<style>
+
+    body{
+        background:#f4f6f9;
+    }
+
+    /* HERO */
+
+    .hero-election-admin{
+        background:linear-gradient(135deg,#003b75,#0056b3);
+        border-bottom:5px solid #f4b400;
+    }
+
+    .hero-icon{
+        width:180px;
+        height:180px;
+        border-radius:50%;
+        background:rgba(255,255,255,0.12);
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin:auto;
+    }
+
+    .hero-icon i{
+        font-size:90px;
+        color:white;
+    }
+
+    /* BREADCRUMB */
+
+    .breadcrumb{
+        background:white;
+        border-radius:12px;
+        padding:15px 20px;
+    }
+
+    .breadcrumb a{
+        color:#003b75;
+        font-weight:500;
+        text-decoration:none;
+    }
+
+    /* CREATE CARD */
+
+    .create-card{
+        border-radius:20px;
+    }
+
+    .btn-create{
+        background:linear-gradient(90deg,#003b75,#0056b3);
+        color:white;
+        border:none;
+        border-radius:12px;
+        font-weight:bold;
+        transition:0.3s;
+    }
+
+    .btn-create:hover{
+        transform:translateY(-3px);
+        box-shadow:0 10px 25px rgba(0,86,179,0.3);
+        color:white;
+    }
+
+    /* SECTION CARD */
+
+    .section-card{
+        border-radius:18px;
+        overflow:hidden;
+    }
+
+    .section-header{
+        background:linear-gradient(90deg,#003b75,#0056b3);
+        color:white;
+    }
+
+    .section-header-success{
+        background:linear-gradient(90deg,#198754,#20c997);
+        color:white;
+    }
+
+    .section-header-warning{
+        background:linear-gradient(90deg,#f39c12,#f1c40f);
+        color:white;
+    }
+
+    /* TABLE */
+
+    .table{
+        background:white;
+    }
+
+    .table thead th{
+        border:none;
+        color:white;
+        font-weight:bold;
+    }
+
+    .thead-primary{
+        background:#003b75;
+    }
+
+    .thead-success{
+        background:#198754;
+    }
+
+    .thead-warning{
+        background:#f39c12;
+    }
+
+    .table tbody tr:hover{
+        background:#f8f9fa;
+    }
+
+    /* BADGE */
+
+    .badge{
+        font-size:14px;
+    }
+
+</style>
+
+<script>
+
+    $(document).ready(function () {
+
+        var $tablePlanned = $('#tablePlanned');
+
+        var fileName = `Elecciones Planificadas [${moment().format('YYYY-MM-DD HH.mm.ss')}]`;
+
+        $tablePlanned.bootstrapTable({
+            exportOptions: {
+                fileName: fileName,
+                worksheetName: 'Elecciones Planificadas'
+            }
+        });
+
+        var $tableScheduled = $('#tableScheduled');
+
+        var fileName = `Elecciones Programadas [${moment().format('YYYY-MM-DD HH.mm.ss')}]`;
+
+        $tableScheduled.bootstrapTable({
+            exportOptions: {
+                fileName: fileName,
+                worksheetName: 'Elecciones Programadas'
+            }
+        });
+
+        var $tableExecuted = $('#tableExecuted');
+
+        var fileName = `Elecciones Ejecutadas [${moment().format('YYYY-MM-DD HH.mm.ss')}]`;
+
+        $tableExecuted.bootstrapTable({
+            exportOptions: {
+                fileName: fileName,
+                worksheetName: 'Elecciones Ejecutadas'
+            }
+        });
+
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        var $tablePlanned = $('#tablePlanned');
+        var fileName = `Elecciones Planificadas [${moment().format('YYYY-MM-DD HH.mm.ss')}]`;
+        $tablePlanned.bootstrapTable({
+            exportOptions: {
+                fileName: fileName,
+                worksheetName: 'Elecciones Planificadas'
+            }
+        });
+
+        var $tableScheduled = $('#tableScheduled');
+        var fileName = `Elecciones Programadas [${moment().format('YYYY-MM-DD HH.mm.ss')}]`;
+        $tableScheduled.bootstrapTable({
+            exportOptions: {
+                fileName: fileName,
+                worksheetName: 'Elecciones Programadas'
+            }
+        });
+
+        var $tableExecuted = $('#tableExecuted');
+        var fileName = `Elecciones Ejecutadas [${moment().format('YYYY-MM-DD HH.mm.ss')}]`;
+        $tableExecuted.bootstrapTable({
+            exportOptions: {
+                fileName: fileName,
+                worksheetName: 'Elecciones Ejecutadas'
+            }
+        });
+    });
+
+    function editar(id) {
+        window.location.href = `/administrar/elecciones/editar/${id}`;
+    }
+
+    function programar(id) {
+        window.location.href = `/administrar/elecciones/programar/${id}`;
+    }
+
+    function eliminar(id, titulo, descripcion) {
+        Swal.fire({
+            title: "Deseas Eliminar el Proceso Electoral?",
+            html: `<b>${titulo}</b><br>${descripcion}`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Eliminar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post(`/administrar/elecciones/eliminar/${id}`, { 'id': id })
+                    .done(function (data) {
+                        Swal.fire({
+                            title: "Proceso Electoral Eliminado",
+                            text: "Se ha eliminado el Proceso Electoral correctamente.",
+                            icon: "success",
+                            timer: 10000
+                        }).then(() => {
+                            window.location.href = '/administrar/elecciones';
+                        });
+                    })
+                    .fail(function () {
+                        Swal.fire({
+                            title: "Ocurrió un error!",
+                            text: "No se pudo eliminar el proceso electoral.",
+                            icon: "error",
+                            timer: 10000
+                        }).then(() => {
+                            window.location.href = '/administrar/elecciones';
+                        });
+                    });
+            }
+        });
+    }
+
+    function finalizarPlanificacion(id, titulo, descripcion) {
+        Swal.fire({
+            title: "Deseas Finalizar la Planificación del Proceso Electoral?",
+            html: `<b>${titulo}</b><br>${descripcion}`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Finalizar Planificación",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post(`/administrar/elecciones/programar/finalizar/${id}`, { 'id': id })
+                    .done(function (data) {
+                        Swal.fire({
+                            title: "Proceso Electoral Planificado",
+                            text: "Se ha Planificado el Proceso Electoral correctamente.",
+                            icon: "success",
+                            timer: 10000
+                        }).then(() => {
+                            window.location.href = '/administrar/elecciones';
+                        });
+                    })
+                    .fail(function (data) {
+                        const errorMessage = data.responseJSON ? data.responseJSON.message : "Error inesperado";
+                        Swal.fire({
+                            title: "Ocurrió un error!",
+                            text: errorMessage,
+                            icon: "error",
+                            timer: 10000
+                        }).then(() => {
+                            window.location.href = '/administrar/elecciones';
+                        });
+                    });
+            }
+        });
+    }
+
+    function finalizarProgramacion(id, titulo, descripcion) {
+        Swal.fire({
+            title: "Deseas Finalizar la Programación del Proceso Electoral?",
+            html: `<b>${titulo}</b><br>${descripcion}`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Finalizar Programación",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post(`/administrar/elecciones/programar/ejecutar/${id}`, { 'id': id })
+                    .done(function (data) {
+                        Swal.fire({
+                            title: "Proceso Electoral Programado",
+                            text: "Se ha Programado el Proceso Electoral correctamente.",
+                            icon: "success",
+                            timer: 10000
+                        }).then(() => {
+                            window.location.href = '/administrar/elecciones';
+                        });
+                    })
+                    .fail(function (data) {
+                        const errorMessage = data.responseJSON ? data.responseJSON.message : "Error inesperado";
+                        Swal.fire({
+                            title: "Ocurrió un error!",
+                            text: errorMessage,
+                            icon: "error",
+                            timer: 10000
+                        }).then(() => {
+                            window.location.href = '/administrar/elecciones';
+                        });
+                    });
+            }
+        });
+    }
+
+    function detailFormatterPlanned(index, row) {
+        var html = '';
+        var indexs = 0;
+        var data = {};
+        $.each(row, function (key, value) {
+            var columns = $("th:eq(" + (indexs + 1) + ")").data("field");
+            if (columns != undefined) {
+                data[columns] = row[columns];
+                indexs++;
+            }
+        });
+        html = `<div class="card border-primary">
+                    <div class="card-footer d-flex justify-content-between">
+                        <div>
+                            <button class="btn btn-outline-info mx-1" onClick="editar('${row._id}')">
+                                <i class="fa fa-fw fa-edit"></i> Editar
+                            </button>
+                            <button class="btn btn-outline-warning mx-1" onClick="programar('${row._id}')">
+                                <i class="fa fa-fw fa-file-text"></i> Programar
+                            </button>
+                            <button class="btn btn-outline-primary mx-1" onClick="eliminar('${row._id}', '${data.titulo}', '${data.descripcion}')">
+                                <i class="fa fa-fw fa-trash"></i> Eliminar
+                            </button>
+                        </div>
+                        <div>
+                            <button class="btn btn-outline-success ml-auto" onClick="finalizarPlanificacion('${row._id}', '${data.titulo}', '${data.descripcion}')">
+                                <i class="fa fa-fw fa-check-square-o"></i> Finalizar Planificación
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+        return html;
+    }
+
+    function detailFormatterScheduled(index, row) {
+        var html = '';
+        var indexs = 0;
+        var data = {};
+        $.each(row, function (key, value) {
+            var columns = $("th:eq(" + (indexs + 1) + ")").data("field");
+            if (columns != undefined) {
+                data[columns] = row[columns];
+                indexs++;
+            }
+        });
+        html = `<div class="card border-primary">
+                    <div class="card-footer d-flex justify-content-between">
+                        <div>
+                            <a href="/administrar/elecciones/programar/actualizar/${row._id}" class="btn btn-outline-info ml-auto">
+                                <i class="fa fa-fw fa-undo"></i> Modificar Programación
+                            </a>
+                        </div>
+                        <div>
+                            <button class="btn btn-outline-success ml-auto" onClick="finalizarProgramacion('${row._id}', '${data.titulo}', '${data.descripcion}')">
+                                <i class="fa fa-fw fa-check-square-o"></i> Finalizar Programación
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+        return html;
+    }
+
+    function detailFormatterExecuted(index, row) {
+        var html = '';
+        var indexs = 0;
+        var data = {};
+        $.each(row, function (key, value) {
+            var columns = $("th:eq(" + (indexs + 1) + ")").data("field");
+            if (columns != undefined) {
+                data[columns] = row[columns];
+                indexs++;
+            }
+        });
+        html = `<div class="card border-primary">
+                    <div class="card-footer d-flex justify-content-between">
+                        <a href="/inicio/elecciones/resultado/${row._id}" class="btn btn-primary ml-auto">
+                            <i class="fa fa-fw fa-check-square-o"></i> Ver resultados
+                        </a>
+                    </div>
+                </div>`;
+        return html;
+    }
+</script>

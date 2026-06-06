@@ -1,0 +1,83 @@
+#dropZone,
+#imageZone {
+    width: 100%;
+    height: 250px;
+    border: 2px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#dropZone:hover {
+    background-color: #f0f0f0;
+}
+
+#dropZone p {
+    color: #888;
+}
+
+#imageZone {
+    border: none;
+    background-color: #f0f0f0;
+    overflow: hidden;
+}
+
+
+/* Centrar y ajustar imagen */
+
+#selectedImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* Asegura que la imagen se ajuste sin deformarse */
+    display: block;
+}
+
+#imageInput {
+    display: none;
+}
+
+#colorPalette {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.colorBox {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+}
+
+#selectedColor {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#selectedColor p {
+    font-size: 16px;
+}
+
+#colorDisplay {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+}
+
+.hidden {
+    display: none;
+}

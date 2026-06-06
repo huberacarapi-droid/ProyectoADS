@@ -1,0 +1,38 @@
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+    function onSubmit(event) {
+        const response = grecaptcha.getResponse();
+        if (response.length === 0) {
+            Swal.fire({
+                title: "reCAPTCHA",
+                text: "Por favor, completa el reCAPTCHA antes de enviar el formulario.",
+                icon: "info"
+            });
+            event.preventDefault(); // Evita el envío del formulario
+        }
+    }
+</script>
+<main>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="login-container p-4 shadow-sm rounded">
+            <div class="avatar mb-3">
+                <i class="fa fa-key" aria-hidden="true"></i>
+            </div>
+            <h4>Verificación de Token</h4>
+            <p class="mb-4">Por favor, introduce el token de 6 dígitos que hemos enviado a tu correo electrónico. <strong>{{user.email}}</strong></p>
+            <form method="post" action="/verify/email/token" onsubmit="onSubmit(event)">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="token-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+                    <input class="form-control" id="token" name="token" type="text" placeholder="Token de 6 dígitos"
+                        required="required" aria-describedby="token-addon" minlength="6" maxlength="6" pattern="\d{6}" 
+                        title="Debe ingresar un código de 6 dígitos" autocomplete="off">
+                </div>
+                <div class="g-recaptcha mb-3" data-sitekey="{{site_key}}"></div>
+                <button type="submit" class="btn btn-primary w-100">Verificar Token</button>
+            </form>
+            <div class="footer-links mt-4 text-center">
+                <a href="/verify/email">Reenviar token</a> | <a href="/login">Volver al inicio de sesión</a>
+            </div>
+        </div>
+    </div>
+</main>

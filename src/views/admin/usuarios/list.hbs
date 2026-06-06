@@ -1,0 +1,491 @@
+<style>
+    .breadcrumb{
+        background:white;
+        border-radius:14px;
+        padding:14px 20px;
+        box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .breadcrumb a{
+        color:#003b75;
+        font-weight:500;
+        text-decoration:none;
+    }
+    /*wrap text row header text*/
+    thead th .th-inner {
+        white-space: normal !important;
+    }
+
+    .nav-tabs .nav-link.active {
+        background-color: var(--secondary);
+    }
+</style>
+
+<main>
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/inicio"><i class="fa fa-fw fa-home"></i> Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/administrar"><i class="fa fa-fw fa-cogs"></i> Administrar</a></li>
+            <li class="breadcrumb-item active"><i class="fa fa-fw fa-users"></i> Usuarios</li>
+        </ol>
+    </div>
+    <div class="container-fluid">
+        <div class="shadow-none p-3 bg-light rounded">Distribución de Usuarios</div>
+        <div class="row justify-content-center">
+            <div class="col-7 col-sm-4 col-md-3 col-lg-2">
+                <div class="ibox">
+                    <div class="ibox-title">Inscritos</div>
+                    <div class="ibox-content">{{metricas.total}}</div>
+                    <i class="ibox-icon fa fa-users"></i>
+                    <div class="percentage">{{metricas.actualizado}}</div>
+                </div>
+            </div>
+            
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="ibox">
+                    <div class="ibox-title">Varones</div>
+                    <div class="ibox-content">{{metricas.por_genero.total.M}}</div>
+                    <i class="ibox-icon fa fa-male"></i>
+                    <div class="percentage">{{metricas.por_genero.porcentaje.M}}</div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="ibox">
+                    <div class="ibox-title">Mujeres</div>
+                    <div class="ibox-content">{{metricas.por_genero.total.F}}</div>
+                    <i class="ibox-icon fa fa-female"></i>
+                    <div class="percentage">{{metricas.por_genero.porcentaje.F}}</div>
+                </div>
+            </div>
+            <div class="col-7 col-sm-4 col-md-3 col-lg-2">
+                <div class="ibox">
+                    <div class="ibox-title">Bloqueados</div>
+                    <div class="ibox-content">{{metricas.bloqueados.total}}</div>
+                    <i class="ibox-icon fa fa-ban"></i>
+                    <div class="percentage">{{metricas.bloqueados.porcentaje}}</div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="ibox">
+                    <div class="ibox-title">Completado</div>
+                    <div class="ibox-content">{{metricas.completados.total}}</div>
+                    <i class="ibox-icon fa fa-check-circle"></i>
+                    <div class="percentage">{{metricas.completados.porcentaje}}</div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="ibox">
+                    <div class="ibox-title">Incompletos</div>
+                    <div class="ibox-content">{{metricas.incompletos.total}}</div>
+                    <i class="ibox-icon fa fa-exclamation-circle"></i>
+                    <div class="percentage">{{metricas.incompletos.porcentaje}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <ul class="nav nav-tabs pb-6" id="chartsTabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Distribución por Tipo de Usuario</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tab2-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Distribución por Tipo de Usuario y Género</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="chartsContent">
+            <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <!--h6 class="card-title">Distribución por Tipo de Usuario</h6-->
+                        <canvas id="residenceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <!--h6 class="card-title">Distribución por Tipo de Usuario y Género</h6-->
+                        <canvas id="residenceGenderChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toolbar" class="d-flex align-items-center mb-3">
+        <a id="add" class="btn btn-primary" href="/administrar/usuarios/nuevo">
+            <i class="fa fa-fw fa-plus-circle"></i> Agregar Nuevo Usuario
+        </a>
+    </div>
+    <div class="container-fluid">
+        <div class="shadow-sm p-3 mt-3 mb-1 bg-white rounded"><h5 class="font-weight-bold">Registro de Usuarios</h5></div>
+        <div class="table-responsive">
+            <table class="table table-striped" id="table" data-toggle="table" data-locale="es-ES"
+                data-toolbar="#toolbar" data-search="true" data-advanced-search="false" data-show-refresh="false"
+                data-show-toggle="true" data-show-fullscreen="true" data-show-columns="true"
+                data-show-columns-toggle-all="true" data-detail-view="true" data-detail-formatter="detailFormatter"
+                data-click-to-select="true" data-sortable="true"
+                data-show-pagination-switch="false" data-pagination="true" data-id-field="id"
+                data-page-list="[all, 50, 20, 10 , 5]" data-show-footer="false"
+                data-export-types="['json','csv','xlsx','pdf']" data-mobile-responsive="false"
+                data-filter-control="true"
+                data-show-search-clear-button="true">
+                <thead>
+                    <tr>
+                        <th data-field="codigo" data-sortable="true" data-width="1%" class="align-middle">CÓDIGO</th>
+                        <th data-field="ci" data-sortable="true" data-width="120" class="align-middle">CARNET DE IDENTIDAD</th>
+                        <th data-field="apellidos" data-sortable="true" data-width="auto" class="align-middle">APELLIDOS</th>
+                        <th data-field="nombres" data-sortable="true" data-width="auto" class="align-middle">NOMBRES</th>
+                        <th data-field="email" data-sortable="true" data-width="1%" class="align-middle">EMAIL</th>
+                        <th data-field="telefono" data-sortable="true" data-width="1%" class="align-middle">TELÉFONO</th>
+                        <th data-field="genero" data-filter-control="select" data-sortable="true" data-width="1%">GÉNERO</th>
+                        <th data-field="residencia" data-filter-control="select" data-sortable="true" data-width="1%">TIPO DE USUARIO</th>
+                        <th data-field="observaciones" data-filter-control="select" data-sortable="true" data-width="auto">OBSERVACIONES</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each usuarios}}
+                    <tr id="{{id}}">
+                        <td class="text-right">{{codigo}}</td>
+                        <td class="text-right">{{ci}}</td>
+                        <td>{{apellidos}}</td>
+                        <td>{{nombres}}</td>
+                        <td>{{email}}</td>
+                        <td class="text-right">{{telefono}}</td>
+                        <td class="text-center">{{genero}}</td>
+                        <td>{{residencia}}</td>
+                        <td>{{observaciones}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script> <!-- Incluir el plugin -->
+<script>
+    // Obtener el color --primary desde las variables CSS
+    const chartColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+    //const chartColor = '#AAA'
+    const residenceData = {{{ json metricas.por_residencia }}};
+    // Crear Gráfico de Distribución por Residencia
+    const ctx1 = document.getElementById('residenceChart').getContext('2d');
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: Object.keys(residenceData),
+            datasets: [{
+                label: 'Cantidad de Usuarios',
+                data: Object.values(residenceData),
+                backgroundColor: chartColor,
+            }]
+        },
+        options: {
+            responsive: true,
+            indexAxis: 'x', // Eje horizontal
+            plugins: {
+                datalabels: {
+                    display: function(context) {
+                        return context.dataset.data[context.dataIndex] !== 0; // Mostrar solo si el valor es diferente de 0
+                    },
+                    /*formatter: (value, ctx) => {
+                        let sum = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        let percentage = (value * 100 / sum).toFixed(2) + "%";
+                        return value + ' (' + percentage + ')';
+                    },*/
+                    color: '#FFF'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            let dataset = tooltipItem.dataset;
+                            let total = tooltipItem.chart.data.datasets[0].data.reduce((a, b) => a + b, 0); // Sumar los valores del dataset
+                            let percentage = (dataset.data[tooltipItem.dataIndex] * 100 / total).toFixed(2); // Calcular el porcentaje
+                            return dataset.label + ': ' + dataset.data[tooltipItem.dataIndex] + ' (' + percentage + '%)';
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    stacked: false,
+                    
+                },
+                y: {
+                    stacked: false,
+                    /*ticks: {
+                        beginAtZero: true,
+                        stepSize: 1, // Asegurar que solo se muestren números enteros
+                            callback: function(value) {
+                                return Number.isInteger(value) ? value : null; // Filtrar solo los valores enteros
+                            }
+                    }*/
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
+
+    // Crear Gráfico Horizontal Apilado por Residencia y Género
+    const residenceLabels = {{{ json metricas.por_residencia_genero.residencias }}};
+    const maleData = {{{ json metricas.por_residencia_genero.hombres }}};
+    const femaleData = {{{ json metricas.por_residencia_genero.mujeres }}};
+    const residenceGenderData = {{{ json metricas.por_residencia_genero.total }}};
+    // Cambiar los colores de los géneros
+    //const maleColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();   // Color personalizado para 'Masculino' #36A2EB
+    const maleColor ='#85b8ff';
+    const femaleColor ='#E4BFD4';
+    //const femaleColor = getComputedStyle(document.documentElement).getPropertyValue('--info').trim(); // Color personalizado para 'Femenino' #FF6384
+    const ctx2 = document.getElementById('residenceGenderChart').getContext('2d');
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: residenceLabels,
+            datasets: [
+                {
+                    label: 'Masculino',
+                    data: maleData,
+                    backgroundColor: maleColor,
+                },
+                {
+                    label: 'Femenino',
+                    data: femaleData,
+                    backgroundColor: femaleColor,
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            indexAxis: 'x', // Eje horizontal
+            plugins: {
+                datalabels: {
+                    display: function(context) {
+                        return context.dataset.data[context.dataIndex] !== 0; // Mostrar solo si el valor es diferente de 0
+                    },
+                    color: '#FFF'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            // Obtener los valores del dataset
+                            let dataset = tooltipItem.dataset;
+                            let total = maleData[tooltipItem.dataIndex] + femaleData[tooltipItem.dataIndex];
+                            let percentage = (dataset.data[tooltipItem.dataIndex] * 100 / total).toFixed(2);
+                            return dataset.label + ': ' + dataset.data[tooltipItem.dataIndex] + '(' + percentage + '%)';
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    stacked: true,
+                    /*ticks: {
+                        beginAtZero: true,
+                        stepSize: 1, // Asegurar que solo se muestren números enteros
+                            callback: function(value) {
+                                return Number.isInteger(value) ? value : null; // Filtrar solo los valores enteros
+                            }
+                    }*/
+                },
+                y: {
+                    stacked: true
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
+</script>
+
+<script>
+    document.getElementById('import').addEventListener('click', function() {
+    Swal.fire({
+        title: 'Seleccione un archivo de Excel',
+        input: 'file',
+        inputAttributes: {
+            'accept': '.xlsx, .xls',
+            'aria-label': 'Sube tu archivo de Excel'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Importar',
+        cancelButtonText: 'Cancelar',
+        inputValidator: (file) => {
+            if (!file) {
+                return 'Debes seleccionar un archivo';
+            } else {
+                // Crear FormData y añadir el archivo
+                const formData = new FormData();
+                formData.append('file', file);
+                // Mostrar el ícono de cargando
+                Swal.fire({
+                    title: 'Importando...',
+                    text: 'Por favor espera mientras se carga el archivo.',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+                
+                // Hacer la solicitud POST
+                fetch('/administrar/usuarios/importar', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la carga del archivo');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Éxito', 
+                        text: 'Archivo importado correctamente: ' + data.message,
+                        showConfirmButton: true,
+                        timer: 10000
+                    }).then(() => {
+                        window.location.href = '/administrar/usuarios';
+                    });
+                })
+                .catch(error => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al importar',
+                        text: 'No se pudo importar el archivo: ' + error.message,
+                        showConfirmButton: true
+                    });
+                });
+            }
+        }
+    });
+});
+</script>
+
+<script>
+    $(document).ready(function () {
+        var $table = $('#table');
+        var fileName = `Lista Usuarios [${moment().format('YYYY-MM-DD HH.mm.ss')}]`;
+        $table.bootstrapTable({
+            exportOptions: {
+                fileName: fileName, // Cambia 'CustomFileName' por el nombre de archivo deseado
+                worksheetName: 'Lista Usuarios' // Cambia 'CustomSheetName' por el nombre de la hoja deseada (opcional)
+            }
+        });
+        // Intercepta el evento de clic del botón de exportación de bootstrap-table
+        $table.on('click', '.export', function (e) {
+            e.preventDefault(); // Evita la acción predeterminada del botón
+            // Redirige al enlace de exportación
+            window.location.href = "/administrar/usuarios/exportar";
+        });
+    });
+
+
+    function resetear(id, ci, user) {
+        Swal.fire({
+            title: "Deseas resetear el inicio de sesion?",
+            html: `<b>${ci}</b><br>${user}`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Resetear",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post(`/administrar/usuarios/resetear`, { id })
+                    .done(() => {
+                        Swal.fire({
+                            title: "Sesión reseteada",
+                            text: "Se ha reseteado el inicio de sesión correctamente.",
+                            icon: "success",
+                            timer: 5000
+                        }).then(() => {
+                            window.location.href = '/administrar/usuarios';
+                        });
+                    })
+                    .fail(() => {
+                        Swal.fire({
+                            title: "Ocurrió un error!",
+                            text: "No se pudo resetear la sesión.",
+                            icon: "error",
+                            timer: 5000
+                        }).then(() => {
+                            window.location.href = '/administrar/usuarios';
+                        });
+                    });
+            }
+        });
+    };
+    
+    function editar(id) {
+        window.location.href = `/administrar/usuarios/editar?id=${id}`;
+    };
+
+    function eliminar(id, ci, user) {
+        console.log('id:' + id);
+        Swal.fire({
+            title: "Deseas Eliminar Usuario?",
+            html: `<b>${ci}</b><br>${user}`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Eliminar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post(`/administrar/usuarios/eliminar`, { id })
+                    .done(() => {
+                        Swal.fire({
+                            title: "Usuario Eliminado",
+                            text: "Se ha eliminado el usuario correctamente",
+                            icon: "success",
+                            timer: 5000
+                        }).then(() => {
+                            window.location.href = '/administrar/usuarios';
+                        });
+                    })
+                    .fail(() => {
+                        Swal.fire({
+                            title: "Ocurrió un error!",
+                            text: "No se pudo eliminar el usuario.",
+                            icon: "error",
+                            timer: 5000
+                        }).then(() => {
+                            window.location.href = '/administrar/usuarios';
+                        });
+                    });
+            }
+        });
+    };
+    
+    function detailFormatter(index, row) {
+        var html = '';
+        var indexs = 0;
+        var data = {};
+        $.each(row, function (key, value) {
+            var columns = $("th:eq(" + (indexs + 1) + ")").data("field")
+            if (columns != undefined) {
+                data[columns] = row[columns];
+                indexs++;
+            }
+        });
+        html =
+            `<div class="card border-primary">
+                <div class="card-footer">
+                    <button class=" btn btn-outline-info mx-1" onClick="editar('${row._id}')">
+                        <i class="fa fa-fw fa-edit"></i>
+                        Editar
+                    </button>
+                    <button class=" btn btn-outline-primary mx-1" onClick="eliminar('${row._id}', '${data.ci}', ' ${data.apellidos}, ${data.nombres}')">
+                        <i class="fa fa-fw fa-trash"></i>
+                        Eliminar
+                    </button>
+                    <button class=" btn btn-outline-warning mx-1" onClick="resetear('${row._id}', '${data.ci}', ' ${data.apellidos}, ${data.nombres}')">
+                        <i class="fa fa-fw fa-retweet"></i>
+                        Resetear
+                    </button>
+                </div>
+            </div>`
+        return html;
+    }
+</script>

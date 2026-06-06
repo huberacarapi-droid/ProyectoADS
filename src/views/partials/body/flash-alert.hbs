@@ -1,0 +1,47 @@
+{{#if success }}
+<div class="alert alert-dismissible alert-success fade show alert-fixed-top" role="alert">
+    <h5 class="alert-heading"><i class="fa fa-fw fa-check-circle" aria-hidden="true"></i> Correcto!</h5>
+    <p class="mb-0">{{success}}</p>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{{/if}}
+
+{{#if info }}
+<div class="alert alert-dismissible alert-info fade show alert-fixed-top" role="alert">
+    <h5 class="alert-heading"><i class="fa fa-fw fa-info-circle" aria-hidden="true"></i> Aviso!</h5>
+    <p class="mb-0">{{info}}</p>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{{/if}}
+
+{{#if error }}
+<div class="alert alert-dismissible alert-warning fade show alert-fixed-top" role="alert">
+    <h5 class="alert-heading"><i class="fa fa-fw fa-exclamation-circle" aria-hidden="true"></i> Ocurrió un Error!</h5>
+    <p class="mb-0">{{error}}</p>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{{/if}}
+
+{{#each errors}}
+<div class="alert alert-danger alert-dismissible fade show alert-fixed-top" role="alert">
+    <h5 class="alert-heading"><i class="fa fa-fw fa-exclamation-circle" aria-hidden="true"></i> Error!</h5>
+    <p class="mb-0">{{text}}</p>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{{/each}}
+<script>
+    window.setTimeout(function () {
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => {
+            alert.classList.remove('show'); // Oculta visualmente la alerta
+        });
+    }, 30000);
+</script>

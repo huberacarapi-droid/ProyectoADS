@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    {{> head/meta}}
+    {{> head/title}}
+    {{> head/style/cdn/css/googlefonts}}
+    {{> head/style/cdn/css/bootstrap_4_6_2}}
+    {{> head/style/cdn/css/jqueryui_1_12_1}}
+    {{> head/style/cdn/css/font-awesome_4_7_0}}
+    {{> head/style/cdn/css/bootstrap-table_1_18_3}}
+    {{> head/style/cdn/css/flatpickr_4_6_13}}
+    {{> head/style/cdn/css/sweetalert2_11_12_3}}
+    {{> head/style/favicon}}
+    {{> script/cdn/js/bootstrap_4_6_2}}
+    {{> script/cdn/js/bootstrap-table_1_18_3}}
+    {{> script/cdn/js/color-thief_2_3_0}}
+    <link rel="stylesheet" href="/css/colorpicker.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    {{> header/navigation}}
+    {{{ body }}}
+    
+    {{> body/flash-alert}}
+    
+    
+    {{> script/cdn/js/moment_2_29_1}}
+    {{> script/cdn/js/flatpickr_4_6_13}}
+    {{> script/flatpickr}}
+    {{> script/bootstrap-table}}
+</body>
+
+</html>

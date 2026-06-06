@@ -1,0 +1,454 @@
+```html
+<style>
+    #dropZone {
+        border: 2px dashed #6c757d;
+        border-radius: 15px;
+        padding: 40px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: #f8f9fa;
+        min-height: 250px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    #dropZone:hover {
+        background: #e9ecef;
+        border-color: #007bff;
+    }
+
+    #dropZone.dragover {
+        background: #dbeafe;
+        border-color: #0d6efd;
+    }
+
+    #imageZone {
+        border: 2px solid #dee2e6;
+        border-radius: 15px;
+        min-height: 250px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 10px;
+    }
+
+    #selectedImage {
+        max-width: 100%;
+        max-height: 230px;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+
+    #colorPalette {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    #selectedColor {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        background: #f8f9fa;
+        border-radius: 15px;
+        padding: 15px;
+        border: 1px solid #dee2e6;
+    }
+
+    #colorDisplay {
+        width: 120px;
+        height: 60px;
+        border-radius: 15px;
+        border: 2px solid #dee2e6;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #selectedColorHex {
+        font-weight: bold;
+        font-size: 1.1rem;
+        margin: 0;
+    }
+
+    .card-custom {
+        border-radius: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        border: none;
+    }
+
+    .legend-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #495057;
+    }
+
+    #imageInput {
+        display: none;
+    }
+</style>
+
+<main>
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/inicio">
+                    <i class="fa fa-fw fa-home"></i> Inicio
+                </a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <a href="/administrar">
+                    <i class="fa fa-fw fa-cogs"></i> Administrar
+                </a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <a href="/administrar/elecciones">
+                    <i class="fa fa-fw fa-cube"></i> Elecciones
+                </a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <a href="/administrar/elecciones/programar/{{eleccion.id}}">
+                    <i class="fa fa-fw fa-file-text"></i> Programar
+                </a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <a href="/administrar/elecciones/programar/frentes/{{eleccion.id}}">
+                    <i class="fa fa-fw fa-newspaper-o"></i> Frentes
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active">
+                <i class="fa fa-fw fa-pencil-square-o"></i> Editar
+            </li>
+        </ol>
+    </div>
+
+    <div class="container mt-4">
+
+        <div class="card card-custom mb-4">
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+                    <div>
+                        <h2 class="mb-1">
+                            Editar Frente Político
+                        </h2>
+
+                        <h5 class="text-muted">
+                            {{eleccion.titulo}}
+                        </h5>
+
+                        <p class="small text-muted mb-0">
+                            {{eleccion.descripcion}}
+                        </p>
+                    </div>
+
+                    <div class="mt-3 mt-md-0">
+                        <a id="back"
+                           class="btn btn-outline-dark"
+                           href="/administrar/elecciones/programar/frentes/{{eleccion.id}}">
+                            <i class="fa fa-fw fa-undo"></i>
+                            Retornar
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card card-custom">
+            <div class="card-body">
+
+                <form action="/administrar/elecciones/programar/frentes/editar/{{frente.id_eleccion}}/{{frente.id_frente}}"
+                      method="POST"
+                      enctype="multipart/form-data">
+
+                    <legend class="legend-title mb-4">
+                        <i class="fa fa-fw fa-pencil"></i>
+                        Datos del Frente Político
+                    </legend>
+
+                    <div class="form-row">
+
+                        <div class="form-group col-12 col-md-6">
+                            <label for="sigla">
+                                Sigla
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="sigla"
+                                   name="sigla"
+                                   value="{{frente.sigla}}"
+                                   placeholder="Ingrese la sigla del frente político"
+                                   required>
+                        </div>
+
+                        <div class="form-group col-12 col-md-6">
+                            <label for="descripcion">
+                                Descripción de la Sigla
+                            </label>
+
+                            <textarea class="form-control"
+                                      id="descripcion"
+                                      name="descripcion"
+                                      rows="3"
+                                      placeholder="Ingrese una descripción de la sigla"
+                                      required>{{frente.detalle}}</textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="font-weight-bold">
+                            Logotipo del Frente Político
+                        </label>
+
+                        <div class="row mt-2">
+
+                            <div class="col-md-6 mb-3">
+
+                                <div id="dropZone">
+
+                                    <i class="fa fa-cloud-upload fa-3x text-primary mb-3"></i>
+
+                                    <h5>
+                                        Arrastre una imagen aquí
+                                    </h5>
+
+                                    <p class="text-muted mb-0">
+                                        o haga click para seleccionar una imagen
+                                    </p>
+
+                                </div>
+
+                                <input type="file"
+                                       id="imageInput"
+                                       name="logo"
+                                       accept="image/*">
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <div id="imageZone">
+
+                                    {{#if frente.logoFilename}}
+
+                                    <img src="/repositorio/imagenes/{{frente.logoFilename}}"
+                                         id="selectedImage"
+                                         alt="Logo Frente">
+
+                                    {{else}}
+
+                                    <img id="selectedImage"
+                                         alt="Logo Frente"
+                                         class="d-none">
+
+                                    {{/if}}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col">
+                                <div id="colorPalette"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group mt-4">
+
+                        <label class="font-weight-bold">
+                            Color del Frente Político
+                        </label>
+
+                        <div id="selectedColor" class="mt-2">
+
+                            <div id="colorDisplay"
+                                 style="background-color: {{frente.color}};">
+                            </div>
+
+                            <div>
+                                <p class="mb-1 text-muted">
+                                    Color Seleccionado
+                                </p>
+
+                                <p id="selectedColorHex">
+                                    {{frente.color}}
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <input id="colorInput"
+                               type="color"
+                               class="invisible"
+                               name="color"
+                               required
+                               value="{{frente.color}}">
+
+                    </div>
+
+                    <div class="form-group mt-4">
+
+                        <button type="submit"
+                                class="btn btn-outline-primary btn-lg">
+
+                            <i class="fa fa-fw fa-floppy-o"></i>
+                            Guardar Cambios
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<script src="/js/colorpicker.js"></script>
+
+<script>
+    const dropZone = document.getElementById('dropZone');
+    const imageInput = document.getElementById('imageInput');
+    const selectedImage = document.getElementById('selectedImage');
+
+    dropZone.addEventListener('click', () => {
+        imageInput.click();
+    });
+
+    imageInput.addEventListener('change', function () {
+        previewImage(this.files[0]);
+    });
+
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('dragover');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('dragover');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+
+        dropZone.classList.remove('dragover');
+
+        const file = e.dataTransfer.files[0];
+
+        if (file) {
+            imageInput.files = e.dataTransfer.files;
+            previewImage(file);
+        }
+    });
+
+    function previewImage(file) {
+
+        if (!file.type.startsWith('image/')) {
+
+            Swal.fire({
+                icon: 'warning',
+                title: 'Archivo inválido',
+                text: 'Seleccione una imagen válida'
+            });
+
+            return;
+        }
+
+        if (file.size > 2 * 1024 * 1024) {
+
+            Swal.fire({
+                icon: 'warning',
+                title: 'Imagen demasiado grande',
+                text: 'La imagen no debe superar 2MB'
+            });
+
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+
+            selectedImage.src = e.target.result;
+
+            selectedImage.classList.remove('d-none');
+        }
+
+        reader.readAsDataURL(file);
+    }
+
+    const colorInput = document.getElementById('colorInput');
+    const colorDisplay = document.getElementById('colorDisplay');
+    const selectedColorHex = document.getElementById('selectedColorHex');
+
+    colorInput.addEventListener('input', function () {
+
+        colorDisplay.style.backgroundColor = this.value;
+
+        selectedColorHex.textContent = this.value;
+    });
+
+    $('form').submit(function (e) {
+
+        const sigla = $('#sigla').val().trim();
+        const descripcion = $('#descripcion').val().trim();
+
+        if (sigla.length < 2) {
+
+            e.preventDefault();
+
+            Swal.fire({
+                icon: 'warning',
+                title: 'Sigla inválida',
+                text: 'Ingrese una sigla válida'
+            });
+
+            return;
+        }
+
+        if (descripcion.length < 5) {
+
+            e.preventDefault();
+
+            Swal.fire({
+                icon: 'warning',
+                title: 'Descripción inválida',
+                text: 'Ingrese una descripción válida'
+            });
+
+            return;
+        }
+
+        Swal.fire({
+            title: 'Guardando cambios...',
+            text: 'Espere un momento',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+    });
+</script>
+```

@@ -1,0 +1,257 @@
+<!-- ====================================== -->
+<!-- ESTILOS -->
+<!-- ====================================== -->
+
+<style>
+
+    body{
+        background: linear-gradient(135deg,#003b75,#0056b3);
+        min-height:100vh;
+        font-family:'Segoe UI', sans-serif;
+    }
+
+    .forgot-container{
+        width:100%;
+        max-width:430px;
+        background:white;
+        padding:40px;
+        border-radius:20px;
+        box-shadow:0 15px 40px rgba(0,0,0,0.25);
+        animation:fadeIn 0.5s ease;
+    }
+
+    .avatar{
+        width:110px;
+        height:110px;
+        background:#003b75;
+        border-radius:50%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin:0 auto 25px auto;
+        box-shadow:0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    .avatar i{
+        color:white;
+        font-size:55px;
+    }
+
+    .forgot-title{
+        text-align:center;
+        color:#003b75;
+        font-weight:bold;
+        margin-bottom:10px;
+    }
+
+    .forgot-subtitle{
+        text-align:center;
+        color:#6c757d;
+        margin-bottom:30px;
+        font-size:14px;
+    }
+
+    .input-group-text{
+        background:#003b75;
+        color:white;
+        border:none;
+    }
+
+    .form-control{
+        height:50px;
+        border:1px solid #dcdcdc;
+    }
+
+    .form-control:focus{
+        box-shadow:none;
+        border-color:#0056b3;
+    }
+
+    .btn-forgot{
+        width:100%;
+        margin-top:20px;
+        background:linear-gradient(90deg,#003b75,#0056b3);
+        border:none;
+        color:white;
+        padding:14px;
+        border-radius:10px;
+        font-weight:bold;
+        transition:0.3s;
+    }
+
+    .btn-forgot:hover{
+        transform:translateY(-2px);
+        box-shadow:0 8px 20px rgba(0,86,179,0.3);
+    }
+
+    .footer-links{
+        text-align:center;
+    }
+
+    .footer-links a{
+        display:block;
+        margin-top:12px;
+        color:#003b75;
+        text-decoration:none;
+        font-weight:500;
+        transition:0.3s;
+    }
+
+    .footer-links a:hover{
+        color:#0056b3;
+        text-decoration:none;
+    }
+
+    .btn-return{
+        background:#f4b400;
+        color:#003b75 !important;
+        padding:12px;
+        border-radius:10px;
+        font-weight:bold;
+        display:block;
+        transition:0.3s;
+    }
+
+    .btn-return:hover{
+        background:#ffd54f;
+        transform:translateY(-2px);
+    }
+
+    .system-title{
+        text-align:center;
+        color:white;
+        margin-bottom:25px;
+    }
+
+    .system-title h1{
+        font-size:2.2rem;
+        font-weight:bold;
+    }
+
+    .system-title p{
+        opacity:0.9;
+    }
+
+    @keyframes fadeIn{
+        from{
+            opacity:0;
+            transform:translateY(20px);
+        }
+        to{
+            opacity:1;
+            transform:translateY(0);
+        }
+    }
+
+</style>
+
+<!-- ====================================== -->
+<!-- CONTENIDO -->
+<!-- ====================================== -->
+
+<main>
+
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+
+        <div>
+
+            <!-- TITULO -->
+            <div class="system-title">
+
+                <h1>
+                    <i class="fa fa-university"></i>
+                    Sistema de Votación UMA
+                </h1>
+
+                <p>
+                    Recuperación de Acceso al Sistema
+                </p>
+
+            </div>
+
+            <!-- CARD -->
+            <div class="forgot-container">
+
+                <!-- AVATAR -->
+                <div class="avatar">
+
+                    <i class="fa fa-lock"></i>
+
+                </div>
+
+                <!-- TITULO -->
+                <h2 class="forgot-title">
+                    Recuperar Contraseña
+                </h2>
+
+                <p class="forgot-subtitle">
+                    Introduce tu correo electrónico para recibir
+                    un enlace de recuperación.
+                </p>
+
+                <!-- FORM -->
+                <form method="post"
+                    action="/forgot"
+                    onsubmit="onSubmit(event)">
+
+                    <!-- EMAIL -->
+                    <div class="input-group mb-3">
+
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text">
+
+                                <i class="fa fa-envelope"></i>
+
+                            </span>
+
+                        </div>
+
+                        <input class="form-control"
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="Correo electrónico"
+                            required="required"
+                            autocomplete="off">
+
+                    </div>
+
+                    <!-- BOTON -->
+                    <button type="submit"
+                        class="btn btn-forgot">
+
+                        <i class="fa fa-paper-plane"></i>
+                        Enviar enlace
+
+                    </button>
+
+                </form>
+
+                <!-- LINKS -->
+                <div class="footer-links mt-4">
+
+                    <a href="/login">
+
+                        <i class="fa fa-sign-in"></i>
+                        Volver al inicio de sesión
+
+                    </a>
+
+                    <a href="/"
+                        class="btn-return">
+
+                        <i class="fa fa-home"></i>
+                        Retornar al Inicio
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>

@@ -1,0 +1,519 @@
+<style>
+
+    body{
+        background:#f4f6f9;
+    }
+
+    .breadcrumb{
+        background:white;
+        border-radius:14px;
+        padding:14px 20px;
+        box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .breadcrumb a{
+        color:#003b75;
+        font-weight:500;
+        text-decoration:none;
+    }
+
+    .page-header{
+        background:linear-gradient(135deg,#003b75,#0056b3);
+        border-radius:22px;
+        padding:35px;
+        color:white;
+        position:relative;
+        overflow:hidden;
+        box-shadow:0 8px 25px rgba(0,86,179,0.25);
+    }
+
+    .page-header::before{
+        content:'';
+        position:absolute;
+        top:-40px;
+        right:-40px;
+        width:180px;
+        height:180px;
+        border-radius:50%;
+        background:rgba(255,255,255,0.08);
+    }
+
+    .page-header h2{
+        font-weight:700;
+    }
+
+    .page-header p{
+        opacity:0.95;
+    }
+
+    .btn-custom{
+        border-radius:12px;
+        font-weight:600;
+        padding:10px 18px;
+        transition:0.3s;
+    }
+
+    .btn-custom:hover{
+        transform:translateY(-2px);
+    }
+
+    .table-card{
+        border:none;
+        border-radius:20px;
+        overflow:hidden;
+        box-shadow:0 6px 20px rgba(0,0,0,0.08);
+        background:white;
+    }
+
+    .table-header{
+        background:linear-gradient(135deg,#003b75,#0056b3);
+        color:white;
+        padding:20px 25px;
+    }
+
+    .table-header h4{
+        margin:0;
+        font-weight:700;
+    }
+
+    .toolbar-box{
+        background:#f8f9fc;
+        border-radius:14px;
+        padding:18px;
+        margin-bottom:20px;
+        border:1px solid #e9ecef;
+    }
+
+    .table{
+        margin-bottom:0;
+    }
+
+    .table thead{
+        background:#003b75;
+        color:white;
+    }
+
+    .table thead th{
+        border:none;
+        font-weight:600;
+        vertical-align:middle;
+    }
+
+    .table tbody tr{
+        transition:0.2s;
+    }
+
+    .table tbody tr:hover{
+        background:#f5f9ff;
+    }
+
+    .logo-box img{
+        width:90px;
+        height:90px;
+        object-fit:contain;
+        border-radius:14px;
+        background:white;
+        border:1px solid #dee2e6;
+        padding:6px;
+    }
+
+    .color-box{
+        width:120px;
+        height:45px;
+        border-radius:14px;
+        border:2px solid #dee2e6;
+        margin:auto;
+        box-shadow:0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .detail-card{
+        border:none;
+        border-radius:16px;
+        overflow:hidden;
+        box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .detail-card .card-footer{
+        background:#f8f9fc;
+        border:none;
+        padding:18px;
+    }
+
+</style>
+
+<main>
+
+    <div class="container-fluid mt-3">
+
+        <ol class="breadcrumb">
+
+            <li class="breadcrumb-item">
+                <a href="/inicio">
+                    <i class="fa fa-fw fa-home"></i> Inicio
+                </a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <a href="/administrar">
+                    <i class="fa fa-fw fa-cogs"></i> Administrar
+                </a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <a href="/administrar/Elecciones">
+                    <i class="fa fa-fw fa-cubes"></i> Elecciones
+                </a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <a href="/administrar/Elecciones/Programar/{{eleccion.id}}">
+                    <i class="fa fa-fw fa-file-text"></i> Programar
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active">
+                <i class="fa fa-fw fa-newspaper-o"></i> Frentes
+            </li>
+
+        </ol>
+
+    </div>
+
+    <div class="container mt-4">
+
+        <!-- HEADER -->
+
+        <div class="page-header mb-4">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-8">
+
+                    <h2>
+                        <i class="fa fa-fw fa-newspaper-o"></i>
+                        Lista de Frentes Políticos
+                    </h2>
+
+                    <h5 class="mt-3">
+                        {{eleccion.titulo}}
+                    </h5>
+
+                    <p class="small mb-0">
+                        {{eleccion.descripcion}}
+                    </p>
+
+                </div>
+
+                <div class="col-lg-4 text-lg-right text-center mt-4 mt-lg-0">
+
+                    <a id="back"
+                        class="btn btn-dark btn-custom"
+                        href="/administrar/elecciones/programar/{{eleccion.id}}">
+
+                        <i class="fa fa-fw fa-undo"></i>
+                        Retornar
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARD TABLA -->
+
+        <div class="card table-card">
+
+            <div class="table-header d-flex justify-content-between align-items-center flex-wrap">
+
+                <h4>
+                    <i class="fa fa-fw fa-list"></i>
+                    Frentes Registrados
+                </h4>
+
+                <span class="badge badge-light p-2">
+                    Total: {{count frentes}}
+                </span>
+
+            </div>
+
+            <div class="card-body">
+
+                <!-- TOOLBAR -->
+
+                <div id="toolbar" class="toolbar-box">
+
+                    <a id="add"
+                        class="btn btn-outline-primary btn-custom"
+                        href="/administrar/elecciones/programar/frentes/nuevo/{{eleccion.id}}">
+
+                        <i class="fa fa-fw fa-plus-circle"></i>
+                        Agregar Nuevo Frente
+
+                    </a>
+
+                </div>
+
+                <!-- TABLA -->
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover table-bordered table-condensed text-small"
+                        id="table"
+                        data-toggle="table"
+                        data-locale="es-ES"
+                        data-toolbar="#toolbar"
+                        data-search="true"
+                        data-advanced-search="false"
+                        data-show-refresh="false"
+                        data-show-fullscreen="true"
+                        data-show-columns-toggle-all="true"
+                        data-detail-view="true"
+                        data-detail-formatter="detailFormatter"
+                        data-click-to-select="true"
+                        data-sortable="true"
+                        data-minimum-count-columns="2"
+                        data-show-pagination-switch="false"
+                        data-pagination="true"
+                        data-id-field="id"
+                        data-page-list="[5, 10, 15, 20, all]"
+                        data-show-footer="false"
+                        data-mobile-responsive="true">
+
+                        <thead>
+
+                            <tr>
+
+                                <th data-field="logo"
+                                    data-formatter="logoFormatter">
+
+                                    Logo
+
+                                </th>
+
+                                <th data-field="sigla"
+                                    data-sortable="true">
+
+                                    Sigla
+
+                                </th>
+
+                                <th data-field="descripcion"
+                                    data-sortable="true">
+
+                                    Descripción
+
+                                </th>
+
+                                <th data-field="color"
+                                    data-formatter="colorFormatter">
+
+                                    Color
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {{#each frentes}}
+
+                            <tr id="{{id_frente}}">
+
+                                <td>{{logoFilename}}</td>
+
+                                <td>{{sigla}}</td>
+
+                                <td>{{detalle}}</td>
+
+                                <td>{{color}}</td>
+
+                            </tr>
+
+                            {{/each}}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+
+    // FORMATEADOR LOGO
+
+    function logoFormatter(value, row, index){
+
+        return `
+            <div class="logo-box text-center">
+                <img src="/repositorio/imagenes/${value}" alt="Logo">
+            </div>
+        `;
+
+    }
+
+    // FORMATEADOR COLOR
+
+    function colorFormatter(value, row, index){
+
+        return `
+            <div class="color-box"
+                style="background-color:${value};">
+            </div>
+        `;
+
+    }
+
+    // EDITAR
+
+    function editar(id){
+
+        window.location.href =
+            `/administrar/elecciones/programar/frentes/editar/{{{eleccion.id}}}/${id}`;
+
+    };
+
+    // ELIMINAR
+
+    function eliminar(id, sigla, descripcion){
+
+        Swal.fire({
+
+            title: "Deseas eliminar el frente político?",
+
+            html: `<b>${sigla}</b><br>${descripcion}`,
+
+            icon: "question",
+
+            showCancelButton: true,
+
+            confirmButtonText: "Eliminar",
+
+            cancelButtonText: "Cancelar"
+
+        }).then((result) => {
+
+            if(result.isConfirmed){
+
+                $.post(
+                    `/administrar/elecciones/programar/frentes/eliminar/{{{eleccion.id}}}/${id}`,
+                    { 'id': id }
+                )
+
+                .done(function(data){
+
+                    Swal.fire({
+
+                        title: "Frente político eliminado",
+
+                        text: "Se ha eliminado el frente político correctamente.",
+
+                        icon: "success",
+
+                        timer: 10000
+
+                    }).then(() => {
+
+                        window.location.href =
+                            `/administrar/elecciones/programar/frentes/{{{eleccion.id}}}`;
+
+                    });
+
+                })
+
+                .fail(function(){
+
+                    Swal.fire({
+
+                        title: "Ocurrió un error!",
+
+                        text: "No se pudo eliminar el frente político.",
+
+                        icon: "error",
+
+                        timer: 10000
+
+                    }).then(() => {
+
+                        window.location.href =
+                            '/administrar/elecciones/';
+
+                    });
+
+                });
+
+            }
+
+        });
+
+    };
+
+    // DETAIL FORMATTER
+
+    function detailFormatter(index, row){
+
+        var html = '';
+
+        var indexs = 0;
+
+        var data = {};
+
+        $.each(row, function(key, value){
+
+            var columns =
+                $("th:eq(" + (indexs + 1) + ")").data("field");
+
+            if(columns != undefined){
+
+                data[columns] = row[columns];
+
+                indexs++;
+
+            }
+
+        });
+
+        html =
+
+        `<div class="card detail-card">
+
+            <div class="card-footer">
+
+                <button class="btn btn-outline-info mx-1"
+                    onClick="editar('${row._id}')">
+
+                    <i class="fa fa-fw fa-edit"></i>
+                    Editar
+
+                </button>
+
+                <button class="btn btn-outline-danger mx-1"
+                    onClick="eliminar('${row._id}', '${data.sigla}', '${data.descripcion}')">
+
+                    <i class="fa fa-fw fa-trash"></i>
+                    Eliminar
+
+                </button>
+
+            </div>
+
+        </div>`;
+
+        return html;
+
+    }
+
+</script>

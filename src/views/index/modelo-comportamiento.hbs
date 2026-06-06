@@ -1,0 +1,475 @@
+{{> index/header}}
+
+<!-- ====================================== -->
+<!-- BREADCRUMB -->
+<!-- ====================================== -->
+
+<div class="container-fluid">
+
+  <ol class="breadcrumb shadow-sm">
+
+    <li class="breadcrumb-item">
+      <a href="/">
+        <i class="fa fa-fw fa-home"></i>
+        Inicio
+      </a>
+    </li>
+
+    <li class="breadcrumb-item">
+      <a href="/analisis-estructurado">
+        <i class="fa fa-fw fa-book"></i>
+        Análisis Estructurado
+      </a>
+    </li>
+
+    <li class="breadcrumb-item active">
+      <i class="fa fa-fw fa-random"></i>
+      Modelo de Comportamiento
+    </li>
+  </ol>
+
+</div>
+
+
+<!-- ====================================== -->
+<!-- BODY PRINCIPAL -->
+<!-- ====================================== -->
+<main class="container-fluid mt-4">
+
+  <!-- ====================================== -->
+  <!-- HERO -->
+  <!-- ====================================== -->
+
+
+  <div class="row mb-4">
+
+    <div class="col-12">
+
+      <div class="jumbotron shadow-lg text-white hero-panel">
+
+        <div class="row align-items-center">
+
+          <div class="col-md-8">
+
+            <h1 class="display-4 font-weight-bold">
+              MODELO DE COMPORTAMIENTO
+            </h1>
+
+            <p class="lead mt-4">
+              Representación de los procesos, flujos de datos,
+              entidades y estados que describen el funcionamiento
+              interno del Sistema de Votación Virtual UMSA.
+            </p>
+
+            <hr class="bg-white">
+
+            <p>
+              El Modelo de Comportamiento permite analizar cómo el sistema
+              transforma la información, administra los datos electorales
+              y ejecuta las operaciones necesarias para garantizar un proceso
+              de votación seguro, transparente y eficiente.
+            </p>
+
+          </div>
+
+          <div class="col-md-4 text-center">
+
+            <i class="fa fa-random hero-icon"></i>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ====================================== -->
+  <!-- CONTENIDO -->
+  <!-- ====================================== -->
+
+  <div class="row">
+    <!-- ====================================== -->
+    <!-- SIDEBAR -->
+    <!-- ====================================== -->
+
+    <div class="col-lg-3 mb-4">
+
+      <div class="card shadow border-0 sticky-top">
+
+        <div class="card-header bg-primary text-white">
+
+          <h5 class="mb-0">
+            <i class="fa fa-list"></i>
+            Navegación
+          </h5>
+
+        </div>
+
+        <div class="card-body sidebar-menu">
+
+          <!-- INICIO -->
+
+          <div class="mb-4">
+
+            <h6 class="sidebar-title">
+              <i class="fa fa-home"></i>
+              <a href="/" style="color:#003b75;text-decoration:none;">
+                INICIO
+              </a>
+            </h6>
+
+          </div>
+
+          <!-- ANALISIS ESTRUCTURADO -->
+
+          <div class="mb-4">
+
+            <h6 class="sidebar-title">
+              <i class="fa fa-book"></i>
+              <a href="/analisis-estructurado" style="color:#003b75;text-decoration:none;">
+                ANÁLISIS ESTRUCTURADO
+              </a>
+            </h6>
+
+    
+
+          </div>
+
+          <!-- CONTENIDO DEL MODELO -->
+
+          <div class="mb-4">
+
+            <h6 class="sidebar-title">
+              <i class="fa fa-random"></i>
+              MODELO DE COMPORTAMIENTO
+            </h6>
+
+            <ul class="list-group">
+
+              <a href="#dfd-niveles" class="list-group-item list-group-item-action">
+                DFD por Niveles
+              </a>
+
+              <a href="#diagrama-entidad-relacion" class="list-group-item list-group-item-action">
+                Diagrama Entidad Relación
+              </a>
+
+              <!--a href="#diagrama-transicion-estados" class="list-group-item list-group-item-action">
+                Diagrama de Transición de Estados
+              </a-->
+
+              <a href="#diccionario-datos" class="list-group-item list-group-item-action">
+                Diccionario de Datos
+              </a>
+
+            </ul>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ====================================== -->
+    <!-- CONTENIDO -->
+    <!-- ====================================== -->
+
+    <div class="col-lg-9">
+
+      <!-- INTRODUCCIÓN -->
+
+      <div class="card shadow-lg border-0 mb-4">
+
+        <div class="card-header bg-primary text-white">
+
+          <h3 class="mb-0">
+            Modelo de Comportamiento
+          </h3>
+
+        </div>
+
+        <div class="card-body">
+
+          <p align="justify">
+            El Modelo de Comportamiento describe el funcionamiento interno del
+            Sistema de Votación Virtual UMSA mediante la representación de los
+            procesos, flujos de información, almacenes de datos y reglas de
+            negocio que intervienen durante la ejecución del sistema.
+          </p>
+
+          <p align="justify">
+            A diferencia del Modelo Ambiental, que define las interacciones con
+            el entorno, el Modelo de Comportamiento permite comprender cómo el
+            sistema procesa la información y transforma las entradas en salidas
+            útiles para los usuarios.
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- ====================================== -->
+      <!-- DFD POR NIVELES -->
+      <!-- ====================================== -->
+
+      <div id="dfd-niveles" class="card shadow border-0 mb-4">
+
+        <div class="card-header bg-info text-white">
+
+          <h4 class="mb-0">
+            DFD por Niveles
+          </h4>
+
+        </div>
+
+        <div class="card-body">
+
+          <p align="justify">
+            Los Diagramas de Flujo de Datos (DFD) representan los procesos,
+            almacenes de datos, entidades externas y flujos de información del
+            Sistema de Votación Virtual UMSA.
+          </p>
+
+          <h5 class="text-primary mt-4">
+            DFD Nivel 0
+          </h5>
+
+          <div class="text-center my-4">
+
+            <img src="/img/diagramas/modelo-comportamiento/nivel-0.png" class="img-fluid shadow rounded" alt="DFD Nivel 0">
+
+          </div>
+
+          <h5 class="text-primary mt-4">
+            DFD Nivel 1
+          </h5>
+
+          <div class="text-center my-4">
+
+            <img src="/img/diagramas/modelo-comportamiento/nivel-1.png" class="img-fluid shadow rounded" alt="DFD Nivel 1">
+
+          </div>
+
+          <h5 class="text-primary mt-4">
+            DFD Nivel 2
+          </h5>
+
+          <div class="text-center my-4">
+
+            <img src="/img/diagramas/modelo-comportamiento/nivel-2.png" class="img-fluid shadow rounded" alt="DFD Nivel 2">
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ====================================== -->
+      <!-- MER -->
+      <!-- ====================================== -->
+
+      <div id="diagrama-entidad-relacion" class="card shadow border-0 mb-4">
+
+        <div class="card-header bg-success text-white">
+
+          <h4 class="mb-0">
+            Diagrama Entidad Relación
+          </h4>
+
+        </div>
+
+        <div class="card-body">
+
+          <p align="justify">
+            El Modelo Entidad Relación (MER) representa la estructura lógica
+            de la información gestionada por el Sistema de Votación Virtual UMSA,
+            identificando entidades, atributos y relaciones.
+          </p>
+
+          <div class="text-center my-4">
+
+            <img src="/img/diagramas/modelo-comportamiento/mer.png" class="img-fluid shadow rounded" alt="MER">
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ====================================== -->
+      <!-- DTE -->
+      <!-- ====================================== -->
+
+      <!--div id="diagrama-transicion-estados" class="card shadow border-0 mb-4">
+
+        <div class="card-header bg-warning">
+
+          <h4 class="mb-0">
+            Diagrama de Transición de Estados
+          </h4>
+
+        </div>
+
+        <div class="card-body">
+
+          <p align="justify">
+            El Diagrama de Transición de Estados muestra los diferentes estados
+            por los que atraviesa una elección dentro del sistema y los eventos
+            que provocan los cambios entre dichos estados.
+          </p>
+
+          <div class="text-center my-4">
+
+            <img src="/img/diagramas/modelo-comportamiento/dte.png" class="img-fluid shadow rounded" alt="DTE">
+
+          </div>
+
+        </div>
+
+      </div-->
+
+      <!-- ====================================== -->
+      <!-- DICCIONARIO DE DATOS -->
+      <!-- ====================================== -->
+
+      <div id="diccionario-datos" class="card shadow border-0 mb-4">
+
+        <div class="card-header bg-secondary text-white">
+
+          <h4 class="mb-0">
+            Diccionario de Datos
+          </h4>
+
+        </div>
+
+        <div class="card-body">
+
+          <p align="justify">
+            El Diccionario de Datos documenta los elementos de información
+            utilizados por el sistema, especificando nombres, estructuras,
+            formatos y descripciones.
+          </p>
+
+          <div class="table-responsive">
+
+            <table class="table table-bordered table-hover">
+
+              <thead class="thead-dark">
+
+                <tr>
+                  <th>Elemento</th>
+                  <th>Descripción</th>
+                  <th>Tipo</th>
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <tr>
+                  <td>ID_ESTUDIANTE</td>
+                  <td>Identificador único del estudiante.</td>
+                  <td>Numérico</td>
+                </tr>
+
+                <tr>
+                  <td>NOMBRE_ESTUDIANTE</td>
+                  <td>Nombre completo del votante.</td>
+                  <td>Texto</td>
+                </tr>
+
+                <tr>
+                  <td>ID_ELECCION</td>
+                  <td>Identificador de la elección.</td>
+                  <td>Numérico</td>
+                </tr>
+
+                <tr>
+                  <td>ID_CANDIDATO</td>
+                  <td>Identificador del candidato.</td>
+                  <td>Numérico</td>
+                </tr>
+
+                <tr>
+                  <td>VOTO</td>
+                  <td>Registro del voto emitido.</td>
+                  <td>Texto</td>
+                </tr>
+
+                <tr>
+                  <td>RESULTADO</td>
+                  <td>Total de votos obtenidos.</td>
+                  <td>Numérico</td>
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+  </div>
+</main>
+
+<!-- ====================================== -->
+<!-- ESTILOS -->
+<!-- ====================================== -->
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .hero-panel {
+    background: linear-gradient(135deg, #003b75, #0056b3);
+    border-radius: 15px;
+  }
+
+  .hero-icon {
+    font-size: 9rem;
+    opacity: 0.2;
+  }
+
+  .sidebar-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .sidebar-menu .list-group-item {
+    border: none;
+    border-left: 4px solid transparent;
+    transition: 0.3s;
+    font-size: 14px;
+  }
+
+  .sidebar-menu .list-group-item:hover {
+    background: #f1f7ff;
+    border-left: 4px solid #007bff;
+    padding-left: 25px;
+  }
+
+  .card {
+    border-radius: 12px;
+  }
+
+  .sticky-top {
+    top: 20px;
+  }
+</style>
+
+{{> index/footer}}

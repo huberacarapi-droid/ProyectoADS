@@ -1,0 +1,670 @@
+<style>
+
+    :root{
+        --primary:#003b75;
+        --primary-light:#0056b3;
+        --success:#198754;
+        --warning:#f39c12;
+        --light-bg:#f4f6f9;
+    }
+
+    body{
+        background:var(--light-bg);
+    }
+
+    .breadcrumb{
+        background:#fff;
+        border-radius:12px;
+        padding:14px 20px;
+        box-shadow:0 2px 10px rgba(0,0,0,.06);
+    }
+
+    .breadcrumb a{
+        color:var(--primary);
+        font-weight:500;
+        text-decoration:none;
+    }
+
+    .page-header{
+        background:linear-gradient(135deg,var(--primary),var(--primary-light));
+        border-radius:20px;
+        padding:35px;
+        color:white;
+        margin-bottom:25px;
+        box-shadow:0 10px 25px rgba(0,0,0,.08);
+    }
+
+    .page-header h2{
+        font-weight:bold;
+    }
+
+    .page-header p{
+        opacity:.92;
+    }
+
+    .btn-return{
+        border-radius:10px;
+        padding:10px 20px;
+        font-weight:600;
+    }
+
+    .nav-tabs{
+        border-bottom:none;
+        gap:10px;
+    }
+
+    .nav-tabs .nav-link{
+        border:none;
+        border-radius:12px;
+        padding:12px 18px;
+        color:#495057;
+        font-weight:600;
+        transition:.3s;
+        background:#fff;
+        box-shadow:0 2px 10px rgba(0,0,0,.05);
+    }
+
+    .nav-tabs .nav-link:hover{
+        transform:translateY(-2px);
+        
+    }
+
+    .nav-tabs .nav-link.active{
+        background:var(--warning);
+        color:white;
+        box-shadow:0 4px 15px rgba(0,0,0,.1);
+    }
+
+    .section-card{
+        border:none;
+        border-radius:18px;
+        overflow:hidden;
+        box-shadow:0 8px 20px rgba(0,0,0,.06);
+    }
+
+    .section-header{
+        background:linear-gradient(90deg,var(--primary),var(--primary-light));
+        color:white;
+        padding:18px 25px;
+    }
+
+    .section-header h4{
+        margin:0;
+        font-weight:bold;
+    }
+
+    .section-body{
+        background:white;
+        padding:25px;
+    }
+
+    .toolbar-box{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        flex-wrap:wrap;
+        gap:10px;
+        margin-bottom:18px;
+    }
+
+    .toolbar-title{
+        font-size:18px;
+        font-weight:600;
+        color:#495057;
+    }
+
+    .btn-custom{
+        border-radius:10px;
+        font-weight:600;
+        padding:10px 18px;
+    }
+
+    .table{
+        background:white;
+        border-radius:12px;
+        overflow:hidden;
+    }
+
+    .table thead{
+        background:var(--primary);
+        color:white;
+    }
+
+    .table thead th{
+        border:none;
+        font-weight:600;
+        vertical-align:middle;
+    }
+
+    .table tbody tr:hover{
+        background:#f8f9fa;
+    }
+
+    .badge-custom{
+        background:rgba(255,255,255,.2);
+        padding:8px 14px;
+        border-radius:30px;
+        font-size:14px;
+        font-weight:600;
+    }
+
+    .logo-preview{
+        width:90px;
+        height:auto;
+        border-radius:8px;
+        border:1px solid #dee2e6;
+        padding:4px;
+        background:white;
+    }
+
+    .color-preview{
+        width:100px;
+        height:35px;
+        border-radius:8px;
+        border:1px solid #ced4da;
+    }
+
+</style>
+
+<main>
+
+    <div class="container-fluid">
+
+        <ol class="breadcrumb">
+
+            <li class="breadcrumb-item">
+                <a href="/inicio">
+                    <i class="fa fa-fw fa-home"></i> Inicio
+                </a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <a href="/administrar">
+                    <i class="fa fa-fw fa-cogs"></i> Administrar
+                </a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <a href="/administrar/elecciones">
+                    <i class="fa fa-fw fa-cubes"></i> Elecciones
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active">
+                <i class="fa fa-fw fa-file-text"></i> Programar
+            </li>
+
+        </ol>
+
+    </div>
+
+    <div class="container">
+
+        <!-- HERO -->
+
+        <div class="page-header">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+                <div>
+
+                    <h2>
+                        <i class="fa fa-fw fa-calendar-check-o"></i>
+                        Programación de Elecciones
+                    </h2>
+
+                    <h5 class="mt-3">
+                        {{eleccion.titulo}}
+                    </h5>
+
+                    <p class="mb-0">
+                        {{eleccion.descripcion}}
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <a id="back"
+                        class="btn btn-light btn-return"
+                        href="/administrar/elecciones">
+
+                        <i class="fa fa-fw fa-undo"></i>
+                        Retornar
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- NAV TABS -->
+
+        <ul class="nav nav-tabs mb-4">
+
+            <li class="nav-item">
+
+                <a class="nav-link active"
+                    data-toggle="tab"
+                    href="#participantes">
+
+                    <i class="fa fa-fw fa-users"></i>
+                    Participantes
+
+                </a>
+
+            </li>
+
+            <li class="nav-item">
+
+                <a class="nav-link"
+                    data-toggle="tab"
+                    href="#frentes">
+
+                    <i class="fa fa-fw fa-newspaper-o"></i>
+                    Frentes Políticos
+
+                </a>
+
+            </li>
+
+            <li class="nav-item">
+
+                <a class="nav-link"
+                    data-toggle="tab"
+                    href="#moderadores">
+
+                    <i class="fa fa-fw fa-shield"></i>
+                    Moderadores
+
+                </a>
+
+            </li>
+
+        </ul>
+
+        <div class="tab-content">
+
+            <!-- PARTICIPANTES -->
+
+            <div class="tab-pane fade show active"
+                id="participantes">
+
+                <div class="card section-card mb-4">
+
+                    <div class="section-header d-flex justify-content-between align-items-center flex-wrap">
+
+                        <h4>
+
+                            <i class="fa fa-fw fa-users"></i>
+                            Participantes de la Elección
+
+                        </h4>
+
+                        <span class="badge-custom">
+
+                            Total: {{count inscritos}}
+
+                        </span>
+
+                    </div>
+
+                    <div class="section-body">
+
+                        <div id="toolbarParticipantes"
+                            class="toolbar-box">
+
+                            <div class="toolbar-title">
+
+                                Participantes inscritos en el proceso electoral
+
+                            </div>
+
+                            <a class="btn btn-outline-primary btn-custom"
+                                href="/administrar/elecciones/programar/inscritos/{{eleccion.id}}">
+
+                                <i class="fa fa-fw fa-users"></i>
+                                Administrar Participantes
+
+                            </a>
+
+                        </div>
+
+                        <table class="table table-condensed text-small"
+                            id="tableParticipantes"
+                            data-toggle="table"
+                            data-locale="es-ES"
+                            data-toolbar="#toolbarParticipantes"
+                            data-search="true"
+                            data-advanced-search="false"
+                            data-show-refresh="false"
+                            data-show-fullscreen="true"
+                            data-show-export="true"
+                            data-click-to-select="true"
+                            data-sortable="true"
+                            data-minimum-count-columns="2"
+                            data-show-pagination-switch="false"
+                            data-pagination="true"
+                            data-id-field="id"
+                            data-page-list="[5, 10, 15, 20, all]"
+                            data-show-footer="false"
+                            data-response-handler="responseHandler"
+                            data-export-types="['json','csv','xlsx','pdf']"
+                            data-mobile-responsive="true">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th data-formatter="indexFormatter"></th>
+
+                                    <th data-field="cedula">
+                                        Cédula de Identidad
+                                    </th>
+
+                                    <th data-field="nombre">
+                                        Apellidos y Nombres
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                {{#each inscritos}}
+
+                                <tr id="{{id_usuario}}">
+
+                                    <td></td>
+
+                                    <td>{{cedula}}</td>
+
+                                    <td>{{nombre}}</td>
+
+                                </tr>
+
+                                {{/each}}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- FRENTES -->
+
+            <div class="tab-pane fade"
+                id="frentes">
+
+                <div class="card section-card mb-4">
+
+                    <div class="section-header d-flex justify-content-between align-items-center flex-wrap">
+
+                        <h4>
+
+                            <i class="fa fa-fw fa-newspaper-o"></i>
+                            Frentes Políticos
+
+                        </h4>
+
+                        <span class="badge-custom">
+
+                            Total: {{count frentes}}
+
+                        </span>
+
+                    </div>
+
+                    <div class="section-body">
+
+                        <div id="toolbarFrentes"
+                            class="toolbar-box">
+
+                            <div class="toolbar-title">
+
+                                Frentes habilitados para la elección
+
+                            </div>
+
+                            <a class="btn btn-outline-primary btn-custom"
+                                href="/administrar/elecciones/programar/frentes/{{eleccion.id}}">
+
+                                <i class="fa fa-fw fa-newspaper-o"></i>
+                                Administrar Frentes
+
+                            </a>
+
+                        </div>
+
+                        <table class="table table-condensed text-small"
+                            id="tblFrentes"
+                            data-toggle="table"
+                            data-toolbar="#toolbarFrentes"
+                            data-locale="es-ES"
+                            data-search="true"
+                            data-sortable="true"
+                            data-show-fullscreen="true"
+                            data-pagination="true"
+                            data-page-list="[5, 10, 15, 20, all]"
+                            data-show-footer="false"
+                            data-mobile-responsive="true">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th data-field="logo"
+                                        data-formatter="logoFormatter">
+
+                                        Logo
+
+                                    </th>
+
+                                    <th data-field="sigla">
+
+                                        Sigla
+
+                                    </th>
+
+                                    <th data-field="descripcion">
+
+                                        Descripción
+
+                                    </th>
+
+                                    <th data-field="color"
+                                        data-formatter="colorFormatter">
+
+                                        Color
+
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                {{#each frentes}}
+
+                                <tr id="{{id_frente}}">
+
+                                    <td>{{logoFilename}}</td>
+
+                                    <td>{{sigla}}</td>
+
+                                    <td>{{detalle}}</td>
+
+                                    <td>{{color}}</td>
+
+                                </tr>
+
+                                {{/each}}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- MODERADORES -->
+
+            <div class="tab-pane fade"
+                id="moderadores">
+
+                <div class="card section-card mb-4">
+
+                    <div class="section-header d-flex justify-content-between align-items-center flex-wrap">
+
+                        <h4>
+
+                            <i class="fa fa-fw fa-shield"></i>
+                            Moderadores o Auditores
+
+                        </h4>
+
+                        <span class="badge-custom">
+
+                            Total: {{count moderadores}}
+
+                        </span>
+
+                    </div>
+
+                    <div class="section-body">
+
+                        <div id="toolbarModeradores"
+                            class="toolbar-box">
+
+                            <div class="toolbar-title">
+
+                                Moderadores registrados en el sistema
+
+                            </div>
+
+                            <a class="btn btn-outline-primary btn-custom"
+                                href="/administrar/elecciones/programar/moderadores/{{eleccion.id}}">
+
+                                <i class="fa fa-fw fa-shield"></i>
+                                Administrar Moderadores
+
+                            </a>
+
+                        </div>
+
+                        <table class="table table-condensed text-small"
+                            id="tableModeradores"
+                            data-toggle="table"
+                            data-locale="es-ES"
+                            data-toolbar="#toolbarModeradores"
+                            data-search="true"
+                            data-advanced-search="false"
+                            data-show-refresh="false"
+                            data-show-fullscreen="true"
+                            data-show-export="true"
+                            data-click-to-select="true"
+                            data-sortable="true"
+                            data-minimum-count-columns="2"
+                            data-show-pagination-switch="false"
+                            data-pagination="true"
+                            data-id-field="id"
+                            data-page-list="[5, 10, 15, 20, all]"
+                            data-show-footer="false"
+                            data-response-handler="responseHandler"
+                            data-export-types="['json','csv','xlsx','pdf']"
+                            data-mobile-responsive="true">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th data-formatter="indexFormatter"></th>
+
+                                    <th data-field="cedula">
+
+                                        Cédula de Identidad
+
+                                    </th>
+
+                                    <th data-field="nombre">
+
+                                        Apellidos y Nombres
+
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                {{#each moderadores}}
+
+                                <tr id="{{id_moderador}}">
+
+                                    <td></td>
+
+                                    <td>{{cedula}}</td>
+
+                                    <td>{{nombre}}</td>
+
+                                </tr>
+
+                                {{/each}}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<script>
+
+    function logoFormatter(value, row, index) {
+
+        return `
+            <img src="/repositorio/imagenes/${value}"
+                alt="Logo"
+                class="logo-preview">
+        `;
+
+    }
+
+    function colorFormatter(value, row, index) {
+
+        return `
+            <div class="color-preview"
+                style="background:${value};">
+            </div>
+        `;
+
+    }
+
+    function indexFormatter(value, row, index) {
+
+        return index + 1;
+
+    }
+
+</script>

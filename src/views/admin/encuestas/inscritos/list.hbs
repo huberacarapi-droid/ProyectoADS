@@ -1,0 +1,278 @@
+<main>
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/inicio">
+                    <i class="fa fa-fw fa-home"></i>
+                    Inicio
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/administrar">
+                    <i class="fa fa-fw fa-cogs"></i>
+                    Administrar
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/administrar/encuestas">
+                    <i class="fa fa-fw fa-check-square-o"></i>
+                    Encuestas
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/administrar/encuestas/programar/{{encuesta.id}}">
+                    <i class="fa fa-fw fa-file-text-o"></i>
+                    Programar
+                </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <i class="fa fa-fw fa-users"></i>
+                Inscritos
+            </li>
+        </ol>
+    </div>
+    <div class="container mt-5">
+        <h2>Lista de participantes inscritos para la encuesta</h2>
+        <h5>{{encuesta.titulo}}</h5>
+        <p class="small">{{encuesta.descripcion}}</p>
+
+        <dir class="row">
+            <div class="col col-md-6">
+                <div id="toolbarUsuarios">
+                    <button class=" btn btn-outline-primary mx-1" onClick="llenar('{{encuesta.id}}')">
+                        <i class="fa fa-fw fa-share-square"></i> Inscribir a todos los usuarios
+                    </button>
+                </div>
+                <table class="table table-condensed text-small" id="table" data-toggle="table" data-locale="es-ES"
+                    data-toolbar="#toolbarUsuarios" data-search="true" data-advanced-search="false"
+                    data-show-refresh="false" data-show-fullscreen="true" data-detail-view="true"
+                    data-detail-formatter="detailFormatterUsuarios" data-show-export="true" data-click-to-select="true"
+                    data-sortable="true" data-minimum-count-columns="2" data-show-pagination-switch="false"
+                    data-pagination="true" data-id-field="id" data-page-list="[5, 10, 15, 20, all]"
+                    data-show-footer="false" data-response-handler="responseHandler"
+                    data-export-types="['json','csv','xlsx','pdf']" data-mobile-responsive="true">
+
+                    <thead>
+                        <tr>
+                            <th data-field="cedula">Cédula de Identidad</th>
+                            <th data-field="nombre">Apellidos y Nombres</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each usuarios}}
+                        <tr id="{{id}}">
+                            <td>{{cedula}}</td>
+                            <td>{{nombre}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col col-md-6">
+                <div id="toolbarInscritos">
+                    <button class=" btn btn-outline-primary mx-1" onClick="vaciar('{{encuesta.id}}')">
+                        <i class="fa fa-fw fa-trash"></i> Vaciar la lista de inscritos
+                    </button>
+                </div>
+                <table class="table table-condensed text-small" id="table" data-toggle="table" data-locale="es-ES"
+                    data-toolbar="#toolbarInscritos" data-search="true" data-advanced-search="false"
+                    data-show-refresh="false" data-show-fullscreen="true" data-detail-view="true"
+                    data-detail-formatter="detailFormatterInscritos" data-show-export="true" data-click-to-select="true"
+                    data-sortable="true" data-minimum-count-columns="2" data-show-pagination-switch="false"
+                    data-pagination="true" data-id-field="id" data-page-list="[5, 10, 15, 20, all]"
+                    data-show-footer="false" data-response-handler="responseHandler"
+                    data-export-types="['json','csv','xlsx','pdf']" data-mobile-responsive="true">
+
+                    <thead>
+                        <tr>
+                            <th data-field="cedula">Cédula de Identidad</th>
+                            <th data-field="nombre">Apellidos y Nombres</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each inscritos}}
+                        <tr id="{{id_inscrito}}">
+                            <td>{{cedula}}</td>
+                            <td>{{nombre}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </dir>
+    </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function llenar(id) {
+        Swal.fire({
+            title: "Deseas inscribir a todos los usuarios?",
+            html: `Se incribiran a todos los usuarios`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Confirmar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post(`/administrar/encuestas/programar/inscritos/llenar/{{{encuesta.id}}}`, // url
+                    { 'id': id } // data to be submit
+                ).done(function (data) {
+                    Swal.fire({
+                        title: "Inscripción Realizada",
+                        text: "Se ha inscrito a todos los usuarios correctamente",
+                        icon: "success",
+                        timer: 10000
+                    }).then(() => {
+                        window.location.href = `/administrar/encuestas/programar/inscritos/{{{encuesta.id}}}`;
+                    });
+                }).fail(function () {
+                    Swal.fire({
+                        title: "Ocurrió un error!",
+                        text: "No se pudo realizar la inscripcion.",
+                        icon: "error",
+                        timer: 10000
+                    }).then(() => {
+                        window.location.href = '/administrar/encuestas/';
+                    });
+                });
+            }
+        });
+    };
+    function vaciar(id) {
+        Swal.fire({
+            title: "Deseas eliminar a los usuarios inscritos?",
+            html: `Se anularan las incripciones de todos los usuarios.`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Confirmar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post(`/administrar/encuestas/programar/inscritos/vaciar/{{{encuesta.id}}}`, // url
+                    { 'id': id } // data to be submit
+                ).done(function (data) {
+                    Swal.fire({
+                        title: "Inscripciones Anuladas",
+                        text: "Se ha anulado la inscripción de todos los usuarios",
+                        icon: "success",
+                        timer: 10000
+                    }).then(() => {
+                        window.location.href = `/administrar/encuestas/programar/inscritos/{{{encuesta.id}}}`;
+                    });
+                }).fail(function () {
+                    Swal.fire({
+                        title: "Ocurrió un error!",
+                        text: "No se pudo realizar la anulación de la inscripcion.",
+                        icon: "error",
+                        timer: 10000
+                    }).then(() => {
+                        window.location.href = '/administrar/encuestas/';
+                    });
+                });
+            }
+        });
+    };
+    function adicionar(id, cedula, nombre) {
+        console.log(id, cedula, nombre);
+        $.post(`/administrar/encuestas/programar/inscritos/adicionar/{{{encuesta.id}}}/${id}`, // url
+            { 'id': id } // data to be submit
+        ).done(function (data) {
+            Swal.fire({
+                title: "Inscripcion de usuario",
+                text: "Se ha inscrito al usuario correctamente",
+                icon: "success",
+                timer: 10000
+            }).then(() => {
+                window.location.href = `/administrar/encuestas/programar/inscritos/{{{encuesta.id}}}`;
+            });
+        }).fail(function () {
+            Swal.fire({
+                title: "Ocurrió un error!",
+                text: "No se pudo anular la inscripcion.",
+                icon: "error",
+                timer: 10000
+            }).then(() => {
+                window.location.href = '/administrar/encuestas/programar/{{{encuesta.id}}}';
+            });
+        });
+    };
+    function eliminar(id, cedula, nombre) {
+        console.log('id:' + id);
+        Swal.fire({
+            title: "Deseas anular inscripcion?",
+            html: `<b>${cedula}</b><br>${nombre}`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Eliminar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post(`/administrar/encuestas/programar/inscritos/eliminar/{{{encuesta.id}}}/${id}`, // url
+                    { 'id': id } // data to be submit
+                ).done(function (data) {
+                    Swal.fire({
+                        title: "Inscripcion Anulada",
+                        text: "Se ha anulado la inscripción correctamente",
+                        icon: "success",
+                        timer: 10000
+                    }).then(() => {
+                        window.location.href = `/administrar/encuestas/programar/inscritos/{{{encuesta.id}}}`;
+                    });
+                }).fail(function () {
+                    Swal.fire({
+                        title: "Ocurrió un error!",
+                        text: "No se pudo anular la inscripcion.",
+                        icon: "error",
+                        timer: 10000
+                    }).then(() => {
+                        window.location.href = '/administrar/encuestas/';
+                    });
+                });
+            }
+        });
+    };
+    function detailFormatterInscritos(index, row) {
+        var html = '';
+        var indexs = 0;
+        var data = {};
+        $.each(row, function (key, value) {
+            var columns = $("th:eq(" + (indexs + 1) + ")").data("field")
+            if (columns != undefined) {
+                data[columns] = row[columns];
+                indexs++;
+            }
+        });
+        html =
+            `<div class="card border-primary">
+                    <div class="card-footer">
+                        <button class=" btn btn-outline-primary mx-1" onClick="eliminar('${row._id}', '${data.cedula}', ' ${data.nombre}')">
+                            <i class="fa fa-fw fa-minus-circle"></i>
+                            Anular inscripción
+                        </button>
+                    </div>
+                </div>`
+        return html
+    };
+    function detailFormatterUsuarios(index, row) {
+        var html = '';
+        var indexs = 0;
+        var data = {};
+        $.each(row, function (key, value) {
+            var columns = $("th:eq(" + (indexs + 1) + ")").data("field")
+            if (columns != undefined) {
+                data[columns] = row[columns];
+                indexs++;
+            }
+        });
+        html =
+            `<div class="card border-primary">
+                    <div class="card-footer">
+                        <button class=" btn btn-outline-primary mx-1" onClick="adicionar('${row._id}', '${data.cedula}', ' ${data.nombre}')">
+                            <i class="fa fa-fw fa-plus-circle"></i>
+                            Inscribir al usuario
+                        </button>
+                    </div>
+                </div>`
+        return html
+    };
+</script>

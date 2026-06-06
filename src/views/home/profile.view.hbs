@@ -1,0 +1,866 @@
+<main>
+    <!-- ====================================== -->
+    <!-- BREADCRUMB -->
+    <!-- ====================================== -->
+
+    <div class="container-fluid">
+
+        <ol class="breadcrumb shadow-sm">
+
+            <li class="breadcrumb-item">
+
+                <a href="/inicio">
+
+                    <i class="fa fa-fw fa-home"></i>
+                    Inicio
+
+                </a>
+
+            </li>
+
+            <li class="breadcrumb-item active">
+
+                <i class="fa fa-fw fa-user-circle"></i>
+                Perfil
+
+            </li>
+
+        </ol>
+
+    </div>
+    <!-- ====================================== -->
+    <!-- HERO PERFIL -->
+    <!-- ====================================== -->
+
+    <section class="hero-profile py-5 mb-4">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-8 text-white">
+
+                    <h1 class="display-4 font-weight-bold">
+
+                        <i class="fa fa-user-circle"></i>
+                        Perfil de Usuario
+
+                    </h1>
+
+                    <p class="lead mt-3">
+
+                        Gestión de información personal y credenciales
+                        del Sistema de Votación UMSA.
+
+                    </p>
+
+                    <p>
+
+                        Actualiza tus datos académicos, información
+                        de contacto y contraseña institucional
+                        de manera segura.
+
+                    </p>
+
+                </div>
+
+                <div class="col-lg-4 text-center">
+
+                    <div class="profile-avatar">
+
+                        <i class="fa fa-user-circle"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    {{#if usuario}}
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- ====================================== -->
+            <!-- DATOS PERSONALES -->
+            <!-- ====================================== -->
+
+            <div class="col-lg-7 mb-4">
+
+                <div class="card profile-card shadow-lg border-0">
+
+                    <div class="card-header profile-header">
+
+                        <h4 class="mb-0">
+
+                            <i class="fa fa-id-card"></i>
+                            Información Personal
+
+                        </h4>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <form id="perfilForm">
+
+                            <!-- DATOS FIJOS -->
+
+                            <div class="alert alert-light border mb-4">
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+
+                                        <label>
+                                            Cédula de Identidad
+                                        </label>
+
+                                        <input name="cedula"
+                                            type="text"
+                                            class="form-control"
+                                            value="{{usuario.ci}}"
+                                            readonly>
+
+                                    </div>
+
+                                    <div class="col-md-6">
+
+                                        <label>
+                                            Registro Universitario
+                                        </label>
+
+                                        <input name="codigo"
+                                            type="text"
+                                            class="form-control"
+                                            value="{{usuario.codigo}}"
+                                            readonly>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- NOMBRES -->
+
+                            <div class="form-group">
+
+                                <label>
+
+                                    <i class="fa fa-user text-primary"></i>
+                                    Nombres
+
+                                </label>
+
+                                <input name="nombres"
+                                    type="text"
+                                    class="form-control"
+                                    id="nombres"
+                                    placeholder="Ingrese nombres"
+                                    required
+                                    value="{{usuario.nombres}}">
+
+                            </div>
+
+                            <!-- APELLIDOS -->
+
+                            <div class="form-group">
+
+                                <label>
+
+                                    <i class="fa fa-users text-primary"></i>
+                                    Apellidos
+
+                                </label>
+
+                                <input name="apellidos"
+                                    type="text"
+                                    class="form-control"
+                                    id="apellidos"
+                                    placeholder="Ingrese apellidos"
+                                    required
+                                    value="{{usuario.apellidos}}">
+
+                            </div>
+
+                            <!-- GENERO Y RESIDENCIA -->
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+
+                                    <label>
+
+                                        <i class="fa fa-venus-mars text-primary"></i>
+                                        Género
+
+                                    </label>
+
+                                    <div class="custom-control custom-radio">
+
+                                        {{#radio usuario.genero}}
+
+                                        <div class="mb-2">
+
+                                            <input type="radio"
+                                                id="genero_m"
+                                                name="genero"
+                                                value="M"
+                                                class="custom-control-input">
+
+                                            <label class="custom-control-label"
+                                                for="genero_m">
+
+                                                Masculino
+
+                                            </label>
+
+                                        </div>
+
+                                        <div>
+
+                                            <input type="radio"
+                                                id="genero_f"
+                                                name="genero"
+                                                value="F"
+                                                class="custom-control-input">
+
+                                            <label class="custom-control-label"
+                                                for="genero_f">
+
+                                                Femenino
+
+                                            </label>
+
+                                        </div>
+
+                                        {{/radio}}
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <label>
+
+                                        <i class="fa fa-map-marker text-primary"></i>
+                                        Residencia
+
+                                    </label>
+
+                                    <select name="residencia"
+                                        class="form-control"
+                                        id="residencia"
+                                        required>
+
+                                        <option value="" disabled selected>
+
+                                            Elegir residencia
+
+                                        </option>
+
+                                        {{#select usuario.residencia}}
+
+                                        {{#each departamento}}
+
+                                        <option value="{{id}}">
+
+                                            {{nombre}}
+
+                                        </option>
+
+                                        {{/each}}
+
+                                        {{/select}}
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ====================================== -->
+            <!-- CONTACTO Y PASSWORD -->
+            <!-- ====================================== -->
+
+            <div class="col-lg-5 mb-4">
+
+                <!-- CONTACTO -->
+
+                <div class="card profile-card shadow-lg border-0 mb-4">
+
+                    <div class="card-header profile-header">
+
+                        <h4 class="mb-0">
+
+                            <i class="fa fa-envelope"></i>
+                            Datos de Contacto
+
+                        </h4>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="custom-control custom-switch mb-4">
+
+                            <input type="checkbox"
+                                class="custom-control-input"
+                                id="toggle-event-contact">
+
+                            <label class="custom-control-label"
+                                for="toggle-event-contact">
+
+                                Actualizar datos de contacto
+
+                            </label>
+
+                        </div>
+
+                        <form id="contactoForm">
+
+                            <div class="form-group">
+
+                                <label>
+
+                                    Email
+
+                                </label>
+
+                                <input name="email"
+                                    type="email"
+                                    class="form-control"
+                                    id="email"
+                                    value="{{usuario.email}}"
+                                    disabled>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>
+
+                                    Teléfono
+
+                                </label>
+
+                                <input name="telefono"
+                                    type="text"
+                                    class="form-control"
+                                    id="telefono"
+                                    value="{{usuario.telefono}}"
+                                    disabled>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+                <!-- PASSWORD -->
+
+                <div class="card profile-card shadow-lg border-0">
+
+                    <div class="card-header profile-header">
+
+                        <h4 class="mb-0">
+
+                            <i class="fa fa-lock"></i>
+                            Seguridad
+
+                        </h4>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="custom-control custom-switch mb-4">
+
+                            <input type="checkbox"
+                                class="custom-control-input"
+                                id="toggle-event-password">
+
+                            <label class="custom-control-label"
+                                for="toggle-event-password">
+
+                                Actualizar contraseña
+
+                            </label>
+
+                        </div>
+
+                        <form id="passwordForm">
+
+                            <!-- PASSWORD -->
+
+                            <div class="input-group mb-3">
+
+                                <div class="input-group-prepend">
+
+                                    <span class="input-group-text">
+
+                                        <i class="fa fa-key"></i>
+
+                                    </span>
+
+                                </div>
+
+                                <input class="form-control"
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    placeholder="Nueva contraseña"
+                                    disabled>
+
+                                <div class="input-group-append">
+
+                                    <span class="input-group-text">
+
+                                        <a class="text-primary"
+                                            onclick="togglePasswordVisibility('password', 'password-icon')">
+
+                                            <i id="password-icon"
+                                                class="fa fa-eye-slash">
+
+                                            </i>
+
+                                        </a>
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <!-- CONFIRM -->
+
+                            <div class="input-group mb-3">
+
+                                <div class="input-group-prepend">
+
+                                    <span class="input-group-text">
+
+                                        <i class="fa fa-check-circle"></i>
+
+                                    </span>
+
+                                </div>
+
+                                <input class="form-control"
+                                    id="confirm-password"
+                                    name="confirmPassword"
+                                    type="password"
+                                    placeholder="Confirmar contraseña"
+                                    disabled>
+
+                                <div class="input-group-append">
+
+                                    <span class="input-group-text">
+
+                                        <a class="text-primary"
+                                            onclick="togglePasswordVisibility('confirm-password', 'confirm-password-icon')">
+
+                                            <i id="confirm-password-icon"
+                                                class="fa fa-eye-slash">
+
+                                            </i>
+
+                                        </a>
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <!-- ALERT -->
+
+                            <div class="alert alert-light border">
+
+                                <i class="fa fa-info-circle text-warning"></i>
+
+                                La contraseña debe contener:
+                                mayúsculas, minúsculas,
+                                números y caracteres especiales.
+
+                            </div>
+
+                            <span class="error-message"
+                                id="confirm-password-error"
+                                style="display:none;color:red;">
+
+                            </span>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ====================================== -->
+            <!-- BOTON -->
+            <!-- ====================================== -->
+
+            <div class="col-12">
+
+                <div class="text-right mb-5">
+
+                    <button id="saveButton"
+                        class="btn btn-save btn-lg px-5">
+
+                        <i class="fa fa-fw fa-floppy-o"></i>
+                        Guardar Cambios
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{else}}
+
+    <div class="container">
+
+        <div class="alert alert-danger shadow-sm">
+
+            No se encontró información del usuario.
+
+        </div>
+
+    </div>
+
+    {{/if}}
+
+</main>
+
+{{> script/togglePasswordVisibility}}
+
+<!-- ====================================== -->
+<!-- ESTILOS -->
+<!-- ====================================== -->
+
+<style>
+
+    body{
+        background:#f4f6f9;
+    }
+
+    /* HERO */
+
+    .hero-profile{
+        background:linear-gradient(135deg,#003b75,#0056b3);
+        border-bottom:5px solid #f4b400;
+    }
+
+    .profile-avatar{
+        width:180px;
+        height:180px;
+        border-radius:50%;
+        background:rgba(255,255,255,0.12);
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin:auto;
+    }
+
+    .profile-avatar i{
+        font-size:100px;
+        color:white;
+    }
+
+    /* BREADCRUMB */
+
+    .breadcrumb{
+        background:white;
+        border-radius:12px;
+        padding:15px 20px;
+    }
+
+    .breadcrumb a{
+        color:#003b75;
+        text-decoration:none;
+        font-weight:500;
+    }
+
+    /* CARD */
+
+    .profile-card{
+        border-radius:18px;
+        overflow:hidden;
+    }
+
+    .profile-header{
+        background:linear-gradient(90deg,#003b75,#0056b3);
+        color:white;
+        border:none;
+    }
+
+    /* INPUTS */
+
+    .form-control{
+        border-radius:10px;
+        height:48px;
+    }
+
+    .form-control:focus{
+        box-shadow:none;
+        border-color:#0056b3;
+    }
+
+    .input-group-text{
+        background:#003b75;
+        color:white;
+        border:none;
+    }
+
+    /* BOTON */
+
+    .btn-save{
+        background:linear-gradient(90deg,#003b75,#0056b3);
+        border:none;
+        color:white;
+        border-radius:12px;
+        font-weight:bold;
+        padding:14px 30px;
+        transition:0.3s;
+    }
+
+    .btn-save:hover{
+        transform:translateY(-3px);
+        box-shadow:0 10px 25px rgba(0,86,179,0.3);
+    }
+
+</style>
+
+<!-- ====================================== -->
+<!-- SCRIPTS ORIGINALES -->
+<!-- ====================================== -->
+
+<script>
+
+    $(function() {
+
+        $('#toggle-event-contact').change(function() {
+
+            $('#email, #telefono').prop(
+                'disabled',
+                !$(this).is(':checked')
+            );
+
+        });
+
+        $('#toggle-event-password').change(function() {
+
+            if ($(this).is(':checked')) {
+
+                $('#password, #confirm-password')
+                    .prop('disabled', false);
+
+            } else {
+
+                $('#password, #confirm-password')
+                    .prop('disabled', true)
+                    .val('');
+
+            }
+
+        });
+
+        $('#password, #confirm-password').on('input', function() {
+
+            const password = $('#password').val();
+            const confirmPassword = $('#confirm-password').val();
+
+            if (password !== confirmPassword) {
+
+                $('#confirm-password')
+                    .addClass('is-invalid');
+
+                $('#confirm-password-error')
+                    .text('Las contraseñas no coinciden')
+                    .show();
+
+            } else {
+
+                $('#confirm-password')
+                    .removeClass('is-invalid')
+                    .addClass('is-valid');
+
+                $('#confirm-password-error').hide();
+
+            }
+
+        });
+
+    });
+
+</script>
+
+<script>
+    $(document).ready(function() {
+        // Patrones de validación
+        const nombrePattern = /^[.a-zA-ZÁÉÍÓÚáéíóúÑñ\s]{2,}$/;
+        const apellidoPattern = /^[.a-zA-ZÁÉÍÓÚáéíóúÑñ\s]{2,}$/;
+        const telefonoPattern = /^\d{8}$/;
+
+        // Función de validación genérica
+        function validateField(inputElement, pattern, errorElementId) {
+            const value = inputElement.val();
+            const errorElement = $(`#${errorElementId}`);
+            let isValid = pattern.test(value)
+            if (isValid) {
+                errorElement.hide();
+                inputElement.removeClass('is-invalid').addClass('is-valid');
+            } else {
+                errorElement.show();
+                inputElement.removeClass('is-valid').addClass('is-invalid');
+            }
+            return isValid;
+        }
+
+        // Validación del select de residencia
+        function validateSelect(inputElement, errorMessage) {
+            const selectedValue = inputElement.val();
+            const errorElementId = inputElement.attr('id') + '-error';
+            if (selectedValue === "" || selectedValue === null) {
+                $(`#${errorElementId}`).text(errorMessage).show();
+                inputElement.addClass('is-invalid').removeClass('is-valid');
+                return false;
+            } else {
+                $(`#${errorElementId}`).hide();
+                inputElement.addClass('is-valid').removeClass('is-invalid');
+                return true;
+            }
+        }
+
+        // Validación en tiempo real
+        $('#nombres').on('input', function() {
+            validateField($(this), nombrePattern, 'nombres-error');
+        });
+        $('#apellidos').on('input', function() {
+            validateField($(this), apellidoPattern, 'apellidos-error');
+        });
+        $('#telefono').on('input', function() {
+            validateField($(this), telefonoPattern, 'telefono-error');
+        });
+
+        // Click en guardar
+        $('#saveButton').on('click', function(event) {
+            event.preventDefault();
+            let isValid = true;
+            let missingFields = [];
+
+            // Validar cada campo requerido
+            if (!validateField($('#nombres'), nombrePattern, 'nombres-error')) {
+                isValid = false;
+                missingFields.push("Nombres");
+            }
+            if (!validateField($('#apellidos'), apellidoPattern, 'apellidos-error')) {
+                isValid = false;
+                missingFields.push("Apellidos");
+            }
+            
+            if (!validateField($('#telefono'), telefonoPattern, 'telefono-error')) {
+                isValid = false;
+                missingFields.push("Teléfono");
+            }
+            if (!validateSelect($('#residencia'), "Por favor, elige tu lugar de residencia.")) {
+                isValid = false;
+                missingFields.push("Lugar de Residencia");
+            }
+
+            // Mostrar mensaje de error si hay campos incompletos
+            if (!isValid) {
+                Swal.fire({
+                    title: "Datos incompletos",
+                    icon: "error",
+                    html: `
+                        <p>Faltan los siguientes campos por completar:</p>
+                        <div style="text-align: left; margin-left: 20px;">
+                            <ul style="list-style: none; font-weight: bold;"><li>${missingFields.join("</li><li>")}</li></ul>
+                        </div>`,
+                    timer: 30000
+                });
+                return;
+            }
+
+            // Validación de contraseñas
+            if ($('#toggle-event-password').is(':checked')) {
+                const password = $('#password').val();
+                const confirmPassword = $('#confirm-password').val();
+                if (password !== confirmPassword) {
+                    Swal.fire({
+                        title: "Error",
+                        icon: "error",
+                        text: "Las contraseñas no coinciden. Por favor, corrige el error.",
+                    });
+                    return false;
+                }
+            }
+
+            // Datos a enviar
+            const data = {
+                id: {{{usuario.id}}},
+                nombres: $('#nombres').val(),
+                apellidos: $('#apellidos').val(),
+                genero: $('input[name="genero"]:checked').val(),
+                residencia: $('#residencia').val(),
+                telefono: $('#telefono').val(),
+                password: $('#password').val()
+            };
+
+            // Desactivar botón de guardar mientras se procesa la solicitud
+            $('#saveButton').prop('disabled', true);
+            $.post('/perfil/actualizar', data, function(response) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Perfil actualizado exitosamente',
+                    text: response.message,
+                    showConfirmButton: true,
+                    timer: 30000
+                }).then(() => {
+                    window.location.href = response.redirect;
+                });
+            }).fail(function(xhr) {
+                let message = 'Error interno del servidor';
+                if (xhr.status === 409 || xhr.status === 400) {
+                    const errorData = xhr.responseJSON;
+                    message = `Error: ${errorData.message}`;
+                }
+                Swal.fire({
+                    icon: 'error',
+                    title: "Ocurrió un error",
+                    text: message,
+                    showConfirmButton: true
+                });
+            }).always(() => {
+                $('#saveButton').prop('disabled', false);
+            });
+        });
+    });
+</script>

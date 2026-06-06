@@ -1,0 +1,370 @@
+<main>
+    <!-- ====================================== -->
+    <!-- BREADCRUMB -->
+    <!-- ====================================== -->
+
+    <div class="container-fluid">
+
+        <ol class="breadcrumb shadow-sm">
+
+            <li class="breadcrumb-item active">
+
+                <i class="fa fa-fw fa-home"></i>
+                Inicio
+
+            </li>
+
+        </ol>
+
+    </div>
+    <!-- ====================================== -->
+    <!-- HERO -->
+    <!-- ====================================== -->
+
+    <section class="hero-umsa py-5 mb-5">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-8 text-white">
+
+                    <h1 class="display-4 font-weight-bold mb-3">
+
+                        <i class="fa fa-university"></i>
+                        Sistema de Votación UMSA
+
+                    </h1>
+
+                    <p class="lead">
+
+                        Plataforma virtual para la gestión de elecciones
+                        universitarias de la Universidad Mayor de San Andrés.
+
+                    </p>
+
+                    <p>
+
+                        Participa de manera segura, transparente y accesible
+                        en los procesos democráticos de elección de autoridades,
+                        representantes estudiantiles y dirección de carrera.
+
+                    </p>
+
+                </div>
+
+                <div class="col-lg-4 text-center">
+
+                    <img src="/svg/iconos/elecciones.svg"
+                        class="img-fluid hero-img"
+                        alt="Sistema de Votación">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ====================================== -->
+    <!-- CARDS -->
+    <!-- ====================================== -->
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- ====================================== -->
+            <!-- ELECCIONES -->
+            <!-- ====================================== -->
+
+            <div class="col-lg-6 mb-4">
+
+                <div class="card dashboard-card shadow-lg border-0 h-100">
+
+                    <div class="card-body text-center">
+
+                        <div class="icon-circle bg-primary">
+
+                            <img src="/svg/iconos/elecciones.svg"
+                                alt="Elecciones"
+                                class="dashboard-icon">
+
+                        </div>
+
+                        <h3 class="card-title mt-4">
+
+                            Elecciones Universitarias
+
+                        </h3>
+
+                        <p class="card-text">
+
+                            Gestión de procesos electorales para elección
+                            de Directores de Carrera, Centros de Estudiantes,
+                            representantes docentes y autoridades facultativas
+                            de la UMSA.
+
+                        </p>
+
+                        <div class="mt-4">
+
+                            <span class="badge badge-primary p-2 mr-2">
+                                <i class="fa fa-shield"></i>
+                                Seguro
+                            </span>
+
+                            <span class="badge badge-success p-2 mr-2">
+                                <i class="fa fa-check-circle"></i>
+                                Transparente
+                            </span>
+
+                            <span class="badge badge-warning p-2">
+                                <i class="fa fa-globe"></i>
+                                Virtual
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer bg-white border-0 text-center pb-4">
+
+                        <a href="/inicio/elecciones"
+                            class="btn btn-primary btn-lg px-4">
+
+                            <i class="fa fa-fw fa-cube"></i>
+                            Ver Elecciones
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ====================================== -->
+            <!-- ADMINISTRAR -->
+            <!-- ====================================== -->
+
+            {{#if user.isAdmin}}
+
+            <div class="col-lg-6 mb-4">
+
+                <div class="card dashboard-card shadow-lg border-0 h-100">
+
+                    <div class="card-body text-center">
+
+                        <div class="icon-circle bg-warning">
+
+                            <img src="/svg/iconos/administrar.svg"
+                                alt="Administrar"
+                                class="dashboard-icon">
+
+                        </div>
+
+                        <h3 class="card-title mt-4">
+
+                            Panel Administrativo
+
+                        </h3>
+
+                        <p class="card-text">
+
+                            Administración y configuración de elecciones,
+                            gestión de usuarios, habilitación de votantes,
+                            supervisión de resultados y control integral
+                            del sistema electoral universitario.
+
+                        </p>
+
+                        <div class="mt-4">
+
+                            <span class="badge badge-dark p-2 mr-2">
+                                <i class="fa fa-users"></i>
+                                Usuarios
+                            </span>
+
+                            <span class="badge badge-info p-2 mr-2">
+                                <i class="fa fa-cogs"></i>
+                                Configuración
+                            </span>
+
+                            <span class="badge badge-danger p-2">
+                                <i class="fa fa-lock"></i>
+                                Administración
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer bg-white border-0 text-center pb-4">
+
+                        <a href="/administrar"
+                            class="btn btn-outline-primary btn-lg px-4">
+
+                            <i class="fa fa-fw fa-cogs"></i>
+                            Administrar
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {{/if}}
+
+        </div>
+
+        <!-- ====================================== -->
+        <!-- INFORMACION -->
+        <!-- ====================================== -->
+
+        <div class="row mt-3">
+
+            <div class="col-lg-12">
+
+                <div class="card border-0 shadow-sm">
+
+                    <div class="card-body">
+
+                        <div class="row">
+
+                            <div class="col-md-4 text-center mb-3">
+
+                                <i class="fa fa-shield fa-3x text-primary mb-3"></i>
+
+                                <h5>
+                                    Seguridad
+                                </h5>
+
+                                <p>
+                                    Protección y validación segura
+                                    de votos y usuarios.
+                                </p>
+
+                            </div>
+
+                            <div class="col-md-4 text-center mb-3">
+
+                                <i class="fa fa-line-chart fa-3x text-success mb-3"></i>
+
+                                <h5>
+                                    Transparencia
+                                </h5>
+
+                                <p>
+                                    Resultados claros y accesibles
+                                    para toda la comunidad universitaria.
+                                </p>
+
+                            </div>
+
+                            <div class="col-md-4 text-center mb-3">
+
+                                <i class="fa fa-laptop fa-3x text-warning mb-3"></i>
+
+                                <h5>
+                                    Accesibilidad
+                                </h5>
+
+                                <p>
+                                    Acceso desde cualquier dispositivo
+                                    conectado a internet.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<!-- ====================================== -->
+<!-- ESTILOS -->
+<!-- ====================================== -->
+
+<style>
+
+    body{
+        background:#f4f6f9;
+    }
+
+    .hero-umsa{
+        background:linear-gradient(135deg,#003b75,#0056b3);
+        border-bottom:5px solid #f4b400;
+    }
+
+    .hero-img{
+        max-width:220px;
+        filter:drop-shadow(0 8px 20px rgba(0,0,0,0.25));
+    }
+
+    .breadcrumb{
+        background:white;
+        border-radius:10px;
+        padding:15px 20px;
+    }
+
+    .dashboard-card{
+        border-radius:18px;
+        transition:0.3s;
+        overflow:hidden;
+    }
+
+    .dashboard-card:hover{
+        transform:translateY(-6px);
+    }
+
+    .dashboard-icon{
+        width:90px;
+        height:auto;
+    }
+
+    .icon-circle{
+        width:140px;
+        height:140px;
+        margin:auto;
+        border-radius:50%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:rgba(0,123,255,0.1);
+    }
+
+    .card-title{
+        font-weight:bold;
+        color:#003b75;
+    }
+
+    .card-text{
+        color:#555;
+        line-height:1.8;
+    }
+
+    .btn-primary{
+        background:#003b75;
+        border:none;
+    }
+
+    .btn-primary:hover{
+        background:#0056b3;
+    }
+
+</style>

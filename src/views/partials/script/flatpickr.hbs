@@ -1,0 +1,34 @@
+<script>
+    const locale_es = {
+        firstDayOfWeek: 1,
+        weekdays: {
+            shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+            longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        },
+        months: {
+            shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            longhand: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        }
+    };
+    const defaultOptions = {
+        dateFormat: "Y-m-d",
+        locale: locale_es,
+    };
+    flatpickr("input[type=date-local]", {
+        ...defaultOptions,
+        minDate: "today"
+    });
+    flatpickr("input[type=datetime-local]", {
+        ...defaultOptions,
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        time_24hr: true,
+        minDate: "today"
+    });
+    flatpickr("input[type=date-birth]", {
+        ...defaultOptions
+    });
+    document.querySelectorAll(".flatpickr-input").forEach(input => {
+        input.readOnly = false;
+    });
+</script>

@@ -1,0 +1,279 @@
+<style>
+    .breadcrumb{
+        background:white;
+        border-radius:14px;
+        padding:14px 20px;
+        box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .breadcrumb a{
+        color:#003b75;
+        font-weight:500;
+        text-decoration:none;
+    }
+    /*wrap text row header text*/
+    thead th .th-inner {
+        white-space: normal !important;
+    }
+    .nav-tabs .nav-link.active {
+        background-color: var(--primary);
+        color: #fff;
+    }
+</style>
+<style>
+    .no-select {
+        user-select: none;
+        /* Estilo para evitar la selección del texto */
+    }
+
+    .toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .toggle input {
+        display: none;
+    }
+
+    .toggle .toggle-label {
+        background-color: #ddd;
+        border-radius: 30px;
+        padding: 10px 20px;
+        color: #fff;
+        transition: background-color 0.3s;
+    }
+
+    .toggle input:checked+.toggle-label {
+        background-color: #4CAF50;
+    }
+
+    #selection {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+</style>
+<main>
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/inicio"><i class="fa fa-fw fa-home"></i>Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/inicio/elecciones"><i class="fa fa-fw fa-cube"></i>Elecciones</a></li>
+            <li class="breadcrumb-item"><i class="fa fa-fw fa-archive"></i>Votar</li>
+        </ol>
+    </div>
+    <div class="container-fluid text-center">
+        <h3 class="display-6">{{ejecutada.titulo}}</h3>
+        <small>{{ejecutada.descripcion}}</small>
+    </div>
+    {{#if voto}}
+    <div class="container d-flex justify-content-center flex-wrap">
+        <div class="political-front card text-center" style="width: 18rem;">
+            <div class="card-header">
+                <h3>VOTO REGISTRADO</h3>
+            </div>
+            <div class="card-body">
+                <p class="lead">Tu voto fue registrado con Exito  {{timeago voto.createdAt}}</p>
+                <p>Tu eleccion fue el frente: </p>
+                
+                {{#if voto.frente}}
+                <div style="height: 100px; display: flex; align-items: center; justify-content: center;">
+                    <img src="/repositorio/imagenes/{{voto.frente.logoFilename}}" alt="{{voto.frente.detalle}}" style="max-width: 75px; margin: 0; padding: 0;">
+                </div>
+                <h5 class="card-title mt-1 mb-0">{{voto.frente.sigla}}</h5>
+                <small class="">{{voto.frente.detalle}}</small>
+                {{else}}
+                <h3 class="card-title mt-1 mb-0">Voto en Blanco</h3>
+                {{/if}}
+            </div>
+            <div class="card-footer">
+                <a href="/inicio/elecciones/" class="btn btn-outline-primary mx-2"><i class="fa fa-fw fa-undo"></i> Retornar</a>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="container d-flex justify-content-center flex-wrap">
+        {{#each frentes}}
+        <div class="political-front card text-center" style="width: 18rem;">
+            <div class="card-body">
+                <div style="height: 100px; display: flex; align-items: center; justify-content: center;">
+                    <img src="/repositorio/imagenes/{{logoFilename}}" alt="{{detalle}}" style="max-width: 75px; margin: 0; padding: 0;">
+                </div>
+                <h5 class="card-title mt-1 mb-0">{{sigla}}</h5>
+                <small class="">{{detalle}}</small>
+
+                <div class="toggle mt-3">
+                    <input type="radio" id="{{sigla}}" name="frente" value="{{sigla}}"
+                        onclick="toggleSelection('{{sigla}}')" data-image="/repositorio/imagenes/{{logoFilename}}"
+                        data-id="{{id_frente}} ">
+                    <label for="{{sigla}}" class="toggle-label no-select">Seleccionar</label>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="container">
+        <p class="lead my-0 text-center">Tu voto seleccionado es por: </p>
+        <div class="my-0 text-center"><span id="selection"> Voto en Blanco</span></div>
+
+        <div style="height: 100px; display: flex; align-items: center; justify-content: center; margin:0;">
+            <img id="selectedImage" src="" alt="" style="max-width: 75px; margin: 0; padding: 0;">
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <button class="btn btn-outline-success btn-block mt-1" onclick="submitVote()">
+                    <i class="fa fa-send fa-sw"></i>
+                    Enviar Votación
+                </button>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+    {{/if}}
+</main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Deseleccionar todos los radio buttons al cargar la página
+        $('input[name="frente"]').prop('checked', false);
+        // Actualizar la interfaz para mostrar el estado inicial
+        updateSelection();
+    });
+
+    let lastChecked = null;
+
+    function toggleSelection(id) {
+        const currentInput = document.getElementById(id);
+
+        if (lastChecked === currentInput) {
+            currentInput.checked = false;
+            lastChecked = null;
+        } else {
+            lastChecked = currentInput;
+        }
+
+        updateSelection();
+    }
+
+    function updateSelection() {
+        const radios = document.querySelectorAll('input[name="frente"]:checked');
+
+        const selectedRadio = Array.from(radios)[0];
+        const selected = selectedRadio ? selectedRadio.value : 'Voto en Blanco';
+        const imageUrl = selectedRadio ? selectedRadio.dataset.image : '';
+        const id = selectedRadio ? selectedRadio.dataset.id : '0';
+        document.getElementById('selection').innerText = `${id != 0 ? 'Frente' : ''} ${selected}`;
+
+        const imageElement = document.getElementById('selectedImage');
+        if (imageUrl) {
+            imageElement.src = imageUrl;
+            imageElement.style.display = 'block'; // Mostrar la imagen
+        } else {
+            imageElement.style.display = 'none'; // Ocultar la imagen si no hay selección
+        }
+    }
+
+    function submitVote() {
+        const radios = document.querySelectorAll('input[name="frente"]:checked');
+        const selectedRadio = Array.from(radios)[0];
+        const id = selectedRadio ? selectedRadio.dataset.id : '0';
+        const selectedSwal = selectedRadio ? selectedRadio.value : 'Voto en Blanco';
+        const imageSwal = selectedRadio ? selectedRadio.dataset.image : '';
+
+        const selected = Array.from(radios).map(rb => rb.value);
+        Swal.fire({
+            title: "Estás seguro?",
+            text: `Tu voto seleccionado es por: ${id != 0 ? 'Frente' : ''} ${selectedSwal}`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#469408",
+            cancelButtonColor: "#029acf",
+            confirmButtonText: "Confirmar el Voto!",
+            cancelButtonText: `No enviar Voto.`,
+            footer: imageSwal ? `<img src="${imageSwal}" alt="Selected Image" style="max-width:150px; margin: 0; padding: 0; height: auto;">` : ''
+        }).then((result) => {
+            if (result.isConfirmed) {
+                if (selected.length === 0) {
+                    // Es un voto Blanco
+                    Swal.fire({
+                        title: "Realmente Estás seguro?",
+                        text: "Deseas enviar un Voto en Blanco!.",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#469408",
+                        cancelButtonColor: "#029acf",
+                        confirmButtonText: "Confirmar el Voto!",
+                        cancelButtonText: `No enviar Voto.`,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            const data = {
+                            id_eleccion: {{{ ejecutada.id }}},
+                            id_frente: id,
+                            id_usuario: {{{inscrito.id_usuario}}}
+                            };
+                            $.post('/inicio/elecciones/voto/{{{ejecutada.id}}}', data , function (response) {
+                                Swal.fire({
+                                    title: "Voto Registrado!",
+                                    text: "Se ha registrado tu voto correctamente.",
+                                    icon: "success",
+                                    showConfirmButton: true,
+                                    timer: 10000
+                                }).then(() => {
+                                    window.location.href = '/inicio/elecciones';
+                                });
+                            }).fail(function (xhr) {
+                                let message = 'Error interno del servidor';
+                                if (xhr.status === 409) {
+                                    const errorData = xhr.responseJSON;
+                                    message = `Error: ${errorData.message}`;
+                                } else if (xhr.status === 400) {
+                                    message = 'Faltan claves requeridas';
+                                }
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: message,
+                                    showConfirmButton: true
+                                });
+                            });
+                        }
+                    });
+                }
+                // No es un voto Blanco
+                else {
+                    const data = {
+                        id_eleccion: {{{ ejecutada.id }}},
+                        id_frente: id,
+                        id_usuario: {{{inscrito.id_usuario}}}
+                    };
+                    $.post('/inicio/elecciones/voto/{{{ejecutada.id}}}', data , function (response) {
+                        Swal.fire({
+                            title: "Voto Registrado!",
+                            text: "Se ha registrado tu voto correctamente.",
+                            icon: "success",
+                            showConfirmButton: true,
+                            timer: 10000
+                        }).then(() => {
+                            window.location.href = '/inicio/elecciones';
+                        });
+                    }).fail(function (xhr) {
+                        let message = 'Error interno del servidor';
+                        if (xhr.status === 409) {
+                            const errorData = xhr.responseJSON;
+                            message = `Error: ${errorData.message}`;
+                        } else if (xhr.status === 400) {
+                            message = 'Faltan claves requeridas';
+                        }
+                        Swal.fire({
+                            icon: 'error',
+                            title: message,
+                            showConfirmButton: true
+                        });
+                    });
+                }
+            }
+        });
+    }
+</script>

@@ -1,0 +1,407 @@
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero-election py-5 mb-4">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-8 text-white">
+
+                    <h1 class="display-4 font-weight-bold">
+
+                        <i class="fa fa-pencil-square-o"></i>
+                        Editar Proceso Electoral
+
+                    </h1>
+
+                    <p class="lead mt-3">
+
+                        Actualice y administre la información del proceso
+                        electoral universitario de la UMSA.
+
+                    </p>
+
+                    <p>
+
+                        Modifique fechas, descripción y datos generales
+                        del proceso electoral institucional.
+
+                    </p>
+
+                </div>
+
+                <div class="col-lg-4 text-center">
+
+                    <div class="hero-icon">
+
+                        <i class="fa fa-edit"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- BREADCRUMB -->
+
+    <div class="container-fluid">
+
+        <ol class="breadcrumb shadow-sm">
+
+            <li class="breadcrumb-item">
+
+                <a href="/inicio">
+
+                    <i class="fa fa-fw fa-home"></i>
+                    Inicio
+
+                </a>
+
+            </li>
+
+            <li class="breadcrumb-item">
+
+                <a href="/administrar">
+
+                    <i class="fa fa-fw fa-cogs"></i>
+                    Administrar
+
+                </a>
+
+            </li>
+
+            <li class="breadcrumb-item">
+
+                <a href="/administrar/elecciones">
+
+                    <i class="fa fa-fw fa-cubes"></i>
+                    Elecciones
+
+                </a>
+
+            </li>
+
+            <li class="breadcrumb-item active">
+
+                <i class="fa fa-fw fa-edit"></i>
+                Editar
+
+            </li>
+
+        </ol>
+
+    </div>
+
+    <!-- FORMULARIO -->
+
+    <div class="container mb-5">
+
+        <div class="card border-0 shadow-lg election-card">
+
+            <div class="card-header election-card-header">
+
+                <h3 class="mb-0">
+
+                    <i class="fa fa-university"></i>
+                    Edición del Proceso Electoral
+
+                </h3>
+
+            </div>
+
+            <div class="card-body p-5">
+
+                <form id="eleccionForm">
+
+                    <fieldset>
+
+                        <legend class="legend-election">
+
+                            Información General
+
+                        </legend>
+
+                        <div class="form-group">
+
+                            <label for="titulo">
+
+                                <i class="fa fa-flag"></i>
+                                Título de la Elección
+
+                            </label>
+
+                            <input type="text"
+                                class="form-control custom-input"
+                                id="titulo"
+                                aria-describedby="tituloHelp"
+                                placeholder="Ingrese Título de la Elección"
+                                value="{{eleccion.titulo}}">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="descripcion">
+
+                                <i class="fa fa-align-left"></i>
+                                Descripción
+
+                            </label>
+
+                            <textarea class="form-control custom-input"
+                                id="descripcion"
+                                rows="4">{{eleccion.descripcion}}</textarea>
+
+                        </div>
+
+                        <div class="form-group row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="fecha_inicio">
+
+                                    <i class="fa fa-calendar-plus-o"></i>
+                                    Fecha y hora de inicio
+
+                                </label>
+
+                                <input class="form-control custom-input"
+                                    id="fecha_inicio"
+                                    type="datetime-local"
+                                    placeholder="Selecciona fecha y hora"
+                                    value="{{eleccion.fecha_inicio}}">
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="fecha_final">
+
+                                    <i class="fa fa-calendar-check-o"></i>
+                                    Fecha y hora de finalización
+
+                                </label>
+
+                                <input class="form-control custom-input"
+                                    id="fecha_final"
+                                    type="datetime-local"
+                                    placeholder="Selecciona fecha y hora"
+                                    value="{{eleccion.fecha_final}}">
+
+                            </div>
+
+                        </div>
+
+                        <div class="mt-4 d-flex flex-wrap">
+
+                            <button type="submit"
+                                class="btn btn-election-save mx-2 mb-2">
+
+                                <i class="fa fa-fw fa-floppy-o"></i>
+                                Guardar Cambios
+
+                            </button>
+
+                            <a href="/administrar/elecciones/"
+                                class="btn btn-election-cancel mx-2 mb-2">
+
+                                <i class="fa fa-fw fa-ban"></i>
+                                Cancelar
+
+                            </a>
+
+                        </div>
+
+                    </fieldset>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<style>
+
+    body{
+        background:#f4f6f9;
+    }
+
+    /* HERO */
+
+    .hero-election{
+        background:linear-gradient(135deg,#003b75,#0056b3);
+        border-bottom:5px solid #f4b400;
+    }
+
+    .hero-icon{
+        width:170px;
+        height:170px;
+        border-radius:50%;
+        background:rgba(255,255,255,0.12);
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin:auto;
+    }
+
+    .hero-icon i{
+        font-size:80px;
+        color:white;
+    }
+
+    /* BREADCRUMB */
+
+    .breadcrumb{
+        background:white;
+        border-radius:12px;
+        padding:15px 20px;
+    }
+
+    .breadcrumb a{
+        color:#003b75;
+        font-weight:600;
+        text-decoration:none;
+    }
+
+    /* CARD */
+
+    .election-card{
+        border-radius:20px;
+        overflow:hidden;
+    }
+
+    .election-card-header{
+        background:linear-gradient(90deg,#003b75,#0056b3);
+        color:white;
+        padding:20px 30px;
+    }
+
+    .legend-election{
+        color:#003b75;
+        font-weight:bold;
+        font-size:24px;
+        margin-bottom:25px;
+    }
+
+    /* INPUTS */
+
+    .custom-input{
+        border-radius:12px;
+        border:1px solid #dce1e7;
+        padding:12px 15px;
+        transition:all .3s ease;
+        box-shadow:none;
+    }
+
+    .custom-input:focus{
+        border-color:#0056b3;
+        box-shadow:0 0 0 0.2rem rgba(0,86,179,0.15);
+    }
+
+    label{
+        font-weight:600;
+        color:#003b75;
+    }
+
+    /* BUTTONS */
+
+    .btn-election-save{
+        background:linear-gradient(90deg,#003b75,#0056b3);
+        color:white;
+        border:none;
+        border-radius:12px;
+        padding:12px 28px;
+        font-weight:bold;
+        transition:all .3s ease;
+    }
+
+    .btn-election-save:hover{
+        transform:translateY(-2px);
+        box-shadow:0 10px 20px rgba(0,86,179,0.25);
+        color:white;
+    }
+
+    .btn-election-cancel{
+        border-radius:12px;
+        padding:12px 28px;
+        font-weight:bold;
+        border:2px solid #17a2b8;
+        color:#17a2b8;
+        transition:all .3s ease;
+    }
+
+    .btn-election-cancel:hover{
+        background:#17a2b8;
+        color:white;
+    }
+
+</style>
+
+<script>
+    
+    $(document).ready(function() {
+
+        $('#eleccionForm').on('submit', function(event) {
+
+            event.preventDefault();
+
+            const data = {
+                id:{{{eleccion.id}}},
+                titulo: $('#titulo').val(),
+                descripcion: $('#descripcion').val(),
+                fecha_inicio: $('#fecha_inicio').val(),
+                fecha_final: $('#fecha_final').val(),
+            };
+
+            $.post('/administrar/elecciones/editar/{{{eleccion.id}}}', data, function(response) {
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Elección actualizada exitosamente',
+                    showConfirmButton: true,
+                    timer: 10000
+                }).then(()=>{
+
+                    window.location.href = '/administrar/elecciones';
+
+                });
+
+            }).fail(function(xhr) {
+
+                let message = 'Error interno del servidor';
+
+                if (xhr.status === 409) {
+
+                    const errorData = xhr.responseJSON;
+                    message = `Error: ${errorData.message}`;
+
+                } else if (xhr.status === 400) {
+
+                    message = 'Faltan claves requeridas';
+
+                }
+
+                Swal.fire({
+                    icon: 'error',
+                    title: message,
+                    showConfirmButton: true
+                });
+
+            });
+
+        });
+        
+    });
+
+</script>

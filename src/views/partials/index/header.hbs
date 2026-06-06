@@ -1,0 +1,446 @@
+<!-- ================================= -->
+<!-- ESTILOS -->
+<!-- ================================= -->
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f6f9;
+    }
+
+    /* ============================ */
+    /* NAVBAR ESTILO UMSA */
+    /* ============================ */
+
+    .navbar-umsa {
+        background: #003b75;
+        border-bottom: 4px solid #c0171d;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .navbar-umsa .navbar-brand {
+        color: white !important;
+        font-weight: bold;
+        font-size: 1.1rem;
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+
+    .navbar-umsa .navbar-brand i {
+        margin-right: 10px;
+    }
+
+    .navbar-umsa .nav-link {
+        color: white !important;
+        padding: 20px 16px !important;
+        font-size: 14px;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .navbar-umsa .nav-link:hover {
+        background: #0b4f94;
+    }
+
+    .navbar-umsa .dropdown-menu {
+        border-radius: 0;
+        border: none;
+        margin-top: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        min-width: 280px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .navbar-umsa .dropdown-item {
+        padding: 12px 18px;
+        font-size: 14px;
+        border-bottom: 1px solid #f1f1f1;
+        transition: 0.2s;
+    }
+
+    .navbar-umsa .dropdown-item:hover {
+        background: #003b75;
+        color: white;
+    }
+
+    .navbar-umsa .dropdown-header {
+        background: #f4f4f4;
+        color: #003b75;
+        font-weight: bold;
+        padding: 10px 18px;
+    }
+
+    /* ============================ */
+    /* BOTON LOGIN */
+    /* ============================ */
+
+    .btn-login {
+        background: #c0171d;
+        color: #003b75 !important;
+        font-weight: bold !important;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        padding: 10px 18px !important;
+    }
+
+    .btn-login:hover {
+        background: #c0171d;
+    }
+
+    .menu-multinivel {
+        position: relative;
+        min-width: 250px;
+    }
+
+    .submenu-item {
+        position: relative;
+        list-style: none;
+    }
+
+    /* SUBMENUS */
+    .submenu {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 100%;
+        min-width: 250px;
+        padding: 0;
+        margin: 0;
+        background: white;
+        border: 1px solid rgba(0, 0, 0, .15);
+        border-radius: .25rem;
+        z-index: 1000;
+    }
+
+    /* MOSTRAR SUBMENU */
+    .submenu-item:hover>.submenu {
+        display: block;
+    }
+
+    /* ITEMS */
+    .submenu li {
+        list-style: none;
+    }
+
+    .submenu .dropdown-item:hover {
+        background: #003b75;
+    }
+
+    /* ====================================== */
+    /* BREADCRUMB */
+    /* ====================================== */
+
+    .breadcrumb{
+        background:white;
+        border-radius:12px;
+        padding:15px 20px;
+    }
+
+    .breadcrumb a{
+        color:#003b75;
+        font-weight:500;
+        text-decoration:none;
+    }
+</style>
+
+<!-- ================================= -->
+<!-- NAVBAR -->
+<!-- ================================= -->
+
+<header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-umsa">
+        <div class="container-fluid">
+            <!-- LOGO -->
+            <a class="navbar-brand" href="/">
+                <i class="fa fa-university"></i>
+                SISTEMA DE VOTACIÓN UMSA
+            </a>
+
+            <!-- BOTON MOBILE -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContenido">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <!-- MENU -->
+            <div class="collapse navbar-collapse" id="navbarContenido">
+
+                <ul class="navbar-nav ml-auto">
+
+                    <!-- ================================= -->
+                    <!-- INICIO-->
+                    <!-- ================================= -->
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" href="/">
+                            <!--i class="fa fa-home"></i-->
+                            Inicio
+                        </a>
+                    </li>
+                    <!-- ================================= -->
+                    <!-- MARCO TEÓRICO  -->
+                    <!-- ================================= -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                            <!--i class="fa fa-file-text-o"></i-->
+                            Marco Teórico
+                        </a>
+                        <div class="dropdown-menu">
+
+                            <h6 class="dropdown-header">
+                                <a href="/marco-teorico" style="color: #003b75; text-decoration: none;">
+                                    <i class="fa fa-file-text-o"></i>
+                                    Marco Teórico
+                                </a>
+                            </h6>
+
+                            <a class="dropdown-item" href="/marco-teorico#introduccion">
+                                Introducción
+                            </a>
+
+                            <a class="dropdown-item" href="/marco-teorico#antecedentes">
+                                Antecendentes
+                            </a>
+
+                            <a class="dropdown-item" href="/marco-teorico#planteamiento-problema">
+                                Planteamiento del Problema
+                            </a>
+
+                            <a class="dropdown-item" href="/marco-teorico#arbol-problemas">
+                                Árbol de Problemas
+                            </a>
+
+                            <a class="dropdown-item" href="/marco-teorico#formulacion-problema">
+                                Formulación del Problema
+                            </a>
+
+                            <a class="dropdown-item" href="/marco-teorico#proposito-estudio">
+                                Propósito del Estudio
+                            </a>
+
+                            <a class="dropdown-item" href="/marco-teorico#metodologia">
+                                Metodología
+                            </a>
+
+                            <a class="dropdown-item" href="/marco-teorico#resultados">
+                                Resultados de la Encuesta
+                            </a>
+                            <a class="dropdown-item" href="/marco-teorico#referencias">
+                                Referencias
+                            </a>
+                            <a class="dropdown-item" href="/marco-teorico#conclusiones">
+                                Conclusiones
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+
+                        <!-- NIVEL PRINCIPAL -->
+                        <a class="nav-link dropdown-toggle" href="#" id="analisisDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <!--i class="fa fa-random"></i-->
+                            Análisis Estructurado
+                        </a>
+
+                        <!-- DROPDOWN PRINCIPAL -->
+                        <ul class="dropdown-menu menu-multinivel">
+                            <h6 class="dropdown-header">
+                                <a href="/analisis-estructurado" style="color: #003b75; text-decoration: none;">
+                                    <i class="fa fa-random"></i>
+                                    Análisis Estructurado
+                                </a>
+                            </h6>
+                            <!-- MODELO AMBIENTAL -->
+                            <li class="submenu-item">
+                                <a class="dropdown-item" href="/analisis-estructurado/modelo-ambiental">
+                                    Modelo Ambiental
+                                </a>
+
+                                <ul class="submenu">
+                                    <li>
+                                        <a class="dropdown-item" href="/analisis-estructurado/modelo-ambiental#propositos">
+                                            Declaración de Propósitos
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" href="/analisis-estructurado/modelo-ambiental#contexto">
+                                            Diagrama de Contexto
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" href="/analisis-estructurado/modelo-ambiental#acontecimientos">
+                                            Lista de Acontecimientos
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <!-- MODELO COMPORTAMIENTO -->
+                            <li class="submenu-item">
+                                <a class="dropdown-item" href="/analisis-estructurado/modelo-comportamiento">
+                                    Modelo de Comportamiento
+                                </a>
+
+                                <ul class="submenu">
+
+                                    <li>
+                                        <a class="dropdown-item" href="/analisis-estructurado/modelo-comportamiento#dfd-niveles">
+                                            DFD x Niveles
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                            href="/analisis-estructurado/modelo-comportamiento#diagrama-entidad-relacion">
+                                            Diagrama Entidad Relación
+                                        </a>
+                                    </li>
+
+                                    <!--li>
+                                        <a class="dropdown-item"
+                                            href="/analisis-estructurado/modelo-comportamiento#diagrama-transicion-estados">
+                                            Diagrama de Transición de Estados
+                                        </a>
+                                    </li-->
+
+                                    <li>
+                                        <a class="dropdown-item" href="/analisis-estructurado/modelo-comportamiento#diccionario-datos">
+                                            Diccionario de Datos
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <!-- ================================= -->
+                    <!-- ORIENTADO A OBJETOS -->
+                    <!-- ================================= -->
+
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" href="/orientado-objetos" data-toggle="dropdown">
+                            <!--i class="fa fa-cubes"></i-->
+                            Orientado a Objetos
+
+                        </a>
+
+                        <div class="dropdown-menu">
+
+                            <h6 class="dropdown-header">
+                                <a href="/orientado-objetos" style="color: #003b75; text-decoration: none;">
+                                    <i class="fa fa-cubes"></i>
+                                    Orientado a Objetos 
+                                </a>
+                            </h6>
+
+                            <a class="dropdown-item" href="/orientado-objetos#diagrama-clases">
+                                Diagrama de Clases
+                            </a>
+
+                        </div>
+
+                    </li>
+
+                    <!-- ================================= -->
+                    <!-- UML -->
+                    <!-- ================================= -->
+
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" href="/uml" data-toggle="dropdown">
+                            <!--i class="fa fa-object-group"></i-->
+                            UML
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+
+                            <h6 class="dropdown-header">
+                                <a href="/uml" style="color: #003b75; text-decoration: none;">
+                                    <i class="fa fa-object-group"></i>
+                                    Lenguaje UML
+                                </a>
+                            </h6>
+
+                            <a class="dropdown-item" href="/uml#casos-uso-negocio">
+                                Casos de Uso de Negocio
+                            </a>
+
+                            <a class="dropdown-item" href="/uml#casos-uso-sistema">
+                                Casos de Uso de Sistema
+                            </a>
+
+                            <a class="dropdown-item" href="/uml#diagramas-actividad">
+                                Diagramas de Actividad
+                            </a>
+
+                            <a class="dropdown-item" href="/uml#maquina-estados">
+                                Máquina de Estados
+                            </a>
+
+                            <a class="dropdown-item" href="/uml#diagramas-secuencia">
+                                Diagramas de Secuencia
+                            </a>
+
+                            <a class="dropdown-item" href="/uml#diagramas-comunicacion">
+                                Diagramas de Comunicación
+                            </a>
+
+                            <a class="dropdown-item" href="/uml#herramientas-modelado">
+                                Herramientas de Modelado
+                            </a>
+
+                            <a class="dropdown-item" href="/uml#diagramas-clase">
+                                Diagramas de Clase
+                            </a>
+
+                            <a class="dropdown-item" href="/uml#diagramas-objetos">
+                                Diagramas de Objetos
+                            </a>
+
+                            <a class="dropdown-item" href="/uml#diagramas-paquetes">
+                                Diagramas de Paquetes
+                            </a>
+
+                            <a class="dropdown-item" href="/uml#diagramas-componentes">
+                                Diagramas de Componentes
+                            </a>
+
+                            <a class="dropdown-item" href="/uml#diagramas-despliegue">
+                                Diagramas de Despliegue
+                            </a>
+
+                        </div>
+
+                    </li>
+
+                    <!-- LOGIN -->
+
+                    <li class="nav-item ml-2">
+
+                        <a class="nav-link btn-login" href="/login">
+
+                            <i class="fa fa-sign-in"></i>
+                            Ingresar al Sistema
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</header>

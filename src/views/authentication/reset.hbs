@@ -1,0 +1,352 @@
+<!-- ====================================== -->
+<!-- ESTILOS -->
+<!-- ====================================== -->
+
+<style>
+
+    body{
+        background: linear-gradient(135deg,#003b75,#0056b3);
+        min-height:100vh;
+        font-family:'Segoe UI', sans-serif;
+    }
+
+    .reset-container{
+        width:100%;
+        max-width:450px;
+        background:white;
+        padding:40px;
+        border-radius:20px;
+        box-shadow:0 15px 40px rgba(0,0,0,0.25);
+        animation:fadeIn 0.5s ease;
+    }
+
+    .avatar{
+        width:110px;
+        height:110px;
+        background:#003b75;
+        border-radius:50%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin:0 auto 25px auto;
+        box-shadow:0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    .avatar i{
+        color:white;
+        font-size:55px;
+    }
+
+    .reset-title{
+        text-align:center;
+        color:#003b75;
+        font-weight:bold;
+        margin-bottom:10px;
+    }
+
+    .reset-subtitle{
+        text-align:center;
+        color:#6c757d;
+        margin-bottom:30px;
+        font-size:14px;
+    }
+
+    .input-group-text{
+        background:#003b75;
+        color:white;
+        border:none;
+    }
+
+    .form-control{
+        height:50px;
+        border:1px solid #dcdcdc;
+    }
+
+    .form-control:focus{
+        box-shadow:none;
+        border-color:#0056b3;
+    }
+
+    .input-group-append .input-group-text{
+        background:#f8f9fa;
+        color:#003b75;
+        border:1px solid #dcdcdc;
+        border-left:none;
+    }
+
+    .btn-reset{
+        width:100%;
+        margin-top:20px;
+        background:linear-gradient(90deg,#003b75,#0056b3);
+        border:none;
+        color:white;
+        padding:14px;
+        border-radius:10px;
+        font-weight:bold;
+        transition:0.3s;
+    }
+
+    .btn-reset:hover{
+        transform:translateY(-2px);
+        box-shadow:0 8px 20px rgba(0,86,179,0.3);
+    }
+
+    .password-rules{
+        background:#f8f9fa;
+        border-left:4px solid #f4b400;
+        padding:12px;
+        border-radius:8px;
+        font-size:13px;
+        color:#555;
+        margin-top:10px;
+    }
+
+    .footer-links{
+        text-align:center;
+    }
+
+    .footer-links a{
+        display:block;
+        margin-top:12px;
+        color:#003b75;
+        text-decoration:none;
+        font-weight:500;
+        transition:0.3s;
+    }
+
+    .footer-links a:hover{
+        color:#0056b3;
+        text-decoration:none;
+    }
+
+    .btn-return{
+        background:#f4b400;
+        color:#003b75 !important;
+        padding:12px;
+        border-radius:10px;
+        font-weight:bold;
+        display:block;
+        transition:0.3s;
+    }
+
+    .btn-return:hover{
+        background:#ffd54f;
+        transform:translateY(-2px);
+    }
+
+    .system-title{
+        text-align:center;
+        color:white;
+        margin-bottom:25px;
+    }
+
+    .system-title h1{
+        font-size:2.2rem;
+        font-weight:bold;
+    }
+
+    .system-title p{
+        opacity:0.9;
+    }
+
+    @keyframes fadeIn{
+        from{
+            opacity:0;
+            transform:translateY(20px);
+        }
+        to{
+            opacity:1;
+            transform:translateY(0);
+        }
+    }
+
+</style>
+
+<!-- ====================================== -->
+<!-- CONTENIDO -->
+<!-- ====================================== -->
+
+<main>
+
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+
+        <div>
+
+            <!-- TITULO -->
+            <div class="system-title">
+
+                <h1>
+                    <i class="fa fa-university"></i>
+                    Sistema de Votación UMA
+                </h1>
+
+                <p>
+                    Restablecimiento Seguro de Contraseña
+                </p>
+
+            </div>
+
+            <!-- CARD -->
+            <div class="reset-container">
+
+                <!-- AVATAR -->
+                <div class="avatar">
+
+                    <i class="fa fa-lock"></i>
+
+                </div>
+
+                <!-- TITULO -->
+                <h2 class="reset-title">
+                    Restablecer Contraseña
+                </h2>
+
+                <p class="reset-subtitle">
+                    Introduce tu nueva contraseña para recuperar
+                    el acceso al sistema.
+                </p>
+
+                <!-- FORMULARIO -->
+                <form method="post"
+                    action="/reset/{{token}}">
+
+                    <!-- PASSWORD -->
+                    <div class="input-group mb-4">
+
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text">
+
+                                <i class="fa fa-key"></i>
+
+                            </span>
+
+                        </div>
+
+                        <input class="form-control"
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder="Nueva contraseña"
+                            required="required"
+                            autocomplete="new-password">
+
+                        <div class="input-group-append">
+
+                            <span class="input-group-text">
+
+                                <a class="text-primary"
+                                    onclick="togglePasswordVisibility('password', 'password-icon')">
+
+                                    <i id="password-icon"
+                                        class="fa fa-eye-slash">
+
+                                    </i>
+
+                                </a>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <!-- CONFIRM PASSWORD -->
+                    <div class="input-group mb-3">
+
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text">
+
+                                <i class="fa fa-check-circle"></i>
+
+                            </span>
+
+                        </div>
+
+                        <input class="form-control"
+                            id="confirm-password"
+                            name="confirmPassword"
+                            type="password"
+                            placeholder="Confirmar contraseña"
+                            required="required"
+                            autocomplete="new-password">
+
+                        <div class="input-group-append">
+
+                            <span class="input-group-text">
+
+                                <a class="text-primary"
+                                    onclick="togglePasswordVisibility('confirm-password', 'confirm-password-icon')">
+
+                                    <i id="confirm-password-icon"
+                                        class="fa fa-eye-slash">
+
+                                    </i>
+
+                                </a>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <!-- REGLAS -->
+                    <div class="password-rules">
+
+                        <i class="fa fa-info-circle text-warning"></i>
+
+                        La contraseña debe contener:
+                        <ul class="mt-2 mb-0">
+
+                            <li>Mínimo 8 caracteres</li>
+                            <li>Una letra mayúscula</li>
+                            <li>Una letra minúscula</li>
+                            <li>Un número</li>
+                            <li>Un carácter especial</li>
+
+                        </ul>
+
+                    </div>
+
+                    <!-- BOTON -->
+                    <button type="submit"
+                        class="btn btn-reset">
+
+                        <i class="fa fa-refresh"></i>
+                        Restablecer Contraseña
+
+                    </button>
+
+                </form>
+
+                <!-- LINKS -->
+                <div class="footer-links mt-4">
+
+                    <a href="/login">
+
+                        <i class="fa fa-sign-in"></i>
+                        Volver al inicio de sesión
+
+                    </a>
+
+                    <a href="/"
+                        class="btn-return">
+
+                        <i class="fa fa-home"></i>
+                        Retornar al Inicio
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{> script/togglePasswordVisibility}}
+
+</main>

@@ -1,0 +1,21 @@
+<!-- Custom Bostrap-table -->
+<script>
+    $.extend($.fn.bootstrapTable.defaults, {
+        formatExport: function () {
+            return 'Exportar datos';
+        },
+        formatExportData: function (type) {
+            switch (type) {
+                case 'json': return 'JSON';
+                case 'xml': return 'XML';
+                case 'csv': return 'CSV';
+                case 'txt': return 'TXT';
+                case 'sql': return 'SQL';
+                case 'excel': return 'MS-Excel (xls)';
+                case 'xlsx': return 'MS-Excel (xlsx)';
+                case 'pdf': return 'PDF';
+                default: return type;
+            }
+        }
+    });
+</script>

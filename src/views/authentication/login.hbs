@@ -1,0 +1,317 @@
+<!-- ====================================== -->
+<!-- ESTILOS LOGIN -->
+<!-- ====================================== -->
+
+<style>
+
+    body{
+        background: linear-gradient(135deg,#003b75,#0056b3);
+        min-height: 100vh;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .login-container{
+        width:100%;
+        max-width:420px;
+        background:white;
+        border-radius:20px;
+        padding:40px;
+        box-shadow:0 15px 40px rgba(0,0,0,0.25);
+        animation: fadeIn 0.5s ease;
+    }
+
+    .avatar{
+        width:100px;
+        height:100px;
+        background:#003b75;
+        color:white;
+        border-radius:50%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        margin:0 auto 20px auto;
+        box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .avatar i{
+        font-size:60px;
+    }
+
+    .login-title{
+        text-align:center;
+        
+        color:#003b75;
+        margin-bottom:10px;
+    }
+
+    .login-subtitle{
+        text-align:center;
+        color:#6c757d;
+        margin-bottom:30px;
+        font-size:14px;
+    }
+
+    .input-group-text{
+        background:#003b75;
+        color:white;
+        border:none;
+    }
+
+    .form-control{
+        height:50px;
+        border-radius:0;
+        border:1px solid #dcdcdc;
+    }
+
+    .form-control:focus{
+        box-shadow:none;
+        border-color:#0056b3;
+    }
+
+    .input-group .form-control{
+        border-left:none;
+    }
+
+    .input-group-append .input-group-text{
+        background:#f8f9fa;
+        border:1px solid #dcdcdc;
+        border-left:none;
+        color:#003b75;
+    }
+
+    .btn-login{
+        width:100%;
+        background:linear-gradient(90deg,#003b75,#0056b3);
+        border:none;
+        color:white;
+        padding:14px;
+        border-radius:10px;
+        font-weight:bold;
+        font-size:16px;
+        transition:0.3s;
+    }
+
+    .btn-login:hover{
+        transform:translateY(-2px);
+        color:white;
+        box-shadow:0 8px 20px rgba(0,86,179,0.3);
+    }
+
+    .footer-links{
+        margin-top:25px;
+        text-align:center;
+    }
+
+    .footer-links a{
+        display:block;
+        margin-bottom:12px;
+        color:#003b75;
+        text-decoration:none;
+        font-weight:500;
+        transition:0.3s;
+    }
+
+    .footer-links a:hover{
+        color:#0056b3;
+        text-decoration:none;
+    }
+
+    .btn-return{
+        display:inline-block;
+        width:100%;
+        background:#c0171d;
+        color:#ffffff !important;
+        padding:12px;
+        border-radius:10px;
+        font-weight:bold;
+        transition:0.3s;
+    }
+
+    .btn-return:hover{
+        background:#c0171d;
+        transform:translateY(-2px);
+    }
+
+
+    .system-title{
+        text-align:center;
+        color:white;
+        margin-bottom:20px;
+    }
+
+    .system-title h1{
+        font-weight:bold;
+        font-size:2.0rem;
+    }
+
+    .system-title p{
+        opacity:0.9;
+    }
+
+    @keyframes fadeIn{
+        from{
+            opacity:0;
+            transform:translateY(20px);
+        }
+        to{
+            opacity:1;
+            transform:translateY(0);
+        }
+    }
+
+</style>
+
+<!-- ====================================== -->
+<!-- LOGIN -->
+<!-- ====================================== -->
+
+<main>
+
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+
+        <div>
+
+            <!-- TITULO -->
+            <div class="system-title">
+
+                <h1>
+                    <i class="fa fa-university"></i>
+                    Sistema de Votación UMSA
+                </h1>
+
+                <p>
+                    Plataforma Virtual de Elecciones Universitarias
+                </p>
+
+            </div>
+
+            <!-- CARD LOGIN -->
+            <div class="login-container">
+
+                <!-- AVATAR -->
+                <div class="avatar">
+
+                    <i class="fa fa-user-circle"></i>
+
+                </div>
+
+                <!-- TITULO -->
+                <h3 class="login-title">
+                    Iniciar Sesión
+                </h3>
+
+                <p class="login-subtitle">
+                    Acceda con sus credenciales institucionales
+                </p>
+
+                <!-- FORMULARIO -->
+                <form id="login-form"
+                    method="post"
+                    action="/login"
+                    class="mt-4">
+
+                    <!-- EMAIL -->
+                    <div class="input-group mb-4">
+
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text">
+
+                                <i class="fa fa-envelope"></i>
+
+                            </span>
+
+                        </div>
+
+                        <input class="form-control"
+                            id="email"
+                            name="email"
+                            type="text"
+                            placeholder="Correo electrónico"
+                            required="required"
+                            autocomplete="off">
+
+                    </div>
+
+                    <!-- PASSWORD -->
+                    <div class="input-group mb-4">
+
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text">
+
+                                <i class="fa fa-lock"></i>
+
+                            </span>
+
+                        </div>
+
+                        <input class="form-control"
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder="Contraseña"
+                            required="required">
+
+                        <div class="input-group-append"
+                            id="show_hide_password">
+
+                            <span class="input-group-text">
+
+                                <a class="text-primary"
+                                    onclick="togglePasswordVisibility('password', 'password-icon')">
+
+                                    <i id="password-icon"
+                                        class="fa fa-eye-slash">
+
+                                    </i>
+
+                                </a>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <!-- BOTON -->
+                    <button type="submit"
+                        class="btn btn-login">
+
+                        <i class="fa fa-sign-in"></i>
+                        Ingresar al Sistema
+
+                    </button>
+
+                </form>
+
+                <!-- LINKS -->
+                <div class="footer-links">
+
+                    <a href="/forgot">
+
+                        <i class="fa fa-key"></i>
+                        ¿Olvidó su contraseña?
+
+                    </a>
+
+                    <!-- BOTON RETORNAR -->
+                    <a href="/"
+                        class="btn-return">
+
+                        <i class="fa fa-home"></i>
+                        Retornar al Inicio
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{> script/togglePasswordVisibility}}
+
+</main>

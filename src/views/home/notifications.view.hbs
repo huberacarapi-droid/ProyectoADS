@@ -1,0 +1,233 @@
+<main>
+    <!-- ====================================== -->
+    <!-- BREADCRUMB -->
+    <!-- ====================================== -->
+
+    <div class="container-fluid">
+
+        <ol class="breadcrumb shadow-sm">
+
+            <li class="breadcrumb-item">
+
+                <a href="/inicio">
+
+                    <i class="fa fa-fw fa-home"></i>
+                    Inicio
+
+                </a>
+
+            </li>
+
+            <li class="breadcrumb-item active">
+
+                <i class="fa fa-fw fa-exclamation-triangle"></i>
+                Notificaciones
+
+            </li>
+
+        </ol>
+
+    </div>
+
+    <!-- ====================================== -->
+    <!-- HERO NOTIFICACIONES -->
+    <!-- ====================================== -->
+
+    <section class="hero-notificaciones py-5 mb-4">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-8 text-white">
+
+                    <h1 class="display-4 font-weight-bold">
+
+                        <i class="fa fa-exclamation-triangle"></i>
+                        Centro de Notificaciones
+
+                    </h1>
+
+                    <p class="lead mt-3">
+
+                        Consulta avisos importantes relacionados
+                        con elecciones, resultados y actividades
+                        del sistema virtual UMSA.
+
+                    </p>
+
+                    <p>
+
+                        Aquí recibirás actualizaciones sobre procesos
+                        electorales, cambios de estado, anuncios
+                        institucionales y eventos importantes.
+
+                    </p>
+
+                </div>
+
+                <div class="col-lg-4 text-center">
+
+                    <div class="notification-icon">
+
+                        <i class="fa fa-bell-o"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ====================================== -->
+    <!-- CONTENIDO -->
+    <!-- ====================================== -->
+
+    <div class="container mb-5">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+
+                <div class="card notification-card border-0 shadow-lg">
+
+                    <div class="card-body text-center p-5">
+
+                        <div class="empty-state mb-4">
+
+                            <i class="fa fa-bell-slash-o"></i>
+
+                        </div>
+
+                        <h2 class="font-weight-bold text-primary">
+
+                            No tienes notificaciones
+
+                        </h2>
+
+                        <p class="lead text-muted mt-3">
+
+                            Actualmente no existen nuevas notificaciones
+                            o alertas pendientes para tu cuenta.
+
+                        </p>
+
+                        <div class="alert alert-light border mt-4">
+
+                            <i class="fa fa-info-circle text-primary"></i>
+
+                            Las notificaciones relacionadas con elecciones,
+                            resultados y procesos institucionales aparecerán aquí.
+
+                        </div>
+
+                        <a href="/inicio"
+                            class="btn btn-primary btn-lg mt-4 px-5">
+
+                            <i class="fa fa-arrow-left"></i>
+                            Volver al Inicio
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<!-- ====================================== -->
+<!-- ESTILOS -->
+<!-- ====================================== -->
+
+<style>
+
+    body{
+        background:#f4f6f9;
+    }
+
+    /* HERO */
+
+    .hero-notificaciones{
+        background:linear-gradient(135deg,#003b75,#0056b3);
+        border-bottom:5px solid #f4b400;
+    }
+
+    .notification-icon{
+        width:180px;
+        height:180px;
+        border-radius:50%;
+        background:rgba(255,255,255,0.12);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        margin:auto;
+    }
+
+    .notification-icon i{
+        font-size:90px;
+        color:white;
+    }
+
+    /* BREADCRUMB */
+
+    .breadcrumb{
+        background:white;
+        border-radius:12px;
+        padding:15px 20px;
+    }
+
+    .breadcrumb a{
+        color:#003b75;
+        text-decoration:none;
+        font-weight:500;
+    }
+
+    /* CARD */
+
+    .notification-card{
+        border-radius:20px;
+        overflow:hidden;
+    }
+
+    .empty-state{
+        width:140px;
+        height:140px;
+        border-radius:50%;
+        background:rgba(0,123,255,0.08);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        margin:auto;
+    }
+
+    .empty-state i{
+        font-size:70px;
+        color:#003b75;
+    }
+
+    /* BUTTON */
+
+    .btn-primary{
+        background:linear-gradient(90deg,#003b75,#0056b3);
+        border:none;
+        border-radius:12px;
+        font-weight:bold;
+        transition:0.3s;
+    }
+
+    .btn-primary:hover{
+        transform:translateY(-3px);
+        box-shadow:0 10px 25px rgba(0,86,179,0.3);
+    }
+
+</style>

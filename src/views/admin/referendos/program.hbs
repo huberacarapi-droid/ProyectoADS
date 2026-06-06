@@ -1,0 +1,130 @@
+<style>
+    .nav-tabs .nav-link.active {
+        background-color: var(--primary);
+        /* Usar el color primario del tema */
+        color: #fff;
+        /* Color de texto blanco para la pestaña activa */
+    }
+</style>
+<main>
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/inicio"><i class="fa fa-fw fa-home"></i>Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/administrar"><i class="fa fa-fw fa-cogs"></i>Administrar</a></li>
+            <li class="breadcrumb-item"><a href="/administrar/referendos"><i class="fa fa-fw fa-tags"></i>Referendos</a></li>
+            <li class="breadcrumb-item active"><i class="fa fa-fw fa-file-text"></i>Programar</li>
+        </ol>
+    </div>
+    <div class="container">
+        <div class="mt-4">
+            <h3 class="display-6">{{referendo.titulo}}</h3>
+            <p class="lead">{{referendo.descripcion}}</p>
+            <a id="back" class="btn btn-dark" href="/administrar/referendos">
+                <i class="fa fa-fw fa-undo"></i> Retornar
+            </a>
+        </div>
+
+        <div class="mt-4">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#participantes" active>
+                        <i class="fa fa-fw fa-users"></i> Participantes del Referéndum</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#consultas">
+                        <i class="fa fa-fw fa-newspaper-o"></i> Consultas del Referéndum</a>
+                </li>
+            </ul>
+
+            <div class="tab-content mt-3">
+                {{!-- Tab Table Participantes --}}
+                <div class="tab-pane fade show active" id="participantes">
+                    <div class="h5 my-3">Participantes inscritos: {{count inscritos}}</div>
+                    <div id="toolbarParticipantes">
+                        <a id="add" class="btn btn-outline-primary"
+                            href="/administrar/referendos/programar/inscritos/{{referendo.id}}">
+                            <i class="fa fa-fw fa-users"></i> Administrar Participantes
+                        </a>
+                    </div>
+
+                    <table class="table table-condensed text-small" id="table" data-toggle="table" data-locale="es-ES"
+                        data-toolbar="#toolbarParticipantes" data-search="true" data-advanced-search="false"
+                        data-show-refresh="false" data-show-fullscreen="true" data-show-export="true"
+                        data-click-to-select="true" data-sortable="true" data-minimum-count-columns="2"
+                        data-show-pagination-switch="false" data-pagination="true" data-id-field="id"
+                        data-page-list="[5, 10, 15, 20, all]" data-show-footer="false"
+                        data-response-handler="responseHandler" data-export-types="['json','csv','xlsx','pdf']"
+                        data-mobile-responsive="true">
+
+                        <thead>
+                            <tr>
+                                <th data-formatter="indexFormatter"></th>
+                                <th data-field="cedula">Cédula de Identidad</th>
+                                <th data-field="nombre">Apellidos y Nombres</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each inscritos}}
+                            <tr id="{{id_usuario}}">
+                                <td></td>
+                                <td>{{cedula}}</td>
+                                <td>{{nombre}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                {{!-- Tab Table Consultas --}}
+                <div class="tab-pane fade" id="consultas">
+                    <div class="h5 my-3">Total Consultas: {{count consultas}}</div>
+                    <div id="toolbarConsultas">
+                        <a id="add" class="btn btn-outline-primary"
+                            href="/administrar/referendos/programar/consultas/{{referendo.id}}">
+                            <i class="fa fa-fw fa-newspaper-o"></i> Administrar Consultas
+                        </a>
+                    </div>
+                    <table class="table table-condensed text-small" id="table" data-toggle="table" data-locale="es-ES"
+                        data-toolbar="#toolbarConsultas" data-search="true" data-advanced-search="false"
+                        data-show-refresh="false" data-show-fullscreen="true" data-show-export="true"
+                        data-click-to-select="true" data-sortable="true" data-minimum-count-columns="2"
+                        data-show-pagination-switch="false" data-pagination="true" data-id-field="id"
+                        data-page-list="[5, 10, 15, 20, all]" data-show-footer="false"
+                        data-response-handler="responseHandler" data-export-types="['json','csv','xlsx','pdf']"
+                        data-mobile-responsive="true">
+
+                        <thead>
+                            <tr>
+                                <th data-formatter="indexFormatter"></th>
+                                <th data-field="pregunta">Pregunta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each consultas}}
+                            <tr id="{{id_consulta}}">
+                                <td></td>
+                                <td>{{pregunta}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Formateador de la columna de logos
+    function logoFormatter(value, row, index) {
+        return `<img src="/img/frente/${value}" alt="Logo" style="width: 100px; height: auto;">`;
+    }
+
+    // Formateador de la columna de colores
+    function colorFormatter(value, row, index) {
+        return `<div style="background-color: ${value}; width: 120px; height: 50px;"></div>`;
+    }
+    // Formatter function for row index
+    function indexFormatter(value, row, index) {
+        return index + 1;
+    }
+</script>

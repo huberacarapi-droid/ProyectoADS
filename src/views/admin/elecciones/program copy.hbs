@@ -1,0 +1,169 @@
+<style>
+    .nav-tabs .nav-link.active {
+        background-color: var(--primary);
+        /* Usar el color primario del tema */
+        color: #fff;
+        /* Color de texto blanco para la pestaña activa */
+    }
+</style>
+<main>
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/inicio"><i class="fa fa-fw fa-home"></i> Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/administrar"><i class="fa fa-fw fa-cogs"></i> Administrar</a></li>
+            <li class="breadcrumb-item"><a href="/administrar/elecciones"><i class="fa fa-fw fa-cubes"></i> Elecciones</a></li>
+            <li class="breadcrumb-item active"><i class="fa fa-fw fa-file-text"></i> Programar</li>
+        </ol>
+    </div>
+    <div class="container mt-4">
+        <h2>Programación de elecciones</h2>
+        <h5>{{eleccion.titulo}}</h5>
+        <p class="small">{{eleccion.descripcion}}</p>
+        <a id="back" class="btn btn-dark" href="/administrar/elecciones">
+            <i class="fa fa-fw fa-undo"></i> Retornar
+        </a>
+        
+
+        <div class="mt-4">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#participantes" active><i
+                            class="fa fa-fw fa-users"></i> Participantes de la elección</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#frentes"><i class="fa fa-fw fa-newspaper-o"></i>
+                        Frentes políticos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#moderadores"><i class="fa fa-fw fa-tripadvisor"></i>
+                        Moderadores o Auditores</a>
+                </li>
+            </ul>
+
+            <div class="tab-content mt-3">
+                {{!-- Tab Table Participantes --}}
+                <div class="tab-pane fade show active" id="participantes">
+                    <div class="h5 my-3">Participantes inscritos: {{count inscritos}}</div>
+                    <div id="toolbarParticipantes">
+                        <a id="add" class="btn btn-outline-primary"
+                            href="/administrar/elecciones/programar/inscritos/{{eleccion.id}}">
+                            <i class="fa fa-fw fa-users"></i> Administrar Participantes
+                        </a>
+                    </div>
+
+                    <table class="table table-condensed text-small" id="table" data-toggle="table" data-locale="es-ES"
+                        data-toolbar="#toolbarParticipantes" data-search="true" data-advanced-search="false"
+                        data-show-refresh="false" data-show-fullscreen="true" data-show-export="true"
+                        data-click-to-select="true" data-sortable="true" data-minimum-count-columns="2"
+                        data-show-pagination-switch="false" data-pagination="true" data-id-field="id"
+                        data-page-list="[5, 10, 15, 20, all]" data-show-footer="false"
+                        data-response-handler="responseHandler" data-export-types="['json','csv','xlsx','pdf']"
+                        data-mobile-responsive="true">
+
+                        <thead>
+                            <tr>
+                                <th data-formatter="indexFormatter"></th>
+                                <th data-field="cedula">Cédula de Identidad</th>
+                                <th data-field="nombre">Apellidos y Nombres</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each inscritos}}
+                            <tr id="{{id_usuario}}">
+                                <td></td>
+                                <td>{{cedula}}</td>
+                                <td>{{nombre}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                {{!-- Tab Table Frentes --}}
+                <div class="tab-pane fade" id="frentes">
+                    <div class="h5 my-3">Total Frentes: {{count frentes}}</div>
+                    <div id="toolbarFrentes">
+                        <a id="add" class="btn btn-outline-primary"
+                            href="/administrar/elecciones/programar/frentes/{{eleccion.id}}">
+                            <i class="fa fa-fw fa-newspaper-o"></i> Administrar Frentes
+                        </a>
+                    </div>
+                    <table class="table table-condensed text-small" id="tblFrentes" data-toggle="table"
+                        data-toolbar="#toolbarFrentes" data-locale="es-ES" data-search="true" data-sortable="true"
+                        data-show-fullscreen="true" data-pagination="true" data-page-list="[5, 10, 15, 20, all]"
+                        data-show-footer="false" data-mobile-responsive="true">
+                        <thead>
+                            <tr>
+                                <th data-field="logo" data-formatter="logoFormatter">Logo</th>
+                                <th data-field="sigla">Sigla</th>
+                                <th data-field="descripcion">Descripción</th>
+                                <th data-field="color" data-formatter="colorFormatter">Color</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each frentes}}
+                            <tr id="{{id_frente}}">
+                                <td>{{logoFilename}}</td>
+                                <td>{{sigla}}</td>
+                                <td>{{detalle}}</td>
+                                <td>{{color}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                {{!-- Tab Table Moderadores --}}
+                <div class="tab-pane fade" id="moderadores">
+                    <div class="h5 my-3">Total Moderadores: {{count moderadores}}</div>
+                    <div id="toolbarModeradores">
+                        <a id="add" class="btn btn-outline-primary"
+                            href="/administrar/elecciones/programar/moderadores/{{eleccion.id}}">
+                            <i class="fa fa-fw fa-tripadvisor"></i> Administrar moderadores
+                        </a>
+                    </div>
+                    <table class="table table-condensed text-small" id="table" data-toggle="table" data-locale="es-ES"
+                        data-toolbar="#toolbarModeradores" data-search="true" data-advanced-search="false"
+                        data-show-refresh="false" data-show-fullscreen="true" data-show-export="true"
+                        data-click-to-select="true" data-sortable="true" data-minimum-count-columns="2"
+                        data-show-pagination-switch="false" data-pagination="true" data-id-field="id"
+                        data-page-list="[5, 10, 15, 20, all]" data-show-footer="false"
+                        data-response-handler="responseHandler" data-export-types="['json','csv','xlsx','pdf']"
+                        data-mobile-responsive="true">
+
+                        <thead>
+                            <tr>
+                                <th data-formatter="indexFormatter"></th>
+                                <th data-field="cedula">Cédula de Identidad</th>
+                                <th data-field="nombre">Apellidos y Nombres</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each moderadores}}
+                            <tr id="{{id_moderador}}">
+                                <td></td>
+                                <td>{{cedula}}</td>
+                                <td>{{nombre}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    // Formateador de la columna de logos
+    function logoFormatter(value, row, index) {
+        return `<img src="/repositorio/imagenes/${value}" alt="Logo" style="width: 100px; height: auto;">`;
+    }
+
+    // Formateador de la columna de colores
+    function colorFormatter(value, row, index) {
+        return `<div style="background-color: ${value}; width: 120px; height: 50px;"></div>`;
+    }
+    // Formatter function for row index
+    function indexFormatter(value, row, index) {
+        return index + 1;
+    }
+</script>

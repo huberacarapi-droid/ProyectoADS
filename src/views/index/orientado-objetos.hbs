@@ -1,0 +1,342 @@
+{{> index/header}}
+
+<!-- ====================================== -->
+<!-- BREADCRUMB -->
+<!-- ====================================== -->
+
+<div class="container-fluid">
+
+  <ol class="breadcrumb shadow-sm">
+
+    <li class="breadcrumb-item">
+      <a href="/">
+        <i class="fa fa-fw fa-home"></i>
+        Inicio
+      </a>
+    </li>
+
+    <li class="breadcrumb-item active">
+      <i class="fa fa-fw fa-cubes"></i>
+      Orientado a Objetos
+    </li>
+  </ol>
+</div>
+
+<!-- ====================================== -->
+<!-- BODY PRINCIPAL -->
+<!-- ====================================== -->
+<main class="container-fluid mt-4">
+
+  <!-- ====================================== -->
+  <!-- HERO -->
+  <!-- ====================================== -->
+
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="jumbotron shadow-lg text-white hero-panel">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <h1 class="display-4 font-weight-bold">
+              MODELO ORIENTADO A OBJETOS
+            </h1>
+            <p class="lead mt-4">
+              Representación del entorno del Sistema de Votación Virtual UMSA,
+              identificando actores externos, eventos y flujos de información mediante técnicas de análisis orientado a
+              objetos.
+            </p>
+            <hr class="bg-white">
+            <p>
+              El Modelo Orientado a Objetos constituye el primer nivel del análisis estructurado y tiene como finalidad
+              definir el entorno en el que opera el Sistema de Votación Virtual UMSA. Mediante este modelo se
+              identifican los actores externos, eventos y flujos de información que interactúan con el sistema,
+              permitiendo establecer claramente sus límites y responsabilidades.
+            </p>
+          </div>
+          <div class="col-md-4 text-center">
+            <i class="fa fa-cubes hero-icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================== -->
+  <!-- CONTENIDO -->
+  <!-- ====================================== -->
+
+  <div class="row">
+    <!-- ====================================== -->
+    <!-- SIDEBAR -->
+    <!-- ====================================== -->
+
+    <div class="col-lg-3 mb-4">
+
+      <div class="card shadow border-0 sticky-top">
+
+        <div class="card-header bg-primary text-white">
+
+          <h5 class="mb-0">
+            <i class="fa fa-list"></i>
+            Navegación
+          </h5>
+
+        </div>
+
+        <div class="card-body sidebar-menu">
+
+          <div class="mb-4">
+
+            <h6 class="sidebar-title">
+              <i class="fa fa-home"></i>
+              <a href="/" style="color:#003b75;text-decoration:none;">
+                INICIO
+              </a>
+            </h6>
+
+          </div>
+
+          <div class="mb-4">
+
+            <h6 class="sidebar-title">
+              <i class="fa fa-sitemap"></i>
+              <a href="/orientado-objetos" style="color:#003b75;text-decoration:none;">
+                MODELO ORIENTADO A OBJETOS
+              </a>
+            </h6>
+
+            <ul class="list-group">
+
+              <a href="#diagrama-clases" class="list-group-item list-group-item-action">
+                Diagrama de clases
+              </a>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================== -->
+    <!-- CONTENIDO -->
+    <!-- ====================================== -->
+    <div class="col-lg-9">
+
+      <!-- INTRODUCCIÓN -->
+
+      <div class="card shadow-lg border-0 mb-4">
+
+        <div class="card-header bg-primary text-white">
+
+          <h3 class="mb-0">
+            Modelo Orientado a Objetos
+          </h3>
+
+        </div>
+
+        <div class="card-body">
+
+          <p align="justify">
+            El Modelo Orientado a Objetos permite representar la estructura
+            lógica del Sistema de Votación Virtual UMSA mediante clases,
+            atributos, métodos y relaciones entre los diferentes elementos
+            que participan en el proceso electoral.
+          </p>
+
+          <p align="justify">
+            Este modelo facilita la comprensión de la organización interna
+            del sistema y constituye la base para el diseño e implementación
+            de la aplicación utilizando principios de orientación a objetos.
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- OBJETIVOS -->
+
+      <div id="objetivos" class="card shadow border-0 mb-4">
+
+        <div class="card-header bg-info text-white">
+
+          <h4 class="mb-0">
+            A. Objetivo del Modelo
+          </h4>
+
+        </div>
+
+        <div class="card-body">
+
+          <p align="justify">
+            El objetivo del Modelo Orientado a Objetos es identificar y
+            representar las entidades que conforman el Sistema de Votación
+            Virtual UMSA, así como las relaciones existentes entre ellas,
+            permitiendo definir una estructura de software organizada,
+            mantenible y escalable.
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- DIAGRAMA DE CLASES -->
+
+      <div id="diagrama-clases" class="card shadow border-0 mb-4">
+
+        <div class="card-header bg-success text-white">
+
+          <h4 class="mb-0">
+            B. Diagrama de Clases
+          </h4>
+
+        </div>
+
+        <div class="card-body">
+
+          <p align="justify">
+            El Diagrama de Clases representa la estructura estática del
+            Sistema de Votación Virtual UMSA. En él se muestran las clases
+            principales del sistema, sus atributos, métodos y las relaciones
+            de asociación, agregación, composición o herencia existentes
+            entre ellas.
+          </p>
+
+          <div class="text-center my-4">
+
+            <img src="/img/diagramas/orientado-objetos/diagrama-clases.png" class="img-fluid shadow rounded"
+              alt="Diagrama de Clases" style="max-width:600px; cursor:pointer;" data-toggle="modal"
+              data-target="#modalClases">
+
+            <br>
+
+            <small class="text-muted">
+              Haga clic sobre la imagen para ampliarla.
+            </small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- DESCRIPCIÓN -->
+
+      <div id="descripcion" class="card shadow border-0 mb-4">
+
+        <div class="card-header bg-warning">
+
+          <h4 class="mb-0">
+            C. Descripción General
+          </h4>
+
+        </div>
+
+        <div class="card-body">
+
+          <p align="justify">
+            Las clases identificadas dentro del sistema permiten gestionar
+            los procesos electorales, la administración de candidatos,
+            votantes, elecciones, votos y resultados. La interacción entre
+            estas clases garantiza el correcto funcionamiento del proceso
+            electoral, manteniendo la integridad y consistencia de la
+            información almacenada.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</main>
+<!-- ====================================== -->
+<!-- MODAL DIAGRAMA DE CLASES -->
+<!-- ====================================== -->
+
+<div class="modal fade" id="modalClases" tabindex="-1" role="dialog" aria-labelledby="modalClasesLabel"
+  aria-hidden="true">
+
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+
+    <div class="modal-content">
+
+      <div class="modal-header bg-primary text-white">
+
+        <h5 class="modal-title" id="modalClasesLabel">
+          Diagrama de Clases - Sistema de Votación Virtual UMSA
+        </h5>
+
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Cerrar">
+
+          <span aria-hidden="true">&times;</span>
+
+        </button>
+
+      </div>
+
+      <div class="modal-body text-center">
+
+        <img src="/img/diagramas/orientado-objetos/diagrama-clases.png" class="img-fluid" alt="Diagrama de Clases">
+
+      </div>
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cerrar
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ====================================== -->
+<!-- ESTILOS -->
+<!-- ====================================== -->
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .hero-panel {
+    background: linear-gradient(135deg, #003b75, #0056b3);
+    border-radius: 15px;
+  }
+
+  .hero-icon {
+    font-size: 9rem;
+    opacity: 0.2;
+  }
+
+  .sidebar-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .sidebar-menu .list-group-item {
+    border: none;
+    border-left: 4px solid transparent;
+    transition: 0.3s;
+    font-size: 14px;
+  }
+
+  .sidebar-menu .list-group-item:hover {
+    background: #f1f7ff;
+    border-left: 4px solid #007bff;
+    padding-left: 25px;
+  }
+
+  .card {
+    border-radius: 12px;
+  }
+
+  .sticky-top {
+    top: 20px;
+  }
+</style>
+
+{{> index/footer}}

@@ -1,0 +1,115 @@
+<main>
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/inicio"><i class="fa fa-fw fa-home"></i>Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/administrar"><i class="fa fa-fw fa-cogs"></i>Administrar</a></li>
+            <li class="breadcrumb-item"><a href="/administrar/referendos"><i class="fa fa-fw fa-tags"></i>Referendos</a></li>
+            <li class="breadcrumb-item"><a href="/administrar/referendos/programar/{{referendo.id}}"><i class="fa fa-fw fa-file-text-o"></i>Programar</a></li>
+            <li class="breadcrumb-item active"><i class="fa fa-fw fa-newspaper-o"></i>Consultas</li>
+        </ol>
+    </div>
+    <div class="container mt-5">
+        <h2>Lista de consultas del Referéndum</h2>
+        <h5>{{referendo.titulo}}</h5>
+        <p class="small">{{referendo.descripcion}}</p>
+        <a id="back" class="btn btn-dark" href="/administrar/referendos/programar/{{referendo.id}}">
+            <i class="fa fa-fw fa-undo"></i> Retornar
+        </a>
+        <div id="toolbar">
+            <a id="add" class="btn btn-outline-primary"
+                href="/administrar/referendos/programar/consultas/nuevo/{{referendo.id}}">
+                <i class="fa fa-fw fa-plus-circle"></i> Agregar Nueva Consulta
+            </a>
+        </div>
+        <table class="table table-condensed text-small" id="table" data-toggle="table" data-locale="es-ES"
+            data-toolbar="#toolbar" data-search="true" data-advanced-search="false" data-show-refresh="false"
+            data-show-toggle="true" data-show-fullscreen="true" data-show-columns="true"
+            data-show-columns-toggle-all="true" data-detail-view="true" data-detail-formatter="detailFormatter"
+            data-show-export="true" data-click-to-select="true" data-sortable="true" data-minimum-count-columns="2"
+            data-show-pagination-switch="false" data-pagination="true" data-id-field="id"
+            data-page-list="[5, 10, 15, 20, all]" data-show-footer="false" data-response-handler="responseHandler"
+            data-export-types="['json','csv','xlsx','pdf']" data-mobile-responsive="true">
+
+            <thead>
+                <tr>
+                    <th data-field="pregunta">Pregunta</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each consultas}}
+                <tr id="{{id_consulta}}">
+                    <td>{{pregunta}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function editar(id) {
+        window.location.href = `/administrar/referendos/programar/consultas/editar/{{{referendo.id}}}/${id}`;
+    };
+
+    function eliminar(id, pregunta) {
+        console.log('id:' + id);
+        Swal.fire({
+            title: "Deseas eliminar el frente politico?",
+            html: `${pregunta}`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Eliminar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post(`/administrar/referendos/programar/consultas/eliminar/{{{referendo.id}}}/${id}`, // url
+                    { 'id': id } // data to be submit
+                ).done(function (data) {
+                    Swal.fire({
+                        title: "Consulta Eliminada",
+                        text: "Se ha eliminado la consulta correctamente",
+                        icon: "success",
+                        timer: 10000
+                    }).then(() => {
+                        window.location.href = `/administrar/referendos/programar/consultas/{{{referendo.id}}}`;
+                    });
+                }).fail(function () {
+                    Swal.fire({
+                        title: "Ocurrió un error!",
+                        text: "No se pudo eliminar el frente político.",
+                        icon: "error",
+                        timer: 10000
+                    }).then(() => {
+                        window.location.href = '/administrar/referendos/';
+                    });
+                });
+            }
+        });
+    };
+    function detailFormatter(index, row) {
+        var html = '';
+        var indexs = 0;
+        var data = {};
+        $.each(row, function (key, value) {
+            var columns = $("th:eq(" + (indexs + 1) + ")").data("field")
+            if (columns != undefined) {
+                data[columns] = row[columns];
+                indexs++;
+            }
+        });
+        html =
+            `<div class="card border-primary">
+                    <div class="card-footer">
+                        <button class=" btn btn-outline-info mx-1" onClick="editar('${row._id}')">
+                            <i class="fa fa-fw fa-edit"></i>
+                            Editar
+                        </button>
+                        <button class=" btn btn-outline-primary mx-1" onClick="eliminar('${row._id}', ' ${data.pregunta}')">
+                            <i class="fa fa-fw fa-trash"></i>
+                            Eliminar
+                        </button>
+                    </div>
+                </div>`
+        return html
+    }
+</script>

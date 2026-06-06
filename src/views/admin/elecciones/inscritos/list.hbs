@@ -1,0 +1,412 @@
+<style>
+    .breadcrumb{
+        background:white;
+        border-radius:14px;
+        padding:14px 20px;
+        box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .breadcrumb a{
+        color:#003b75;
+        font-weight:500;
+        text-decoration:none;
+    }
+    .custom-card {
+        border: none;
+        border-radius: 18px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+    }
+
+    .custom-card .card-header {
+        background: linear-gradient(135deg, var(--primary), #4e73df);
+        color: #fff;
+        font-weight: 600;
+        border: none;
+    }
+
+    .table-container {
+        border-radius: 15px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .btn-custom {
+        border-radius: 12px;
+        padding: 10px 18px;
+        font-weight: 500;
+    }
+
+    .section-title {
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    .section-subtitle {
+        color: #6c757d;
+        font-size: 0.95rem;
+    }
+
+    .bootstrap-table .fixed-table-toolbar {
+        margin-bottom: 15px;
+    }
+
+    .card-footer {
+        background: #fff;
+        border-top: none;
+    }
+
+    .table thead th {
+        background: #f8f9fc;
+        color: #495057;
+        border-top: none;
+        font-weight: 600;
+    }
+
+    .table tbody tr:hover {
+        background: rgba(78, 115, 223, 0.05);
+        transition: 0.2s ease;
+    }
+
+    .badge-counter {
+        font-size: 15px;
+        padding: 8px 14px;
+        border-radius: 12px;
+    }
+
+    @media(max-width: 768px){
+        .btn-custom{
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+</style>
+
+<main>
+    <div class="container-fluid">
+        <ol class="breadcrumb shadow-sm">
+            <li class="breadcrumb-item">
+                <a href="/inicio"><i class="fa fa-fw fa-home"></i> Inicio</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/administrar"><i class="fa fa-fw fa-cogs"></i> Administrar</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/administrar/Elecciones">
+                    <i class="fa fa-fw fa-cube"></i> Elecciones
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/administrar/Elecciones/Programar/{{eleccion.id}}">
+                    <i class="fa fa-fw fa-file-text"></i> Programar
+                </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <i class="fa fa-fw fa-users"></i> Inscritos
+            </li>
+        </ol>
+    </div>
+
+    <div class="container mt-4">
+
+        <!-- Encabezado -->
+        <div class="card custom-card mb-4">
+            <div class="card-header">
+                <h3 class="mb-0">
+                    <i class="fa fa-fw fa-users"></i>
+                    Gestión de Participantes Inscritos
+                </h3>
+            </div>
+
+            <div class="card-body">
+                <h4 class="section-title">{{eleccion.titulo}}</h4>
+                <p class="section-subtitle">{{eleccion.descripcion}}</p>
+
+                <a id="back"
+                   class="btn btn-dark btn-custom"
+                   href="/administrar/elecciones/programar/{{eleccion.id}}">
+                    <i class="fa fa-fw fa-undo"></i>
+                    Retornar
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <!-- Usuarios -->
+            <div class="col-lg-6 mb-4">
+                <div class="card custom-card h-100">
+
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span>
+                            <i class="fa fa-fw fa-user-circle"></i>
+                            Usuarios Disponibles
+                        </span>
+
+                        <span class="badge badge-light badge-counter">
+                            {{count usuarios}}
+                        </span>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div id="toolbarUsuarios" class="mb-3">
+                            <button class="btn btn-outline-primary btn-custom"
+                                    onClick="llenar('{{eleccion.id}}')">
+                                <i class="fa fa-fw fa-share-square"></i>
+                                Inscribir a todos los usuarios
+                            </button>
+                        </div>
+
+                        <div class="table-container">
+                            <table class="table table-condensed text-small"
+                                   id="tableUsuarios"
+                                   data-toggle="table"
+                                   data-locale="es-ES"
+                                   data-toolbar="#toolbarUsuarios"
+                                   data-search="true"
+                                   data-show-fullscreen="true"
+                                   data-detail-view="true"
+                                   data-detail-formatter="detailFormatterUsuarios"
+                                   data-pagination="true"
+                                   data-page-list="[5, 10, 15, 20, all]"
+                                   data-mobile-responsive="true">
+
+                                <thead>
+                                    <tr>
+                                        <th data-field="cedula">
+                                            Cédula de Identidad
+                                        </th>
+                                        <th data-field="nombre">
+                                            Apellidos y Nombres
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {{#each usuarios}}
+                                    <tr id="{{id}}">
+                                        <td>{{cedula}}</td>
+                                        <td>{{nombre}}</td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inscritos -->
+            <div class="col-lg-6 mb-4">
+                <div class="card custom-card h-100">
+
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span>
+                            <i class="fa fa-fw fa-check-circle"></i>
+                            Usuarios Inscritos
+                        </span>
+
+                        <span class="badge badge-light badge-counter">
+                            {{count inscritos}}
+                        </span>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div id="toolbarInscritos" class="mb-3">
+                            <button class="btn btn-outline-danger btn-custom"
+                                    onClick="vaciar('{{eleccion.id}}')">
+                                <i class="fa fa-fw fa-trash"></i>
+                                Vaciar lista de inscritos
+                            </button>
+                        </div>
+
+                        <div class="table-container">
+                            <table class="table table-condensed text-small"
+                                   id="tableInscritos"
+                                   data-toggle="table"
+                                   data-locale="es-ES"
+                                   data-toolbar="#toolbarInscritos"
+                                   data-search="true"
+                                   data-show-fullscreen="true"
+                                   data-detail-view="true"
+                                   data-detail-formatter="detailFormatterInscritos"
+                                   data-pagination="true"
+                                   data-page-list="[5, 10, 15, 20, all]"
+                                   data-mobile-responsive="true">
+
+                                <thead>
+                                    <tr>
+                                        <th data-field="cedula">
+                                            Cédula de Identidad
+                                        </th>
+                                        <th data-field="nombre">
+                                            Apellidos y Nombres
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {{#each inscritos}}
+                                    <tr id="{{id_usuario}}">
+                                        <td>{{cedula}}</td>
+                                        <td>{{nombre}}</td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    function llenar(id) {
+        Swal.fire({
+            title: "Deseas inscribir a todos los usuarios?",
+            html: `Se inscribirán todos los usuarios disponibles.`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Confirmar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post(`/administrar/elecciones/programar/inscritos/llenar/{{{eleccion.id}}}`,
+                    { 'id': id }
+                ).done(function () {
+                    Swal.fire({
+                        title: "Inscripción realizada",
+                        text: "Todos los usuarios fueron inscritos correctamente.",
+                        icon: "success",
+                        timer: 10000
+                    }).then(() => {
+                        window.location.href =
+                            `/administrar/elecciones/programar/inscritos/{{{eleccion.id}}}`;
+                    });
+                }).fail(function () {
+                    Swal.fire({
+                        title: "Ocurrió un error",
+                        text: "No se pudo realizar la inscripción.",
+                        icon: "error"
+                    });
+                });
+            }
+        });
+    }
+
+    function vaciar(id) {
+        Swal.fire({
+            title: "Deseas eliminar a los usuarios inscritos?",
+            html: `Se anularán todas las inscripciones.`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Confirmar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post(`/administrar/elecciones/programar/inscritos/vaciar/{{{eleccion.id}}}`,
+                    { 'id': id }
+                ).done(function () {
+                    Swal.fire({
+                        title: "Inscripciones anuladas",
+                        text: "Se eliminaron todas las inscripciones.",
+                        icon: "success",
+                        timer: 10000
+                    }).then(() => {
+                        window.location.href =
+                            `/administrar/elecciones/programar/inscritos/{{{eleccion.id}}}`;
+                    });
+                }).fail(function () {
+                    Swal.fire({
+                        title: "Ocurrió un error",
+                        text: "No se pudo realizar la operación.",
+                        icon: "error"
+                    });
+                });
+            }
+        });
+    }
+
+    function adicionar(id) {
+        $.post(`/administrar/elecciones/programar/inscritos/adicionar/{{{eleccion.id}}}/${id}`,
+            { 'id': id }
+        ).done(function () {
+            Swal.fire({
+                title: "Usuario inscrito",
+                text: "La inscripción fue realizada correctamente.",
+                icon: "success",
+                timer: 10000
+            }).then(() => {
+                window.location.href =
+                    `/administrar/elecciones/programar/inscritos/{{{eleccion.id}}}`;
+            });
+        });
+    }
+
+    function eliminar(id, cedula, nombre) {
+        Swal.fire({
+            title: "Deseas anular la inscripción?",
+            html: `<b>${cedula}</b><br>${nombre}`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Eliminar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post(`/administrar/elecciones/programar/inscritos/eliminar/{{{eleccion.id}}}/${id}`,
+                    { 'id': id }
+                ).done(function () {
+                    Swal.fire({
+                        title: "Inscripción anulada",
+                        text: "La inscripción fue eliminada correctamente.",
+                        icon: "success",
+                        timer: 10000
+                    }).then(() => {
+                        window.location.href =
+                            `/administrar/elecciones/programar/inscritos/{{{eleccion.id}}}`;
+                    });
+                });
+            }
+        });
+    }
+
+    function detailFormatterInscritos(index, row) {
+        return `
+            <div class="card border-0 shadow-sm">
+                <div class="card-footer bg-white">
+                    <button class="btn btn-outline-danger btn-custom"
+                        onClick="eliminar('${row._id}', '${row.cedula}', '${row.nombre}')">
+                        <i class="fa fa-fw fa-minus-circle"></i>
+                        Anular inscripción
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+
+    function detailFormatterUsuarios(index, row) {
+        return `
+            <div class="card border-0 shadow-sm">
+                <div class="card-footer bg-white">
+                    <button class="btn btn-outline-success btn-custom"
+                        onClick="adicionar('${row._id}')">
+                        <i class="fa fa-fw fa-plus-circle"></i>
+                        Inscribir usuario
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+</script>

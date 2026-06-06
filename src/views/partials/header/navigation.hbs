@@ -1,0 +1,330 @@
+<!-- ====================================== -->
+<!-- ESTILOS NAVBAR -->
+<!-- ====================================== -->
+
+<style>
+
+    .navbar-umsa{
+        background: linear-gradient(90deg,#003b75,#0056b3) !important;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        border-bottom: 4px solid #c0171d;
+        z-index: 1000;
+    }
+
+    /* ====================================== */
+    /* LOGO */
+    /* ====================================== */
+
+    .navbar-brand{
+        color:white !important;
+        font-weight:bold;
+        line-height:1.2;
+        transition:0.3s;
+    }
+
+    .navbar-brand:hover{
+        color:#f4b400  !important;
+    }
+
+    .navbar-brand .brand-title{
+        font-size:1.2rem;
+        letter-spacing:0.5px;
+    }
+
+    .navbar-brand .brand-subtitle{
+        font-size:0.85rem;
+        opacity:0.9;
+    }
+
+    /* ====================================== */
+    /* LINKS */
+    /* ====================================== */
+
+    .navbar-umsa .nav-link{
+        color:rgba(255,255,255,0.92) !important;
+        font-weight:500;
+        padding:10px 16px !important;
+        border-radius:8px;
+        transition:0.3s;
+        margin-right:5px;
+    }
+
+    .navbar-umsa .nav-link:hover{
+        background:rgba(255,255,255,0.12);
+        color:#f4b400  !important;
+        transform:translateY(-1px);
+    }
+
+    .navbar-umsa .nav-link i,
+    .navbar-umsa .nav-link span{
+        margin-right:6px;
+    }
+
+    /* ====================================== */
+    /* DROPDOWN */
+    /* ====================================== */
+
+    .navbar-umsa .dropdown-menu{
+        border:none;
+        border-radius:12px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.2);
+        overflow:hidden;
+        margin-top:12px;
+        padding-top:8px;
+        padding-bottom:8px;
+    }
+
+    .navbar-umsa .dropdown-item{
+        padding:12px 18px;
+        transition:0.3s;
+        font-size:14px;
+    }
+
+    .navbar-umsa .dropdown-item:hover{
+        background:#003b75;
+        color:white;
+        padding-left:24px;
+    }
+
+    .navbar-umsa .dropdown-divider{
+        margin:6px 0;
+    }
+
+    /* ====================================== */
+    /* USUARIO */
+    /* ====================================== */
+
+    .user-menu{
+        background:rgba(255,255,255,0.1);
+        border-radius:10px;
+        padding-left:10px !important;
+        padding-right:10px !important;
+    }
+
+    .user-menu:hover{
+        background:rgba(255,255,255,0.18) !important;
+    }
+
+    /* ====================================== */
+    /* TOGGLER */
+    /* ====================================== */
+
+    .navbar-toggler{
+        border:none;
+        outline:none;
+    }
+
+    .navbar-toggler:focus{
+        outline:none;
+        box-shadow:none;
+    }
+
+    /* ====================================== */
+    /* MOBILE */
+    /* ====================================== */
+
+    @media(max-width:991px){
+
+        .navbar-umsa .nav-link{
+            margin-bottom:5px;
+        }
+
+        .user-menu{
+            margin-top:10px;
+        }
+
+    }
+
+</style>
+
+<!-- ====================================== -->
+<!-- NAVBAR -->
+<!-- ====================================== -->
+
+<div class="container-fluid p-0">
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-umsa">
+
+        <div class="container-fluid">
+
+            <!-- ====================================== -->
+            <!-- LOGO -->
+            <!-- ====================================== -->
+
+            <a class="navbar-brand" href="/inicio">
+
+                <div class="brand-title">
+
+                    <i class="fa fa-university"></i>
+                    Sistema de Votación
+
+                </div>
+
+                <div class="brand-subtitle">
+
+                    Universidad Mayor de San Andrés
+
+                </div>
+
+            </a>
+
+            <!-- ====================================== -->
+            <!-- TOGGLER -->
+            <!-- ====================================== -->
+
+            <button class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarMain"
+                aria-controls="navbarMain"
+                aria-expanded="false">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <!-- ====================================== -->
+            <!-- MENU -->
+            <!-- ====================================== -->
+
+            <div class="collapse navbar-collapse"
+                id="navbarMain">
+
+                <!-- ====================================== -->
+                <!-- IZQUIERDA -->
+                <!-- ====================================== -->
+
+                <ul class="navbar-nav mr-auto">
+
+                    <!-- ELECCIONES -->
+                    <li class="nav-item">
+
+                        <a class="nav-link"
+                            href="/inicio/elecciones">
+
+                            <span class="fa fa-fw fa-cube"></span>
+                            Elecciones
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- ====================================== -->
+                    <!-- ADMIN -->
+                    <!-- ====================================== -->
+
+                    {{#if user.isAdmin}}
+
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle"
+                            href="#"
+                            id="navbarDropdown"
+                            role="button"
+                            data-toggle="dropdown">
+
+                            <span class="fa fa-fw fa-cogs"></span>
+                            Administrar
+
+                        </a>
+
+                        <div class="dropdown-menu">
+
+                            <a class="dropdown-item"
+                                href="/administrar/usuarios">
+
+                                <span class="fa fa-fw fa-users"></span>
+                                Usuarios
+
+                            </a>
+
+                            <a class="dropdown-item"
+                                href="/administrar/elecciones">
+
+                                <span class="fa fa-fw fa-cubes"></span>
+                                Elecciones
+
+                            </a>
+
+                            <div class="dropdown-divider"></div>
+
+                            <a class="dropdown-item"
+                                href="/administrar">
+
+                                <span class="fa fa-fw fa-cog"></span>
+                                Panel Administrativo
+
+                            </a>
+
+                        </div>
+
+                    </li>
+
+                    {{/if}}
+
+                </ul>
+
+                <!-- ====================================== -->
+                <!-- DERECHA -->
+                <!-- ====================================== -->
+
+                <ul class="navbar-nav">
+
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle user-menu"
+                            href="#"
+                            id="navbarUser"
+                            role="button"
+                            data-toggle="dropdown">
+
+                            <span class="fa fa-fw fa-user-circle"></span>
+
+                            {{user.name}}
+
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+
+                            <a class="dropdown-item"
+                                href="/perfil">
+
+                                <span class="fa fa-fw fa-user-o"></span>
+                                Perfil
+
+                            </a>
+
+                            <a class="dropdown-item"
+                                href="/notificaciones">
+
+                                <span class="fa fa-fw fa-bell"></span>
+                                Notificaciones
+
+                            </a>
+
+                            <div class="dropdown-divider"></div>
+
+                            <a class="dropdown-item"
+                                href="/logout">
+
+                                <span class="fa fa-fw fa-sign-out"></span>
+                                Cerrar sesión
+
+                            </a>
+
+                        </div>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</div>

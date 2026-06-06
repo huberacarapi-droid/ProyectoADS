@@ -1,0 +1,7 @@
+.alert-fixed-top {
+    position: fixed;
+    top: 100px; /* Ajusta este valor dependiendo de la altura de tu navbar */
+    right: 20px;
+    z-index: 9999;
+    width: auto;
+}

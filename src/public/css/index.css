@@ -1,0 +1,57 @@
+.masthead {
+    background-color: var(--primary);
+    /* Color de fondo oscuro */
+    padding: 5px 0;
+    /* Espaciado */
+    box-shadow: 0 4px 8px rgba(220, 177, 177, 0.2);
+    /* Sombra */
+}
+
+.nav-link {
+    color: #ffffff;
+    /* Color del texto */
+    font-size: 17px;
+    /* Tamaño del texto */
+    transition: color 0.3s ease;
+    /* Transición suave */
+}
+
+.nav-link:hover {
+    color: #dcd9d4;
+    /* Color de texto al pasar el cursor */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    /* Sombra del texto */
+}
+
+.nav-masthead {
+    border-bottom: 2px solid #ffffff;
+    /* Línea inferior */
+    padding-bottom: 10px;
+    /* Espaciado inferior */
+}
+
+.carousel-item img {
+    max-width: 900px;
+    /* Ancho máximo de la imagen */
+    width: 100%;
+    /* Asegura que la imagen no exceda el contenedor */
+    height: auto;
+    /* Mantiene la proporción de la imagen */
+    margin: 0 auto;
+    /* Centra la imagen horizontalmente */
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo negro semi-transparente */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.carousel-caption h5,
+.carousel-caption p {
+    color: #fff;
+    /* Texto blanco */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    /* Sombra del texto */
+}

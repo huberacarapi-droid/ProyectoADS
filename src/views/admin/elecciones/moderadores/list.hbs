@@ -1,0 +1,455 @@
+<style>
+    .breadcrumb{
+        background:white;
+        border-radius:14px;
+        padding:14px 20px;
+        box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .breadcrumb a{
+        color:#003b75;
+        font-weight:500;
+        text-decoration:none;
+    }
+    .card-custom {
+        border: none;
+        border-radius: 18px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        background: #fff;
+    }
+
+    .card-header-custom {
+        background: linear-gradient(135deg, var(--primary), #4f8cff);
+        color: #fff;
+        padding: 15px 20px;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    .table thead th {
+        background: #f8f9fa;
+        border-top: none;
+        font-weight: 600;
+        color: #495057;
+    }
+
+    .bootstrap-table .fixed-table-toolbar {
+        margin-bottom: 15px;
+    }
+
+    .btn-custom {
+        border-radius: 10px;
+        padding: 8px 14px;
+        font-weight: 500;
+    }
+
+    .section-title {
+        font-weight: 700;
+        color: #343a40;
+    }
+
+    .subtitle {
+        color: #6c757d;
+        font-size: 0.95rem;
+    }
+
+    .card-footer {
+        background: #f8f9fa;
+        border-top: none;
+    }
+
+    .table {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .breadcrumb {
+        background: transparent;
+    }
+
+    .table-responsive {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+</style>
+
+<main>
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/inicio"><i class="fa fa-fw fa-home"></i> Inicio</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/administrar"><i class="fa fa-fw fa-cogs"></i> Administrar</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/administrar/Elecciones">
+                    <i class="fa fa-fw fa-cube"></i> Elecciones
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/administrar/Elecciones/Programar/{{eleccion.id}}">
+                    <i class="fa fa-fw fa-file-text"></i> Programar
+                </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <i class="fa fa-fw fa-users"></i> Moderadores
+            </li>
+        </ol>
+    </div>
+
+    <div class="container mt-4">
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+            <div>
+                <h2 class="section-title mb-1">
+                    <i class="fa fa-fw fa-users text-primary"></i>
+                    Lista de Moderadores
+                </h2>
+
+                <h5 class="mb-1">{{eleccion.titulo}}</h5>
+                <p class="subtitle mb-0">{{eleccion.descripcion}}</p>
+            </div>
+
+            <a id="back" class="btn btn-dark btn-custom mt-3 mt-md-0"
+                href="/administrar/elecciones/programar/{{eleccion.id}}">
+                <i class="fa fa-fw fa-undo"></i> Retornar
+            </a>
+        </div>
+
+        <div class="row">
+
+            <!-- Usuarios -->
+            <div class="col-12 col-lg-6 mb-4">
+
+                <div class="card-custom">
+
+                    <div class="card-header-custom d-flex justify-content-between align-items-center">
+                        <span>
+                            <i class="fa fa-fw fa-user-circle"></i>
+                            Usuarios Disponibles
+                        </span>
+                    </div>
+
+                    <div class="p-3">
+
+                        <div id="toolbarUsuarios">
+                            <button class="btn btn-outline-primary btn-custom mb-3"
+                                onClick="llenar('{{eleccion.id}}')">
+                                <i class="fa fa-fw fa-share-square"></i>
+                                Inscribir a todos como moderadores
+                            </button>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered text-small"
+                                id="tableUsuarios"
+                                data-toggle="table"
+                                data-locale="es-ES"
+                                data-toolbar="#toolbarUsuarios"
+                                data-search="true"
+                                data-show-fullscreen="true"
+                                data-detail-view="true"
+                                data-detail-formatter="detailFormatterUsuarios"
+                                data-pagination="true"
+                                data-page-list="[5, 10, 15, 20, all]"
+                                data-mobile-responsive="true">
+
+                                <thead>
+                                    <tr>
+                                        <th data-field="cedula">Cédula de Identidad</th>
+                                        <th data-field="nombre">Apellidos y Nombres</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {{#each usuarios}}
+                                    <tr id="{{id}}">
+                                        <td>{{cedula}}</td>
+                                        <td>{{nombre}}</td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Moderadores -->
+            <div class="col-12 col-lg-6 mb-4">
+
+                <div class="card-custom">
+
+                    <div class="card-header-custom d-flex justify-content-between align-items-center">
+                        <span>
+                            <i class="fa fa-fw fa-shield"></i>
+                            Moderadores Registrados
+                        </span>
+                    </div>
+
+                    <div class="p-3">
+
+                        <div id="toolbarModeradores">
+                            <button class="btn btn-outline-danger btn-custom mb-3"
+                                onClick="vaciar('{{eleccion.id}}')">
+                                <i class="fa fa-fw fa-trash"></i>
+                                Vaciar lista de moderadores
+                            </button>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered text-small"
+                                id="tableModeradores"
+                                data-toggle="table"
+                                data-locale="es-ES"
+                                data-toolbar="#toolbarModeradores"
+                                data-search="true"
+                                data-show-fullscreen="true"
+                                data-detail-view="true"
+                                data-detail-formatter="detailFormatterModeradores"
+                                data-pagination="true"
+                                data-page-list="[5, 10, 15, 20, all]"
+                                data-mobile-responsive="true">
+
+                                <thead>
+                                    <tr>
+                                        <th data-field="cedula">Cédula de Identidad</th>
+                                        <th data-field="nombre">Apellidos y Nombres</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {{#each moderadores}}
+                                    <tr id="{{id_usuario}}">
+                                        <td>{{cedula}}</td>
+                                        <td>{{nombre}}</td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+
+    function llenar(id) {
+        Swal.fire({
+            title: "Deseas inscribir a todos los usuarios?",
+            html: `Se inscribirán todos los usuarios como moderadores.`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Confirmar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+
+                $.post(`/administrar/elecciones/programar/moderadores/llenar/{{{eleccion.id}}}`,
+                    { 'id': id }
+
+                ).done(function () {
+
+                    Swal.fire({
+                        title: "Registro realizado",
+                        text: "Todos los usuarios fueron inscritos correctamente",
+                        icon: "success",
+                        timer: 3000
+                    }).then(() => {
+
+                        window.location.href =
+                            `/administrar/elecciones/programar/moderadores/{{{eleccion.id}}}`;
+
+                    });
+
+                }).fail(function () {
+
+                    Swal.fire({
+                        title: "Ocurrió un error",
+                        text: "No se pudo realizar la inscripción.",
+                        icon: "error"
+                    });
+
+                });
+
+            }
+
+        });
+    };
+
+    function vaciar(id) {
+
+        Swal.fire({
+            title: "Deseas eliminar a todos los moderadores?",
+            html: `Se anularán todas las inscripciones.`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Confirmar",
+            cancelButtonText: "Cancelar"
+
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+
+                $.post(`/administrar/elecciones/programar/moderadores/vaciar/{{{eleccion.id}}}`,
+                    { 'id': id }
+
+                ).done(function () {
+
+                    Swal.fire({
+                        title: "Moderadores eliminados",
+                        text: "La lista fue vaciada correctamente",
+                        icon: "success",
+                        timer: 3000
+                    }).then(() => {
+
+                        window.location.href =
+                            `/administrar/elecciones/programar/moderadores/{{{eleccion.id}}}`;
+
+                    });
+
+                }).fail(function () {
+
+                    Swal.fire({
+                        title: "Ocurrió un error",
+                        text: "No se pudo vaciar la lista.",
+                        icon: "error"
+                    });
+
+                });
+
+            }
+
+        });
+
+    };
+
+    function adicionar(id) {
+
+        $.post(`/administrar/elecciones/programar/moderadores/adicionar/{{{eleccion.id}}}/${id}`,
+            { 'id': id }
+
+        ).done(function () {
+
+            Swal.fire({
+                title: "Moderador agregado",
+                text: "El usuario fue inscrito correctamente",
+                icon: "success",
+                timer: 3000
+
+            }).then(() => {
+
+                window.location.href =
+                    `/administrar/elecciones/programar/moderadores/{{{eleccion.id}}}`;
+
+            });
+
+        }).fail(function () {
+
+            Swal.fire({
+                title: "Ocurrió un error",
+                text: "No se pudo registrar al moderador.",
+                icon: "error"
+            });
+
+        });
+
+    };
+
+    function eliminar(id, cedula, nombre) {
+
+        Swal.fire({
+            title: "Deseas eliminar al moderador?",
+            html: `<b>${cedula}</b><br>${nombre}`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Eliminar",
+            cancelButtonText: "Cancelar"
+
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+
+                $.post(`/administrar/elecciones/programar/moderadores/eliminar/{{{eleccion.id}}}/${id}`,
+                    { 'id': id }
+
+                ).done(function () {
+
+                    Swal.fire({
+                        title: "Moderador eliminado",
+                        text: "La inscripción fue anulada correctamente",
+                        icon: "success",
+                        timer: 3000
+
+                    }).then(() => {
+
+                        window.location.href =
+                            `/administrar/elecciones/programar/moderadores/{{{eleccion.id}}}`;
+
+                    });
+
+                }).fail(function () {
+
+                    Swal.fire({
+                        title: "Ocurrió un error",
+                        text: "No se pudo eliminar el moderador.",
+                        icon: "error"
+                    });
+
+                });
+
+            }
+
+        });
+
+    };
+
+    function detailFormatterModeradores(index, row) {
+
+        return `
+            <div class="card border-0 shadow-sm">
+                <div class="card-footer bg-white">
+                    <button class="btn btn-outline-danger btn-custom"
+                        onClick="eliminar('${row._id}', '${row.cedula}', '${row.nombre}')">
+                        <i class="fa fa-fw fa-minus-circle"></i>
+                        Quitar moderador
+                    </button>
+                </div>
+            </div>
+        `;
+    };
+
+    function detailFormatterUsuarios(index, row) {
+
+        return `
+            <div class="card border-0 shadow-sm">
+                <div class="card-footer bg-white">
+                    <button class="btn btn-outline-primary btn-custom"
+                        onClick="adicionar('${row._id}')">
+                        <i class="fa fa-fw fa-plus-circle"></i>
+                        Registrar como moderador
+                    </button>
+                </div>
+            </div>
+        `;
+    };
+
+</script>

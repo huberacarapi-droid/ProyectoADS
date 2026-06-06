@@ -1,0 +1,222 @@
+<style>
+    .breadcrumb{
+        background:white;
+        border-radius:14px;
+        padding:14px 20px;
+        box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .breadcrumb a{
+        color:#003b75;
+        font-weight:500;
+        text-decoration:none;
+    }
+</style>
+<main>
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/inicio"><i class="fa fa-fw fa-home"></i> Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/administrar"><i class="fa fa-fw fa-cogs"></i> Administrar</a></li>
+            <li class="breadcrumb-item"><a href="/administrar/usuarios"><i class="fa fa-fw fa-users"></i> Usuarios</a></li>
+            <li class="breadcrumb-item active"><i class="fa fa-fw fa-plus-circle"></i> Nuevo</li>
+        </ol>
+    </div>
+    <div class="container-fluid">
+        <form id="usuarioForm">
+            <fieldset>
+                <legend>Datos del nuevo usuario</legend>
+                {{!--Cédula de Identidad y código--}}
+                <div class="my-2 border-bottom">
+                    <div class="form-group row">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-2">
+                            <label for="cedula">Cédula de identidad</label>
+                            <input name="cedula" type="text" class="form-control" id="cedula" aria-describedby="cedulaHelp" maxlength="9" placeholder="Ingrese cédula de identidad">
+                            <span class="error-message" id="cedula-error" style="display:none; color:red;">La cédula debe tener entre 1 y 9 dígitos numéricos sin incluir el cero.</span>
+                            <small id="cedulaHelp" class="form-text text-muted">Sólo debe ingresar los digitos de su cédula de identidad.</small>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-2">
+                            <label for="complemento">Complemento</label>
+                            <input name="complemento" type="text" id="complemento" class="form-control" maxlength="2" aria-describedby="complementoHelp" placeholder="Sin complemento">
+                            <span class="error-message" id="complemento-error" style="display:none; color:red;">El complemento debe estar vacío o contener un dígito seguido de una letra mayúscula.</span>
+                            <small id="complementoHelp" class="form-text text-muted">Si su cédula de identidad tiene algún complemento.</small>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-2">
+                            <label for="codigo">Código o RU</label>
+                            <input name="codigo" type="text" class="form-control" id="codigo" aria-describedby="codigoHelp" placeholder="Ingrese código" pattern="[1-9]\d{0,7}" required>
+                            <span class="error-message" id="codigo-error" style="display:none; color:red;">El código debe tener entre 1 y 8 dígitos numéricos sin incluir el cero.</span>
+                            <small id="codigoHelp" class="form-text text-muted">Código (RU)sin incluir ceros a la izquierda.</small>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mt-2">
+                            <div class="form-group">
+                                <label for="residencia">Tipo de Usuario</label>
+                                <select name="residencia" class="form-control" id="residencia" aria-describedby="expedicionHelp" required>
+                                    <option value="" disabled selected>Elegir tipo de usuario</option>
+                                    {{#each departamento}}
+                                    <option value="{{id}}">{{nombre}}</option>
+                                    {{/each}}
+                                </select>
+                                <small id="residenciaHelp" class="form-text text-muted">Tipo de usuario.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{!--Nombres y apellidos--}}
+                <div class="my-2 border-bottom">
+                    <div class="form-group row">
+                        <div class="col-12 col-sm-6 mt-2">
+                            <label for="nombres">Nombres</label>
+                            <input name="nombres" type="text" class="form-control" id="nombres" aria-describedby="nombres"
+                                placeholder="Ingrese Nombres" required>
+                        </div>
+                        <div class="col-12 col-sm-6 mt-2">
+                            <label for="apellidos">Apellidos</label>
+                            <input name="apellidos" type="text" class="form-control" id="apellidos" aria-describedby="apellidos"
+                                placeholder="Ingrese Apellidos" required>
+                        </div>
+                    </div>
+                </div>
+                {{!--email y telefono--}}
+                <div class="my-2 border-bottom">
+                    <div class="div form-group row">
+                        <div class="col-12 col-sm-6 mt-2">
+                            <label for="email">Email address</label>
+                            <input name="email" type="email" class="form-control" id="email"
+                                placeholder="name@example.com" required>
+                        </div>
+                        <div class="col col-sm-6 mt-2">
+                            <label for="telefono">Teléfono</label>
+                            <input name="telefono" type="text" class="form-control" id="telefono" aria-describedby="telefono"
+                                placeholder="Ingrese número de teléfono" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-6 col-md-4">
+                        <label for="genero">Género</label>
+                        <div id="genero">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="genero_m" name="genero" value="M" class="custom-control-input" required>
+                                <label class="custom-control-label" for="genero_m">Masculino</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="genero_f" name="genero" value="F" class="custom-control-input" required>
+                                <label class="custom-control-label" for="genero_f">Femenino</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-outline-primary mx-2"><i class="fa fa-fw fa-floppy-o"></i> Guardar</button>
+                    <a href="/administrar/usuarios/" class="btn btn-outline-info mx-2"><i class="fa fa-fw fa-ban"></i> Cancelar</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</main>
+
+<script>
+$(document).ready(function() {
+    // Patrones globales
+    const cedulaPattern = /^[1-9]\d{0,8}$/;
+    const complementoPattern = /^(\d[A-Z])?$/;
+    const codigoPattern = /^[1-9]\d{0,7}$/;
+    const nombrePattern = /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]{2,}$/;
+    const apellidoPattern = /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]{2,}$/;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    const telefonoPattern = /^\d{8}$/;
+
+    // Función genérica para validación
+    function validateField(inputElement, pattern, errorElementId) {
+        const value = inputElement.val();
+        const errorElement = $(`#${errorElementId}`);
+
+        if (pattern.test(value)) {
+            errorElement.hide();
+            inputElement.removeClass('is-invalid').addClass('is-valid');
+        } else {
+            errorElement.show();
+            inputElement.removeClass('is-valid').addClass('is-invalid');
+        }
+    }
+    // Validación en tiempo real del campo cédula
+    $('#cedula').on('input', function() {
+        validateField($(this), cedulaPattern, 'cedula-error');
+    });
+
+    // Validación en tiempo real del campo complemento
+    $('#complemento').on('input', function() {
+        validateField($(this), complementoPattern, 'complemento-error');
+    });
+
+    // Validación en tiempo real del campo código
+    $('#codigo').on('input', function() {
+        validateField($(this), codigoPattern, 'codigo-error');
+    });
+
+    // Validación en tiempo real del campo nombres
+    $('#nombres').on('input', function() {
+        validateField($(this), nombrePattern, 'nombres-error');
+    });
+
+    // Validación en tiempo real del campo apellidos
+    $('#apellidos').on('input', function() {
+        validateField($(this), apellidoPattern, 'apellidos-error');
+    });
+
+    // Validación en tiempo real del campo email
+    $('#email').on('input', function() {
+        validateField($(this), emailPattern, 'email-error');
+    });
+
+    // Validación en tiempo real del campo teléfono
+    $('#telefono').on('input', function() {
+        validateField($(this), telefonoPattern, 'telefono-error');
+    });
+
+    // Validación al enviar el formulario
+    $('#usuarioForm').on('submit', function(event) {
+        event.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+        const data = {
+            cedula: $('#cedula').val(),
+            complemento: $('#complemento').val(),
+            email: $('#email').val(),
+            telefono: $('#telefono').val(),
+            codigo: $('#codigo').val(),
+            nombres: $('#nombres').val(),
+            apellidos: $('#apellidos').val(),
+            genero: $('input[name="genero"]:checked').val(),
+            residencia: $('#residencia').val(),
+        };
+
+        // Desactivar botón de guardar mientras se procesa la solicitud
+        $('#saveButton').prop('disabled', true);
+
+        // Enviar datos vía AJAX
+        $.post('/administrar/usuarios/nuevo', data, function(response) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Usuario registrado exitosamente',
+                showConfirmButton: true,
+                timer: 10000
+            }).then(() => {
+                window.location.href = '/administrar/usuarios';
+            });
+        }).fail(function(xhr) {
+            $('#saveButton').prop('disabled', false); // Rehabilitar el botón en caso de error
+            let message = 'Error interno del servidor';
+            if (xhr.status === 409) {
+                const errorData = xhr.responseJSON;
+                message = `Error: ${errorData.message}`;
+            } else if (xhr.status === 400) {
+                message = 'Faltan claves requeridas';
+            }
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al registrar',
+                text: message,
+                showConfirmButton: true
+            });
+        });
+    });
+});
+</script>

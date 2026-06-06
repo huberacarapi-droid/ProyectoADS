@@ -1,0 +1,40 @@
+<style>
+    .breadcrumb{
+        background:white;
+        border-radius:14px;
+        padding:14px 20px;
+        box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .breadcrumb a{
+        color:#003b75;
+        font-weight:500;
+        text-decoration:none;
+    }
+    /*wrap text row header text*/
+    thead th .th-inner {
+        white-space: normal !important;
+    }
+    .nav-tabs .nav-link.active {
+        background-color: var(--primary);
+        color: #fff;
+    }
+</style>
+<main>
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/inicio"><i class="fa fa-fw fa-home"></i> Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/inicio/elecciones"><i class="fa fa-fw fa-cube"></i> Elecciones</a></li>
+            <li class="breadcrumb-item active"><i class="fa fa-fw fa-list-alt"></i> Resultados</li>
+        </ol>
+    </div>
+    <div class="container-fluid text-center">
+        <h3 class="display-6">{{ejecutada.titulo}}</h3>
+        <small>{{ejecutada.descripcion}}</small>
+    </div>
+    <div class="container mt-4">
+        <p class="h4 font-weight-bold">Los resultados estarán disponibles al finalizar el proceso electoral.</p>
+        <p class="lead mb-0">{{timeago ejecutada.fecha_final}}</p>
+        <small>{{ejecutada.fecha_final}}</small>
+    </div>
+</main>

@@ -1,0 +1,87 @@
+<main>
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/inicio"><i class="fa fa-fw fa-home"></i>Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/administrar/referendos"><i class="fa fa-fw fa-tag"></i>Referendos</a></li>
+            <li class="breadcrumb-item active"><i class="fa fa-fw fa-edit"></i>Editar</li>
+        </ol>
+    </div>
+    <div class="container">
+        <form id="referendoForm">
+            <fieldset>
+                <legend>Editar proceso Electoral</legend>
+
+                <div class="form-group">
+                    <label for="titulo">Titulo de la Elección</label>
+                    <input type="text" class="form-control" id="titulo" aria-describedby="tituloHelp" placeholder="Ingrese Titulo de la Elección" value="{{referendo.titulo}}">
+                    <!--small id="tituloHelp" class="form-text text-muted">P.ej.: 'Elecciones Generales 1999'</small-->
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion">Descripcion</label>
+                    <textarea class="form-control" id="descripcion" rows="3">{{referendo.descripcion}}</textarea>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col">
+                        <label for="fecha_inicio">Fecha y hora del inicio:</label>
+                        <input class="form-control" id="fecha_inicio" type="datetime-local" placeholder="Selecciona fecha y hora" value="{{referendo.fecha_inicio}}">
+                    </div>
+
+                    <div class="col">
+                        <label for="fecha_final">Fecha y hora del final:</label>
+                        <input class="form-control" id="fecha_final" type="datetime-local" placeholder="Selecciona fecha y hora" value="{{referendo.fecha_final}}">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-outline-primary mx-2"><i class="fa fa-fw fa-floppy-o"></i> Guardar</button>
+                    <a href="/administrar/referendos/" class="btn btn-outline-info mx-2"><i class="fa fa-fw fa-ban"></i> Cancelar</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    
+    $(document).ready(function() {
+        $('#referendoForm').on('submit', function(event) {
+            event.preventDefault(); // Evita el envío del formulario por defecto
+
+            const data = {
+                id:{{{referendo.id}}},
+                titulo: $('#titulo').val(),
+                descripcion: $('#descripcion').val(),
+                fecha_inicio: $('#fecha_inicio').val(),
+                fecha_final: $('#fecha_final').val(),
+            };
+            console.log(data);
+            $.post('/administrar/referendos/editar/{{{referendo.id}}}', data, function(response) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Eleccion registrado exitosamente',
+                    showConfirmButton: true,
+                    timer: 10000
+                }).then(()=>{
+                    window.location.href = '/administrar/referendos';
+                });
+            }).fail(function(xhr) {
+                let message = 'Error interno del servidor';
+                if (xhr.status === 409) {
+                    const errorData = xhr.responseJSON;
+                    message = `Error: ${errorData.message}`;
+                } else if (xhr.status === 400) {
+                    message = 'Faltan claves requeridas';
+                }
+                Swal.fire({
+                    icon: 'error',
+                    title: message,
+                    showConfirmButton: true
+                });
+            });
+        });
+        
+    });
+</script>

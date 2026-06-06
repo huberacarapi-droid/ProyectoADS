@@ -1,0 +1,13 @@
+<div class="container mt-5">
+    <h2>Registro de preguntas para el Referéndum</h2>
+    <h5>{{referendo.titulo}}</h5>
+    <p class="small">{{referendo.descripcion}}</p>
+    <form action="/administrar/referendos/programar/consultas/editar/{{referendo.id}}/{{consulta.id_consulta}}" method="POST">
+        <div class="form-group">
+            <label for="pregunta">Pregunta del Referéndum</label>
+            <textarea class="form-control" id="pregunta" name="pregunta" rows="3"
+                placeholder="Ingrese la pregunta del Referéndum" required>{{consulta.pregunta}}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+</div>
