@@ -96,7 +96,7 @@ eleccionesModel.score = async function(id) {
 
 // Obtener votos por candidato en una votación específica
 eleccionesModel.getVotosPorCandidato = async function(votacion) {
-    const query = `CALL db_sistema_votacion_v1.VerCantidadVotosPorCandidato(?);`;
+    const query = `CALL ${db.database}.VerCantidadVotosPorCandidato(?);`;
     const response = await queryDatabase(query, [votacion]);
 
     if (response.success) {

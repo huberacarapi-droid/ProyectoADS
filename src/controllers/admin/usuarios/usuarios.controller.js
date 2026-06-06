@@ -32,8 +32,8 @@ usuariosCtrl.exportToExcel = async (req, res) => {
     try {
         const usersData = await pool.query(
             `SELECT u.codigo, u.cedula, u.complemento, u.nombres, u.apellidos, u.email, u.telefono, u.genero, d.nombre as 'residencia'
-            FROM db_sistema_votacion_v1.usuarios u
-            LEFT JOIN db_sistema_votacion_v1.departamento d ON u.residencia = d.id
+            FROM ${db.database}.usuarios u
+            LEFT JOIN ${db.database}.departamento d ON u.residencia = d.id
             WHERE deletedAt IS NULL;`
         );
         const workbook = new excelJS.Workbook();

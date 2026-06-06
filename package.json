@@ -1,6 +1,9 @@
 {
     "name": "server-votacion-1.0.0",
     "version": "1.0.0",
+    "engines": {
+        "node": "16.20.2"
+    },
     "description": "",
     "type": "module",
     "main": "index.js",
