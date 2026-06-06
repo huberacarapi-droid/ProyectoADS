@@ -1,12 +1,10 @@
 import mysql from "mysql";
-import syncMysql from 'sync-mysql';
 import { promisify } from "util";
 import config from "./config.js";
 
 const { db } = config;
 
 const pool = mysql.createPool(db);
-var connectionSync = new syncMysql(db);
 
 pool.getConnection((err, connection) => {
   if (err) {
@@ -29,16 +27,5 @@ pool.getConnection((err, connection) => {
 
 // Promisify Pool Querys
 pool.query = promisify(pool.query);
-
-// Syncrhonus Pool Querys
-pool.querySync = function(query){
-  var result=new Array();
-  try {
-    result = connectionSync.query(query);
-  } catch (error) {    
-  }
-  
-  return result;
-};
 
 export default pool;

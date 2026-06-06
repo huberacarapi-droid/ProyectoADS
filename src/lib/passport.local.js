@@ -18,6 +18,7 @@ async function findUser(condition, value) {
     `;
     try {
         const result = await pool.query(query, [value]);
+        //console.log(result);
         const users = JSON.parse(JSON.stringify(result));
         return users.length > 0 ? users[0] : null;
     } catch (error) {
