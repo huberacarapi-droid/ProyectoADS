@@ -147,12 +147,16 @@
                 6. Resultados de la Encuesta
               </a>
 
+              <a href="#planificacion" class="list-group-item list-group-item-action">
+                7. Planificación del Proyecto
+              </a>
+
               <a href="#referencias" class="list-group-item list-group-item-action">
-                7. Referencias
+                8. Referencias
               </a>
 
               <a href="#conclusiones" class="list-group-item list-group-item-action">
-                8. Conclusiones
+                9. Conclusiones
               </a>
 
             </ul>
@@ -790,39 +794,31 @@
 
           <div class="row text-center my-4">
 
-  <div class="col-md-6 mb-3">
+            <div class="col-md-6 mb-3">
 
-    <img src="/img/encuesta1.png"
-        class="img-fluid shadow rounded"
-        alt="Encuesta 1"
-        data-toggle="modal"
-        data-target="#modalEncuesta1"
-        style="cursor:pointer; max-height:250px;">
-    <br>
+              <img src="/img/encuesta1.png" class="img-fluid shadow rounded" alt="Encuesta 1" data-toggle="modal"
+                data-target="#modalEncuesta1" style="cursor:pointer; max-height:250px;">
+              <br>
 
-    <small class="text-muted">
-      Encuesta 1 (clic para ampliar)
-    </small>
+              <small class="text-muted">
+                Encuesta 1 (clic para ampliar)
+              </small>
 
-  </div>
+            </div>
 
-  <div class="col-md-6 mb-3">
+            <div class="col-md-6 mb-3">
 
-    <img src="/img/encuesta2.png"
-        class="img-fluid shadow rounded"
-        alt="Encuesta 2"
-        data-toggle="modal"
-        data-target="#modalEncuesta2"
-        style="cursor:pointer; max-height:250px;">
-    <br>
+              <img src="/img/encuesta2.png" class="img-fluid shadow rounded" alt="Encuesta 2" data-toggle="modal"
+                data-target="#modalEncuesta2" style="cursor:pointer; max-height:250px;">
+              <br>
 
-    <small class="text-muted">
-      Encuesta 2 (clic para ampliar)
-    </small>
+              <small class="text-muted">
+                Encuesta 2 (clic para ampliar)
+              </small>
 
-  </div>
+            </div>
 
-</div>
+          </div>
 
           <div class="table-responsive">
             <table class="table table-bordered table-hover table-striped">
@@ -957,6 +953,233 @@
 
       </div>
 
+
+      <div id="planificacion" class="card shadow-lg border-0 mb-4">
+
+        <div class="card-header bg-info text-white">
+
+          <h3 class="mb-0">
+            7. Planificación del Proyecto
+          </h3>
+
+        </div>
+
+        <div class="card-body">
+
+          <p align="justify">
+            La planificación del proyecto constituye una etapa fundamental para garantizar el desarrollo ordenado y
+            controlado del Sistema de Votación Virtual UMSA. Para ello se utilizaron herramientas de gestión de
+            proyectos como el Diagrama de Gantt y el Diagrama PERT, las cuales permiten organizar las actividades,
+            definir dependencias, estimar tiempos de ejecución y establecer una secuencia lógica de trabajo. La
+            planificación propuesta abarca desde la investigación inicial y el levantamiento de información hasta la
+            implementación, capacitación y cierre formal del proyecto.
+          </p>
+
+          <h5 class="text-primary mt-4">
+            Diagrama de Gantt
+          </h5>
+
+          <p align="justify">
+            El Diagrama de Gantt presenta la distribución temporal de las actividades planificadas para el desarrollo
+            del sistema. Esta herramienta permite visualizar la duración estimada de cada tarea, identificar los
+            períodos de ejecución y realizar el seguimiento del avance del proyecto. Asimismo, facilita la coordinación
+            de recursos y la verificación del cumplimiento de los plazos establecidos.
+          </p>
+
+          <div class="text-center my-4">
+
+            <img src="/img/gantt.png" class="img-fluid shadow rounded" alt="Diagrama de Gantt" data-toggle="modal"
+              data-target="#modalGantt" style="cursor:pointer; max-height:350px;">
+
+            <br>
+
+            <small class="text-muted">
+              Diagrama de Gantt (clic para ampliar)
+            </small>
+
+          </div>
+
+          <h5 class="text-primary mt-4">
+            Diagrama PERT
+          </h5>
+
+          <p align="justify">
+            El Diagrama PERT (Program Evaluation and Review Technique) permite representar gráficamente la secuencia y
+            dependencia entre las actividades del proyecto. Mediante esta herramienta es posible identificar la ruta
+            crítica, analizar los tiempos de ejecución y evaluar el impacto que tendría el retraso de una actividad
+            sobre el cronograma general. Su utilización contribuye a una gestión más eficiente del tiempo y de los
+            riesgos asociados al desarrollo del sistema.
+          </p>
+
+
+
+          <h5 class="text-primary mt-4">
+            Tabla de Precedencias
+          </h5>
+
+          <div class="table-responsive">
+
+            <table class="table table-bordered table-hover table-striped">
+
+              <thead class="thead-dark">
+
+                <tr>
+                  <th>ID</th>
+                  <th>Paquete de Trabajo</th>
+                  <th>Duración (Semanas)</th>
+                  <th>Predecesora</th>
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <tr>
+                  <td>P01</td>
+                  <td>Planificación e investigación normativa</td>
+                  <td>2</td>
+                  <td>-</td>
+                </tr>
+
+                <tr>
+                  <td>P02</td>
+                  <td>Encuesta</td>
+                  <td>3</td>
+                  <td>P01</td>
+                </tr>
+
+                <tr>
+                  <td>P03</td>
+                  <td>Marco Teórico</td>
+                  <td>2</td>
+                  <td>P02</td>
+                </tr>
+
+                <tr>
+                  <td>P04</td>
+                  <td>Diagramas</td>
+                  <td>3</td>
+                  <td>P02</td>
+                </tr>
+
+                <tr>
+                  <td>P05</td>
+                  <td>Configuración y autenticación</td>
+                  <td>2</td>
+                  <td>P04</td>
+                </tr>
+
+                <tr>
+                  <td>P06</td>
+                  <td>Candidatos y configuración de elecciones</td>
+                  <td>2</td>
+                  <td>P05</td>
+                </tr>
+
+                <tr>
+                  <td>P07</td>
+                  <td>Módulo de votación</td>
+                  <td>3</td>
+                  <td>P06</td>
+                </tr>
+
+                <tr>
+                  <td>P08</td>
+                  <td>Auditoría, resultados y notificaciones</td>
+                  <td>3</td>
+                  <td>P07</td>
+                </tr>
+
+                <tr>
+                  <td>P09</td>
+                  <td>Pruebas unitarias</td>
+                  <td>2</td>
+                  <td>P08</td>
+                </tr>
+
+                <tr>
+                  <td>P10</td>
+                  <td>Prueba piloto y ajustes</td>
+                  <td>2</td>
+                  <td>P09</td>
+                </tr>
+
+                <tr>
+                  <td>P11</td>
+                  <td>Implementación</td>
+                  <td>1</td>
+                  <td>P10</td>
+                </tr>
+
+                <tr>
+                  <td>P12</td>
+                  <td>Capacitación</td>
+                  <td>1</td>
+                  <td>P11</td>
+                </tr>
+
+                <tr>
+                  <td>P13</td>
+                  <td>Documentación</td>
+                  <td>1</td>
+                  <td>P12</td>
+                </tr>
+
+                <tr>
+                  <td>P14</td>
+                  <td>Cierre</td>
+                  <td>1</td>
+                  <td>P13</td>
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+          <h5 class="text-primary mt-4">
+            Análisis de la Planificación
+          </h5>
+
+          <p align="justify">
+            La planificación propuesta establece una secuencia lógica de actividades que inicia con la investigación
+            normativa y el levantamiento de información mediante encuestas, permitiendo comprender las necesidades y
+            requisitos del proceso electoral universitario. Posteriormente se desarrollan las actividades de análisis,
+            modelado y diseño, las cuales constituyen la base para la construcción del sistema.
+          </p>
+
+          <p align="justify">
+            La fase de desarrollo contempla la implementación progresiva de los módulos principales, comenzando por la
+            configuración y autenticación de usuarios, seguida de la gestión de candidatos y elecciones, el módulo de
+            votación y finalmente los componentes de auditoría, resultados y notificaciones. Esta estructura permite
+            validar cada funcionalidad antes de avanzar hacia la siguiente etapa.
+          </p>
+
+          <p align="justify">
+            Una vez finalizado el desarrollo, se realizan pruebas unitarias y una prueba piloto que permiten identificar
+            posibles errores y efectuar ajustes antes de la puesta en producción. Finalmente se ejecutan las actividades
+            de implementación, capacitación de usuarios, elaboración de documentación y cierre formal del proyecto.
+          </p>
+
+          <h5 class="text-primary mt-4">
+            Conclusiones de la Planificación
+          </h5>
+
+          <p align="justify">
+            La planificación elaborada proporciona una visión integral del proyecto y establece una hoja de ruta clara
+            para su ejecución. El uso combinado de los diagramas de Gantt y PERT permite controlar los tiempos,
+            gestionar dependencias y reducir riesgos asociados al desarrollo. Asimismo, la secuencia de actividades
+            garantiza que cada fase sea completada antes de iniciar la siguiente, contribuyendo al éxito de la
+            implementación del Sistema de Votación Virtual UMSA.
+          </p>
+
+        </div>
+
+
+      </div>
+
+
       <!-- ====================================== -->
       <!-- REFERENCIAS -->
       <!-- ====================================== -->
@@ -966,7 +1189,7 @@
         <div class="card-header bg-danger text-white">
 
           <h3 class="mb-0">
-            7. Referencias
+            8. Referencias
           </h3>
 
         </div>
@@ -1004,7 +1227,7 @@
       </div>
 
       <!-- ====================================== -->
-      <!-- 8.CONCLUSIONES -->
+      <!-- 9.CONCLUSIONES -->
       <!-- ====================================== -->
 
       <div id="conclusiones" class="card shadow-lg border-0 mb-4">
@@ -1012,7 +1235,7 @@
         <div class="card-header bg-primary text-white">
 
           <h3 class="mb-0">
-            8. Conclusiones
+            9. Conclusiones
           </h3>
 
         </div>
