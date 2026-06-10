@@ -119,6 +119,12 @@
                             <a href="#casos-sistema" class="list-group-item list-group-item-action">
                                 Casos de Uso de Sistema
                             </a>
+                            <a href="/uml#proceso-registrar-candidatos" class="list-group-item list-group-item-action">
+                                Proceso: Registrar Candidatos
+                            </a>
+                            <a href="/uml#proceso-generar-resultados" class="list-group-item list-group-item-action">
+                                Proceso: Generar Resultados
+                            </a>
 
                             <!--a href="#actividad" class="list-group-item list-group-item-action">
                                 Diagramas de Actividad
@@ -395,156 +401,147 @@
 
             </div>
 
-<!-- ====================================== -->
+            <!-- ====================================== -->
             <!-- DIAGRAMA DE PROCESOS -->
             <!-- ====================================== -->
 
-<div id="proceso-registrar-candidatos" class="card shadow-sm mb-4">
+            <div id="proceso-registrar-candidatos" class="card shadow-sm mb-4">
 
-    <div class="card-header bg-primary text-white">
+                <div class="card-header bg-primary text-white">
 
-        <h4 class="mb-0">
-            Diagrama de Procesos: Registrar Candidatos
-        </h4>
+                    <h4 class="mb-0">
+                        Diagrama de Procesos: Registrar Candidatos
+                    </h4>
 
-    </div>
+                </div>
 
-    <div class="card-body">
+                <div class="card-body">
 
-        <p align="justify">
-            Este diagrama representa el proceso de registro de candidatos
-            dentro del Sistema de Votación Virtual UMSA. El proceso inicia
-            con la solicitud de registro por parte del administrador electoral,
-            continúa con la validación de requisitos y documentación,
-            el almacenamiento de la información del candidato en la base de datos
-            y finaliza con la confirmación del registro para su participación
-            en el proceso electoral.
-        </p>
+                    <p align="justify">
+                        Este diagrama representa el proceso de registro de candidatos
+                        dentro del Sistema de Votación Virtual UMSA. El proceso inicia
+                        con la solicitud de registro por parte del administrador electoral,
+                        continúa con la validación de requisitos y documentación,
+                        el almacenamiento de la información del candidato en la base de datos
+                        y finaliza con la confirmación del registro para su participación
+                        en el proceso electoral.
+                    </p>
 
-        <div class="text-center mt-3">
+                    <div class="text-center mt-3">
 
-            <img src="img/diagramas/uml/proceso-registrar-candidatos.jpeg"
-                alt="Proceso Registrar Candidatos"
-                class="img-fluid img-thumbnail"
-                style="max-height:500px; cursor:pointer;"
-                data-toggle="modal"
-                data-target="#modalProcesoRegistrarCandidatos">
+                        <img src="img/diagramas/uml/proceso-registrar-candidatos.jpeg"
+                            alt="Proceso Registrar Candidatos" class="img-fluid img-thumbnail"
+                            style="max-height:500px; cursor:pointer;" data-toggle="modal"
+                            data-target="#modalProcesoRegistrarCandidatos">
 
-            <p class="mt-2 text-muted">
-                Click en la imagen para ampliar.
-            </p>
+                        <p class="mt-2 text-muted">
+                            Click en la imagen para ampliar.
+                        </p>
 
-        </div>
+                    </div>
 
-    </div>
-
-</div>
-
-<div id="proceso-generar-resultados" class="card shadow-sm mb-4">
-
-    <div class="card-header bg-primary text-white">
-
-        <h4 class="mb-0">
-            Diagrama de Procesos: Generar Resultados
-        </h4>
-
-    </div>
-
-    <div class="card-body">
-
-        <p align="justify">
-            Este diagrama describe el proceso de generación de resultados
-            electorales. El sistema consolida los votos emitidos,
-            realiza el conteo automático, calcula porcentajes de participación,
-            determina a los candidatos ganadores y genera reportes oficiales
-            para su publicación y consulta por parte de las autoridades
-            universitarias y los votantes.
-        </p>
-
-        <div class="text-center mt-3">
-
-            <img src="img/diagramas/uml/proceso-generar-resultados.jpeg"
-                alt="Proceso Generar Resultados"
-                class="img-fluid img-thumbnail"
-                style="max-height:500px; cursor:pointer;"
-                data-toggle="modal"
-                data-target="#modalProcesoGenerarResultados">
-
-            <p class="mt-2 text-muted">
-                Click en la imagen para ampliar.
-            </p>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- Modal Registrar Candidatos -->
-<div class="modal fade" id="modalProcesoRegistrarCandidatos" tabindex="-1">
-
-    <div class="modal-dialog modal-xl">
-
-        <div class="modal-content">
-
-            <div class="modal-header bg-primary text-white">
-
-                <h5 class="modal-title">
-                    Diagrama de Procesos: Registrar Candidatos
-                </h5>
-
-                <button type="button" class="close text-white"
-                    data-dismiss="modal">
-                    <span>&times;</span>
-                </button>
+                </div>
 
             </div>
 
-            <div class="modal-body text-center">
+            <div id="proceso-generar-resultados" class="card shadow-sm mb-4">
 
-                <img src="img/diagramas/uml/proceso-registrar-candidatos.jpeg"
-                    class="img-fluid">
+                <div class="card-header bg-primary text-white">
 
-            </div>
+                    <h4 class="mb-0">
+                        Diagrama de Procesos: Generar Resultados
+                    </h4>
 
-        </div>
+                </div>
 
-    </div>
+                <div class="card-body">
 
-</div>
+                    <p align="justify">
+                        Este diagrama describe el proceso de generación de resultados
+                        electorales. El sistema consolida los votos emitidos,
+                        realiza el conteo automático, calcula porcentajes de participación,
+                        determina a los candidatos ganadores y genera reportes oficiales
+                        para su publicación y consulta por parte de las autoridades
+                        universitarias y los votantes.
+                    </p>
 
-<!-- Modal Generar Resultados -->
-<div class="modal fade" id="modalProcesoGenerarResultados" tabindex="-1">
+                    <div class="text-center mt-3">
 
-    <div class="modal-dialog modal-xl">
+                        <img src="img/diagramas/uml/proceso-generar-resultados.jpeg" alt="Proceso Generar Resultados"
+                            class="img-fluid img-thumbnail" style="max-height:500px; cursor:pointer;"
+                            data-toggle="modal" data-target="#modalProcesoGenerarResultados">
 
-        <div class="modal-content">
+                        <p class="mt-2 text-muted">
+                            Click en la imagen para ampliar.
+                        </p>
 
-            <div class="modal-header bg-primary text-white">
+                    </div>
 
-                <h5 class="modal-title">
-                    Diagrama de Procesos: Generar Resultados
-                </h5>
-
-                <button type="button" class="close text-white"
-                    data-dismiss="modal">
-                    <span>&times;</span>
-                </button>
-
-            </div>
-
-            <div class="modal-body text-center">
-
-                <img src="img/diagramas/uml/proceso-generar-resultados.jpeg"
-                    class="img-fluid">
+                </div>
 
             </div>
 
-        </div>
+            <!-- Modal Registrar Candidatos -->
+            <div class="modal fade" id="modalProcesoRegistrarCandidatos" tabindex="-1">
 
-    </div>
+                <div class="modal-dialog modal-xl">
 
-</div>
+                    <div class="modal-content">
+
+                        <div class="modal-header bg-primary text-white">
+
+                            <h5 class="modal-title">
+                                Diagrama de Procesos: Registrar Candidatos
+                            </h5>
+
+                            <button type="button" class="close text-white" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+
+                        </div>
+
+                        <div class="modal-body text-center">
+
+                            <img src="img/diagramas/uml/proceso-registrar-candidatos.jpeg" class="img-fluid">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Modal Generar Resultados -->
+            <div class="modal fade" id="modalProcesoGenerarResultados" tabindex="-1">
+
+                <div class="modal-dialog modal-xl">
+
+                    <div class="modal-content">
+
+                        <div class="modal-header bg-primary text-white">
+
+                            <h5 class="modal-title">
+                                Diagrama de Procesos: Generar Resultados
+                            </h5>
+
+                            <button type="button" class="close text-white" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+
+                        </div>
+
+                        <div class="modal-body text-center">
+
+                            <img src="img/diagramas/uml/proceso-generar-resultados.jpeg" class="img-fluid">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
             <!-- ====================================== -->
             <!-- ACTIVIDAD -->
             <!-- ====================================== -->
