@@ -236,13 +236,13 @@
                     <!-- DIAGRAMA -->
                     <!-- ====================================== -->
 
-                    <div class="text-center mt-4 mb-4">
+                    <!--div class="text-center mt-4 mb-4">
 
                         <img src="/img/uml/uml-general.png"
                             class="img-fluid rounded shadow-lg border"
                             alt="Diagrama UML">
 
-                    </div>
+                    </div-->
 
                     <!-- ====================================== -->
                     <!-- CARDS -->
@@ -351,20 +351,17 @@
                         usuarios, autoridades y sistemas
                         dentro de los procesos electorales universitarios.
                     </p>
-<div class="text-center mt-3">
+                    <div class="text-center mt-3">
 
-            <img src="img/diagramas/uml/caso-uso.jpg"
-                 alt="Diagrama de Casos de Uso"
-                 class="img-fluid img-thumbnail"
-                 style="max-height:500px; cursor:pointer;"
-                 data-toggle="modal"
-                 data-target="#modalCasoUso">
+                        <img src="img/diagramas/uml/caso-uso.jpg" alt="Diagrama de Casos de Uso"
+                            class="img-fluid img-thumbnail" style="max-height:500px; cursor:pointer;"
+                            data-toggle="modal" data-target="#modalCasoUso">
 
-            <p class="mt-2 text-muted">
-                Click en la imagen para ampliar.
-            </p>
+                        <p class="mt-2 text-muted">
+                            Click en la imagen para ampliar.
+                        </p>
 
-        </div>
+                    </div>
                 </div>
 
             </div>
@@ -393,11 +390,161 @@
                         administración de elecciones
                         y generación de resultados.
                     </p>
-                    
+
                 </div>
 
             </div>
 
+<!-- ====================================== -->
+            <!-- DIAGRAMA DE PROCESOS -->
+            <!-- ====================================== -->
+
+<div id="proceso-registrar-candidatos" class="card shadow-sm mb-4">
+
+    <div class="card-header bg-primary text-white">
+
+        <h4 class="mb-0">
+            Diagrama de Procesos: Registrar Candidatos
+        </h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <p align="justify">
+            Este diagrama representa el proceso de registro de candidatos
+            dentro del Sistema de Votación Virtual UMSA. El proceso inicia
+            con la solicitud de registro por parte del administrador electoral,
+            continúa con la validación de requisitos y documentación,
+            el almacenamiento de la información del candidato en la base de datos
+            y finaliza con la confirmación del registro para su participación
+            en el proceso electoral.
+        </p>
+
+        <div class="text-center mt-3">
+
+            <img src="img/diagramas/uml/proceso-registrar-candidatos.jpeg"
+                alt="Proceso Registrar Candidatos"
+                class="img-fluid img-thumbnail"
+                style="max-height:500px; cursor:pointer;"
+                data-toggle="modal"
+                data-target="#modalProcesoRegistrarCandidatos">
+
+            <p class="mt-2 text-muted">
+                Click en la imagen para ampliar.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="proceso-generar-resultados" class="card shadow-sm mb-4">
+
+    <div class="card-header bg-primary text-white">
+
+        <h4 class="mb-0">
+            Diagrama de Procesos: Generar Resultados
+        </h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <p align="justify">
+            Este diagrama describe el proceso de generación de resultados
+            electorales. El sistema consolida los votos emitidos,
+            realiza el conteo automático, calcula porcentajes de participación,
+            determina a los candidatos ganadores y genera reportes oficiales
+            para su publicación y consulta por parte de las autoridades
+            universitarias y los votantes.
+        </p>
+
+        <div class="text-center mt-3">
+
+            <img src="img/diagramas/uml/proceso-generar-resultados.jpeg"
+                alt="Proceso Generar Resultados"
+                class="img-fluid img-thumbnail"
+                style="max-height:500px; cursor:pointer;"
+                data-toggle="modal"
+                data-target="#modalProcesoGenerarResultados">
+
+            <p class="mt-2 text-muted">
+                Click en la imagen para ampliar.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Modal Registrar Candidatos -->
+<div class="modal fade" id="modalProcesoRegistrarCandidatos" tabindex="-1">
+
+    <div class="modal-dialog modal-xl">
+
+        <div class="modal-content">
+
+            <div class="modal-header bg-primary text-white">
+
+                <h5 class="modal-title">
+                    Diagrama de Procesos: Registrar Candidatos
+                </h5>
+
+                <button type="button" class="close text-white"
+                    data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+
+            </div>
+
+            <div class="modal-body text-center">
+
+                <img src="img/diagramas/uml/proceso-registrar-candidatos.jpeg"
+                    class="img-fluid">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Modal Generar Resultados -->
+<div class="modal fade" id="modalProcesoGenerarResultados" tabindex="-1">
+
+    <div class="modal-dialog modal-xl">
+
+        <div class="modal-content">
+
+            <div class="modal-header bg-primary text-white">
+
+                <h5 class="modal-title">
+                    Diagrama de Procesos: Generar Resultados
+                </h5>
+
+                <button type="button" class="close text-white"
+                    data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+
+            </div>
+
+            <div class="modal-body text-center">
+
+                <img src="img/diagramas/uml/proceso-generar-resultados.jpeg"
+                    class="img-fluid">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
             <!-- ====================================== -->
             <!-- ACTIVIDAD -->
             <!-- ====================================== -->
@@ -677,13 +824,9 @@
 <!-- MODAL CASO DE USO -->
 <!-- ================================= -->
 
-<div class="modal fade"
-     id="modalCasoUso"
-     tabindex="-1"
-     role="dialog">
+<div class="modal fade" id="modalCasoUso" tabindex="-1" role="dialog">
 
-    <div class="modal-dialog modal-xl"
-         role="document">
+    <div class="modal-dialog modal-xl" role="document">
 
         <div class="modal-content">
 
@@ -693,9 +836,7 @@
                     Diagrama de Casos de Uso
                 </h5>
 
-                <button type="button"
-                        class="close text-white"
-                        data-dismiss="modal">
+                <button type="button" class="close text-white" data-dismiss="modal">
 
                     <span>&times;</span>
 
@@ -705,9 +846,7 @@
 
             <div class="modal-body text-center">
 
-                <img src="img/diagramas/uml/caso-uso.jpg"
-                     alt="Diagrama de Casos de Uso"
-                     class="img-fluid">
+                <img src="img/diagramas/uml/caso-uso.jpg" alt="Diagrama de Casos de Uso" class="img-fluid">
 
             </div>
 
@@ -721,47 +860,45 @@
 <!-- ====================================== -->
 
 <style>
-
-    html{
+    html {
         scroll-behavior: smooth;
     }
 
-    .hero-panel{
-        background: linear-gradient(135deg,#003b75,#0056b3);
+    .hero-panel {
+        background: linear-gradient(135deg, #003b75, #0056b3);
         border-radius: 15px;
     }
 
-    .hero-icon{
+    .hero-icon {
         font-size: 9rem;
         opacity: 0.2;
     }
 
-    .sidebar-title{
+    .sidebar-title {
         font-weight: bold;
         margin-bottom: 15px;
     }
 
-    .sidebar-menu .list-group-item{
+    .sidebar-menu .list-group-item {
         border: none;
         border-left: 4px solid transparent;
         transition: 0.3s;
         font-size: 14px;
     }
 
-    .sidebar-menu .list-group-item:hover{
+    .sidebar-menu .list-group-item:hover {
         background: #f1f7ff;
         border-left: 4px solid #007bff;
         padding-left: 25px;
     }
 
-    .card{
+    .card {
         border-radius: 12px;
     }
 
-    .sticky-top{
+    .sticky-top {
         top: 20px;
     }
-
 </style>
 
 {{> index/footer}}

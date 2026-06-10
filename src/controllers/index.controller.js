@@ -25,5 +25,8 @@ indexCtrl.renderOrientadoObjetos = function(req, res) {
 indexCtrl.renderUML = function(req, res) {
     res.render('index/uml.hbs', { layout: 'index.layout.hbs' });
 };
-``
+
+indexCtrl.renderVideos = function(req, res) {
+    res.render('index/videos.hbs', { layout: 'index.layout.hbs' });
+}
 export default indexCtrl;

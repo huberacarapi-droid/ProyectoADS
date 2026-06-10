@@ -13,5 +13,6 @@ router.get("/analisis-estructurado/modelo-comportamiento", isNotLoggedIn, index.
 router.get("/analisis-estructurado", isNotLoggedIn, index.renderAnalisisEstructurado);
 router.get("/orientado-objetos", isNotLoggedIn, index.renderOrientadoObjetos);
 router.get("/uml", isNotLoggedIn, index.renderUML); 
+router.get("/videos", isNotLoggedIn, index.renderVideos);
 
 export default router;
